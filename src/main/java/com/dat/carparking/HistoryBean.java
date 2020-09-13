@@ -90,8 +90,7 @@ public void setLocationService(LocationService locationService) {
 		 Date parked_date=format.parse(date);
 		 System.out.println(parked_date);
 		 List<History> records = locationService.listRecords(parked_date);
-		// locationService.deleteRecords(parked_date);
-		 //int records_number = records.size();
+		
 		 for(History h: records)
 		 {
 			locationService.deleteRecord(h); 
