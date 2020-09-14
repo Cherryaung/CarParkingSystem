@@ -15,6 +15,15 @@ private String building_name;
 private String floor_name;
 private String slot_name;
 
+public Location()
+{
+	}
+public Location(String buildingName, String floorName,String slotName)
+{
+	building_name = buildingName;
+	floor_name = floorName;
+	slot_name = slotName;
+	}
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 @Column(name="location_id")

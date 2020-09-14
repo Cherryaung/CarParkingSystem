@@ -18,7 +18,7 @@ public class LocationDaoImpl implements LocationDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	@Override
-	public void persistInformation(Location location) {
+	public void persistRecord(Location location) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(location);
 	}

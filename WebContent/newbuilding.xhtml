@@ -42,9 +42,36 @@
 
 </h:panelGrid>
 <p:separator />  
-<p:commandButton value="Submit" update="msgs" actionListener="#{locationBean.persistInformation()}" icon="ui-icon-check" />  
+<p:commandButton value="Submit" update="msgs" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" />  
 </p:panel>  
 </h:form>  
 
+<!-- before save into db, show datatable -->
+<p:growl id="growl" sticky="false" life="3000" />
+  <p:dataTable id="dt" var="l" rows="15" rowKey="row" value="#{locationBean.location_list}">  
+            <p:column headerText="Building Name">  
+                <h:outputText value="#{l.building_name}"/>  
+            </p:column>  
+            <p:column headerText="Floor Name">  
+                <h:outputText value="#{l.floor_name}" />  
+            </p:column>  
+            <p:column headerText="Slot Name">  
+                <h:outputText value="#{l.slot_name}" />  
+            </p:column>  
+  
+            <p:column headerText="Action"> 
+            <p:growl showDetail="true" />  
+			<p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord(l)}" styleClass="ui-priority-primary">		
+       		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+             <h:form>
+   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+   			 </p:confirmDialog>      
+			</h:form>
+
+            </p:column> 
+        </p:dataTable>  
 </h:body>
 </html>

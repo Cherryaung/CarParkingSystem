@@ -7,7 +7,7 @@ import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
 
 public interface LocationDao {
-	 void persistInformation(Location location);
+	 void persistRecord(Location location);
 	 public List<History> listRecords(Date parked_date);
 	 void deleteRecord(History history);
 }

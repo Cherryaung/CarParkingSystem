@@ -1,6 +1,7 @@
 package com.dat.carparking;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class LocationBean implements Serializable{
 	public String floor_name;
 	public String slot_name;
 	
-    public Location location=new Location();
+    public Location location= new Location();
     private List<String> floors;
     @ManagedProperty(value="#{locationService}")
     LocationService locationService;
@@ -77,9 +78,17 @@ public LocationService getLocationService() {
 	public void setBuilding_name(String building_name) {
 		this.building_name = building_name;
 	}
-
+	List<Location> location_list = new ArrayList <>();
 		
-//add floorlist to dropdown
+public List<Location> getLocation_list() {
+		return location_list;
+	}
+
+	public void setLocation_list(List<Location> location_list) {
+		this.location_list = location_list;
+	}
+
+	//add floorlist to dropdown
 	public String floorList() {
 		System.out.println("floorlist");
 		floors=new LinkedList();
@@ -97,24 +106,37 @@ public LocationService getLocationService() {
 		}  
 	}
 	
-	//method CRUD
-	public String persistInformation() {
-		String bName=location.getBuilding_name();
-		
+	//method screen save
+	public String addRecord() {
+		  String buildingName=location.getBuilding_name();
 		  int slotcount=Integer.parseInt(location.getSlot_name());
+		 // System.out.println("Slot Count: "+slotcount);
 		  for(int i=1;i<=slotcount;i++) {
-			  location.setBuilding_name(bName);
-			  location.setFloor_name(selectedFloor);
-			  location.setSlot_name("Slot"+i);
-			  locationService.persistInformation(this.location); 
+			  //location.setBuilding_name(buildingName);
+			  //location.setFloor_name(selectedFloor);
+		
+			  String slot_name = "Slot"+i;
+			 // System.out.println(slot_name);
+			  //location.setSlot_name(slot_name);
+			  location_list.add(new Location(buildingName,selectedFloor,slot_name));
+			 // locationService.persistInformation(this.location); 
 		      }
-		 
+		 for(Location l: location_list)
+		 {
+			 System.out.println("Building name:"+l.getBuilding_name());
+			 System.out.println("Floor name:"+l.getFloor_name());
+			 System.out.println("Slot name:"+l.getSlot_name());
+		 }
 		System.out.println("successful");
 
 		return "newbuilding";
 	}
 
-	
+	public String persistRecord(Location location) {
+		locationService.persistRecord(this.location);
+		System.out.println("save");
+		return "newbuilding";
+	}
 	
 	
 }

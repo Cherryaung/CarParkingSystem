@@ -20,9 +20,9 @@ public class LocationServiceImpl implements LocationService{
 	
 	@Transactional
 	@Override
-	public void persistInformation(Location location) {
+	public void persistRecord(Location location) {
 		// TODO Auto-generated method stub
-		locationDao.persistInformation(location);
+		locationDao.persistRecord(location);
 		
 	}
 	@Transactional
