@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking System</title>
+<style>
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_4.jpg);
+  			  background-repeat:no-repeat;
+  			  background-size:cover;} 
+  	h1{text-align:center;
+  	   padding-top:0px;
+  	   font-family: 'Dancing Script', cursive;
+	   font-size: 50px;} 
+	   .commandbutton {
+	border: none;
+	outline: none;
+	padding: 20px 20px;
+	border-radius: 50px;
+	color: #C0C0C0;
+	background: #808080;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+}
+commandbutton:hover{
+	cursor: pointer;
+}
+</style>
+</h:head>
+<h:body styleClass="back_img">
+<h1>Admin</h1>
+<h:form > 
+
+
+<p:button value="Building1" id="building1" styleClass="commandbutton" href="admin_view_building.xhtml"/> 
+<p:button value="Building2" id="building2" styleClass="commandbutton"/>
+<p:button value="+New" id="new" styleClass="commandbutton"/><br></br>
+<p:button value="Change Password" id="changepassword" styleClass="commandbutton"/>
+<p:button value="Manage User Account" id="manageuserpassword" styleClass="commandbutton" href="admin_managed_user_account.xhtml"/> 
+</h:form> 
+
+</h:body>
+
+</html>
