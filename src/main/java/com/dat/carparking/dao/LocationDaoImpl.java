@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dat.carparking.model.Location;
+import com.dat.carparking.model.Admin;
 import com.dat.carparking.model.History;
 
 
@@ -39,6 +40,21 @@ public class LocationDaoImpl implements LocationDao{
 	public void deleteRecord(History history) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(history);
+	}
+	@Override
+	public Admin login(String admin_name, String admin_password) {
+		// TODO Auto-generated method stub
+		// Session session=this.sessionFactory.getCurrentSession();
+		/*
+		 * String sql =
+		 * "SELECT admin_id FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password"
+		 * ; Query query = (Query) session.createQuery(sql);
+		 * query.setParameter("admin_name", admin_name).setParameter("admin_password",
+		 * admin_password); int id = query.getFirstResult(); return id;
+		 */
+		 String sql ="FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password";
+		Admin admin = (Admin) sessionFactory.openSession().createQuery(sql).setParameter("admin_name",admin_name).setParameter("admin_password", admin_password).uniqueResult();
+	  return admin;
 	}
 
 	

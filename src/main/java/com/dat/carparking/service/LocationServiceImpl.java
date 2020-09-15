@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dat.carparking.dao.LocationDao;
+import com.dat.carparking.model.Admin;
 import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
 
@@ -35,6 +36,12 @@ public class LocationServiceImpl implements LocationService{
 	public void deleteRecord(History history) {
 		// TODO Auto-generated method stub
 		locationDao.deleteRecord(history);
+	}
+	@Transactional
+	@Override
+	public Admin login(String admin_name, String admin_password) {
+		// TODO Auto-generated method stub
+		return locationDao.login(admin_name, admin_password);
 	}
 	
 	

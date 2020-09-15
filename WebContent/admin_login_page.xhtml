@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Admin Login Page</title>
+</h:head>
+<h:body>
+<h1>Admin</h1>
+  <h:form>
+   <p:growl id="msgs" showDetail="true"/>
+    <p:panel id="panel" headerForm="Login Form">
+     <h:panelGrid columns="2" cellpadding="5">
+       <p:outputLabel for="name" value="User Name:" />
+       <p:inputText id="name" value="#{accountBean.admin.admin_name}" required="true" />
+       <p:outputLabel for="password" value="Password:" />
+       <p:inputText id="password" value="#{accountBean.admin.admin_password}" required="true" />
+       <p:commandButton style="float:right;" value="login" actionListener="#{accountBean.login()}"/>
+     </h:panelGrid>
+    </p:panel>
+  </h:form>
+</h:body>
+</html>
