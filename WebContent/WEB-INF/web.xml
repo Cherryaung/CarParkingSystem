@@ -31,7 +31,7 @@
 </filter-mapping>
   <!-- Welcome page -->
   <welcome-file-list>
-    <welcome-file>faces/admin_home_page.xhtml</welcome-file>
+    <welcome-file>faces/user_occupied_car_parking_slot.xhtml</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>

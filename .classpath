@@ -17,7 +17,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Acer/Downloads/cupertino-1.0.10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Acer/Desktop/all-themes-1.0.10.jar"/>
+	<classpathentry kind="lib" path="D:/intern_project/all-themes-1.0.10.jar"/>
+	<classpathentry kind="lib" path="D:/intern_project/cupertino-1.0.10.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
