@@ -12,4 +12,10 @@ public interface LocationService {
 	 void deleteRecord(History history);
 	 public List<History> listRecords(Date parked_date);
 	 public Admin login(String admin_name, String admin_password);
+	 public List<String> findBuildinglist();
+	 public List<String> findFloorlist(String selected_building);
+	 public List<String> findSlotlist(String selectedFloor,String selected_building);
+	 void DeleteSlot(String selected_building, String selectedFloor, String selected_slot);
+	 void DeleteFloor(String selected_building, String selectedFloor);
+	 void DeleteBuilding(String selected_building);
 }

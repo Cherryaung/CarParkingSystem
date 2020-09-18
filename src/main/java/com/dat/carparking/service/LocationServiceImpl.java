@@ -43,6 +43,42 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		return locationDao.login(admin_name, admin_password);
 	}
+	@Transactional
+	@Override
+	public List<String> findBuildinglist() {
+		// TODO Auto-generated method stub
+		return locationDao.findBuildinglist();
+	}
+	@Transactional
+	@Override
+	public List<String> findFloorlist(String selected_building) {
+		// TODO Auto-generated method stub
+		return locationDao.findFloorlist(selected_building);
+	}
+	@Transactional
+	@Override
+	public List<String> findSlotlist(String selectedFloor, String selected_building) {
+		// TODO Auto-generated method stub
+		return locationDao.findSlotlist(selectedFloor, selected_building);
+	}
+	@Transactional
+	@Override
+	public void DeleteSlot(String selected_building, String selectedFloor, String selected_slot) {
+		// TODO Auto-generated method stub
+		locationDao.DeleteSlot(selected_building, selectedFloor, selected_slot);
+	}
+	@Transactional
+	@Override
+	public void DeleteFloor(String selected_building, String selectedFloor) {
+		// TODO Auto-generated method stub
+		locationDao.DeleteFloor(selected_building, selectedFloor);
+	}
+	@Transactional
+	@Override
+	public void DeleteBuilding(String selected_building) {
+		// TODO Auto-generated method stub
+		locationDao.DeleteBuilding(selected_building);
+	}
 	
 	
 	

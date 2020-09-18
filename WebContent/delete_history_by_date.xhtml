@@ -18,14 +18,14 @@
 <p:panel id="panel" header="Admin">  
 <h:panelGrid columns="2" cellpadding="5">  
 <p:outputLabel for="parked_date" value="Date :" />
-<p:calendar id="parked_date" value="#{historyBean.history.parked_date}" required="true" />
+<p:calendar id="parked_date" value="#{locationBean.history.parked_date}" required="true" />
 <p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
 <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 </p:commandButton>  
 </h:panelGrid>
 </p:panel>
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{historyBean.deleteRecords()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{locationBean.deleteRecords()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

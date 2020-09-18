@@ -17,10 +17,10 @@
     <p:panel id="panel" headerForm="Login Form">
      <h:panelGrid columns="2" cellpadding="5">
        <p:outputLabel for="name" value="User Name:" />
-       <p:inputText id="name" value="#{accountBean.admin.admin_name}" required="true" />
+       <p:inputText id="name" value="#{locationBean.admin.admin_name}" required="true" />
        <p:outputLabel for="password" value="Password:" />
-       <p:inputText id="password" value="#{accountBean.admin.admin_password}" required="true" />
-       <p:commandButton style="float:right;" value="login" actionListener="#{accountBean.login()}"/>
+       <p:inputText id="password" value="#{locationBean.admin.admin_password}" required="true" />
+       <p:commandButton style="float:right;" value="login" actionListener="#{locationBean.login()}"/>
      </h:panelGrid>
     </p:panel>
   </h:form>

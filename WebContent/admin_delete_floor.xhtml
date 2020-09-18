@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <title>Car Parking System(Delete)</title>
+  <style>
+  
+  </style>
+</h:head>
+<h:body>
+  <h1 align="center">Car Parking System</h1>
+  <h:form>
+<p:growl id="msgs" showDetail="true" />  
+<p:panel header="Delete Floor" style="margin-bottom:10px;">  
+<h:panelGrid columns="7" cellpadding="5">  
+  <p:outputLabel for="building" value="Building :" />
+  <p:selectOneMenu id="building" value="#{locationBean.building_name}" style="width:100px">
+     <p:ajax listener="#{locationBean.onBuildingChange()}" update="floor"/>
+     <f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true"/>
+     <f:selectItems value="#{locationBean.listBuildings()}" />
+  </p:selectOneMenu>
+   
+  <p:outputLabel for="floor" value="Floor :" />
+  <p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:100px">
+     <p:ajax listener="#{locationBean.onFloorChange()}"/>
+     <f:selectItem itemLabel="Select Floor" itemValue="" noSelectionOption="true"/>
+     <f:selectItems value="#{locationBean.listfloors()}" />
+  </p:selectOneMenu>
+
+<p:commandButton value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
+<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+</p:commandButton> 
+</h:panelGrid>
+</p:panel>
+
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
+<p:commandButton value="Yes" actionListener="#{locationBean.DeleteFloor()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
+</p:confirmDialog> 
+</h:form>
+</h:body>
+</html>
