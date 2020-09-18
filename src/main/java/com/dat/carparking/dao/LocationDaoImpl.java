@@ -4,14 +4,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Query;
+
 
 import org.hibernate.Session;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dat.carparking.model.Location;
 import com.dat.carparking.model.Admin;
+import com.dat.carparking.model.User;
 import com.dat.carparking.model.History;
 
 
@@ -103,6 +105,32 @@ public class LocationDaoImpl implements LocationDao{
 		for(Location l : location)	
 		{
 		sessionFactory.getCurrentSession().delete(l);}
+	}
+
+	@Override
+	public List userLogin(String admin_name, String admin_password) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password";
+		Query query = (Query) session.createQuery(sql);
+		 query.setParameter("admin_name", admin_name).setParameter("admin_password",admin_password).uniqueResult(); 
+		 List result=query.list();
+		
+		
+	  return result;
+	}
+	
+	@Override
+	public List userLogin1(String user_name, String user_password) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password";
+		Query query = (Query) session.createQuery(sql);
+		 query.setParameter("user_name", user_name).setParameter("user_password",user_password).uniqueResult(); 
+		 List result=query.list();
+		
+		
+	  return result;
 	}
 
 	

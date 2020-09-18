@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,12 +18,15 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import com.dat.carparking.model.Admin;
+import com.dat.carparking.model.User;
 import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
 import com.dat.carparking.service.LocationService;
 @ManagedBean
 @SessionScoped
 public class LocationBean implements Serializable{
+	
+    
 	//for properties of location class
 	public String building_name;
 	public String floor_name;
@@ -40,10 +43,21 @@ public class LocationBean implements Serializable{
 	public String admin_name;
 	public String admin_password;
 	
+	
+	//for properties of user class
+	public String user_name;
+	public String user_password;
+	private static final long serialVersionUID = -2132320822029255792L;
+
 	//for new objects
 	public History history=new History();
     public Location location= new Location();
-    public Admin admin = new Admin();
+    private Admin admin;
+    private User user;
+    
+
+   
+
     
     public List<String> floors;
     public List<String> buildings;
@@ -52,8 +66,22 @@ public class LocationBean implements Serializable{
     List<Location> location_list = new ArrayList <>();
     @ManagedProperty(value="#{locationService}")
     LocationService locationService;
+    @PostConstruct
+    public void init() {
+    	admin=new Admin();
+    }
+    @PostConstruct
+    public void init1() {
+    	user=new User();
+    }
     
-//Getters and Setters for location's property
+public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	//Getters and Setters for location's property
     public String getBuilding_name() {
 		return building_name;
 	}
@@ -122,6 +150,22 @@ public class LocationBean implements Serializable{
 	}
 	public void setAdmin_password(String admin_password) {
 		this.admin_password = admin_password;
+	}
+	//Getter and setter for user's property
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getUser_password() {
+		return user_password;
+	}
+
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
 
 	//Getter and setter for lists(floor,building,slot)
@@ -315,6 +359,46 @@ public class LocationBean implements Serializable{
 		  context.addMessage(null, new FacesMessage("Successfully deleted."));
 		 System.out.println("deleted successfully");
 	 }
+	
+	 public String login()
+	 {
+	 	List t=locationService.userLogin(admin.getAdmin_name(), admin.getAdmin_password());
+	 	
+	 	
+	 	
+	 	
+	 	if(t.isEmpty())
+	 	{
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Wrong User Name or Password."));
+	 		System.out.println("Invalid!");
+	 		return "admin_login_page";
+	 		 
+	 	}else {
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
+	 		System.out.println("Successful!");
+	 	      return "newbuilding";
+	 	}
+	 	}
+	 //return null;
+	 public String login1()
+	 {
+	 	List t=locationService.userLogin1(user.getUser_name(), user.getUser_password());
+	 	
+	 	
+	 	
+	 	
+	 	if(t.isEmpty())
+	 	{
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Wrong User Name or Password."));
+	 		System.out.println("Invalid!");
+	 		return "admin_login_page";
+	 		 
+	 	}else {
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
+	 		System.out.println("Successful!");
+	 	      return "newbuilding";
+	 	}
+	 	}
 		/*
 		 * public String login() { String name = admin.getAdmin_name(); String pass =
 		 * admin.getAdmin_password(); System.out.println("name: "+ name+" pass: "+pass);

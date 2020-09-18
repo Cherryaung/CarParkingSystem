@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.dat.carparking.dao.LocationDao;
 import com.dat.carparking.model.Admin;
+import com.dat.carparking.model.User;
 import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
 
@@ -79,7 +80,18 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		locationDao.DeleteBuilding(selected_building);
 	}
-	
+	@Transactional
+	@Override
+	public List userLogin(String admin_name, String admin_password) {
+		// TODO Auto-generated method stub
+		return locationDao.userLogin(admin_name, admin_password);
+	}
+	@Transactional
+	@Override
+	public List userLogin1(String user_name, String user_password) {
+		// TODO Auto-generated method stub
+		return locationDao.userLogin1(user_name, user_password);
+	}
 	
 	
 }

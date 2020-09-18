@@ -8,8 +8,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Admin Login Page</title>
-
+<title>Security Login Page</title>
 <style>
   	.back_img{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_4.jpg);
   			  background-repeat:no-repeat;
@@ -35,20 +34,20 @@ commandbutton:hover{
 </h:head>
 <h:body styleClass="back_img">
 
-<h1>Admin</h1>
+<h1>Security</h1>
   
   <h:form>
  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
   <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
    <p:growl id="msgs" showDetail="true"/>
-    <p:panel id="panel" header="Admin Login Form">
+    <p:panel id="panel" header="Security User Login Form">
      <h:panelGrid columns="2" cellpadding="5">
        <p:outputLabel for="name" value="User Name:" />
-       <p:inputText id="name" value="#{locationBean.admin.admin_name}" required="true" requiredMessage="User Name is required"/>
+       <p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="User Name is required"/>
        <p:outputLabel for="password" value="Password:" />
-       <p:inputText id="password" value="#{locationBean.admin.admin_password}" required="true" requiredMessage="Password is required" />
-       <p:commandButton type="submit" style="float:right;" value="login" actionListener="#{locationBean.login()}" validateClient="true" />
-       </h:panelGrid>
+       <p:inputText id="password" value="#{locationBean.user.user_password}" required="true" requiredMessage="Password is required" />
+       <p:commandButton type="submit" style="float:right;" value="login" actionListener="#{locationBean.login1()}" validateClient="true" />
+     </h:panelGrid>
     </p:panel>
   </h:form>
 </h:body>

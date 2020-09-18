@@ -21,7 +21,7 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.
 		<property name="url"
 			value="jdbc:postgresql://localhost:5432/CarParkingSystem" />
 		<property name="username" value="postgres" />
-		<property name="password" value="root" />
+		<property name="password" value="123456" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -32,6 +32,10 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.
 				<value>com.dat.carparking.model.History
 				</value>
 				<value>com.dat.carparking.model.Location
+				</value>
+				<value>com.dat.carparking.model.Admin
+				</value>
+				<value>com.dat.carparking.model.User
 				</value>
 			</list>
 		</property>
