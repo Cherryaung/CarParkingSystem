@@ -20,5 +20,7 @@ public interface LocationDao {
 	 public List<String> findSlotlist(String selectedFloor,String selected_building);
 	 public List userLogin(String admin_name, String admin_password);
 	 public List userLogin1(String user_name, String user_password);
+	 public Boolean checkBuildingName(String building_name);
+	 public Location confirmtosave(Location l);
 }
 

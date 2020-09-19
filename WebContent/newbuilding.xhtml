@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -15,19 +14,24 @@
 <h:body>
 <h1>Add Building</h1>
 <h:form>
-
-    <h:outputText value="Building name: "/>  
-    <p:inputText value="#{locationBean.location.building_name}"/>
-    <h:outputText value="Number of floor: "/>  
-    <p:inputText value="#{locationBean.location.floor_name}"/>
-    
-  <p:commandButton value="ADD" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" />  
+   <p:panel header="New Building" style="margin-bottom:10px;" id="createbuilding">  
+    <h:panelGrid columns="4" cellpadding="5">  
+       <p:outputLabel for="buildingname" value="Building name: " />     
+       <p:inputText id="buildingname" value="#{locationBean.location.building_name}" required="true"/>
+      
+       <p:outputLabel for="floor_number" value="Number of floor: " />  
+        <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number">
+        </p:inputText>
+    </h:panelGrid>
+<p:separator />  
+<p:commandButton value="ADD" update=":form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" />  
+</p:panel>   
 </h:form>
 
 <!-- drop down -->
-<h:form>  
+<h:form id="form1">  
 <p:growl id="msgs" showDetail="true" />  
-<p:panel header="Creating slots" style="margin-bottom:10px;">  
+<p:panel header="Creating slots" style="margin-bottom:10px;" id="floorupdate">  
 <h:panelGrid columns="2" cellpadding="5">  
 
 <p:outputLabel for="floor" value="Floor : " />  
@@ -42,7 +46,7 @@
 
 </h:panelGrid>
 <p:separator />  
-<p:commandButton value="Submit" update="msgs" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" />  
+<p:commandButton value="Submit" update="dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" />  
 </p:panel>  
 </h:form>  
 
@@ -58,8 +62,8 @@
             <p:column headerText="Slot Name">  
                 <h:outputText value="#{l.slot_name}" />  
             </p:column>  
-  
-            <p:column headerText="Action"> 
+
+           <!--  <p:column headerText="Action"> 
             <p:growl showDetail="true" />  
 			<p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord(l)}" styleClass="ui-priority-primary">		
        		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
@@ -68,10 +72,22 @@
    			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
   			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
      		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-   			 </p:confirmDialog>      
+   			 </p:confirmDialog>     
 			</h:form>
-
-            </p:column> 
+			 </p:column> -->  
+			 <f:facet name="footer">
+			 <p:growl showDetail="true" /> 
+			 <p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update=":form1:floorupdate" styleClass="ui-priority-primary">		
+       		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+    		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
+             <h:form>
+   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+   			 </p:confirmDialog>     
+			</h:form> 
+			 </f:facet>
         </p:dataTable>  
 </h:body>
 </html>

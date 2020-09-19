@@ -92,6 +92,18 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		return locationDao.userLogin1(user_name, user_password);
 	}
+	@Transactional
+	@Override
+	public Boolean checkBuildingName(String building_name) {
+		// TODO Auto-generated method stub
+		return locationDao.checkBuildingName(building_name);
+	}
+	@Transactional
+	@Override
+	public Location confirmtosave(Location l) {
+		// TODO Auto-generated method stub
+		return locationDao.confirmtosave(l);
+	}
 	
 	
 }

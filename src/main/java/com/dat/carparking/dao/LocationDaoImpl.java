@@ -4,16 +4,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-
+import javax.persistence.Query;
 
 import org.hibernate.Session;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.SharedSessionContract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dat.carparking.model.Location;
 import com.dat.carparking.model.Admin;
-import com.dat.carparking.model.User;
 import com.dat.carparking.model.History;
 
 
@@ -24,7 +23,15 @@ public class LocationDaoImpl implements LocationDao{
 	@Override
 	public void persistRecord(Location location) {
 		// TODO Auto-generated method stub
+	//	Session session = this.sessionFactory.getCurrentSession();
+		/*String sql = "FROM Location WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+		Location l = new Location();
+		l = (Location)  sessionFactory.openSession().createQuery(sql).setParameter("building_name",location.getBuilding_name()).setParameter("floor_name",location.getFloor_name()).setParameter("slot_name",location.getSlot_name()).uniqueResult();
+	    if(l==null) {*/
 		sessionFactory.getCurrentSession().save(location);
+		/*
+															 * }else { System.out.println("already exist"); }
+															 */
 	}
 	@Override
 	public List<History> listRecords(Date parked_date) {
@@ -106,31 +113,37 @@ public class LocationDaoImpl implements LocationDao{
 		{
 		sessionFactory.getCurrentSession().delete(l);}
 	}
-
+	@Override
+	public Location confirmtosave(Location l) {
+		// TODO Auto-generated method stub
+		String sql = "FROM Location WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+		Location loc = new Location();
+		loc = (Location)  sessionFactory.openSession().createQuery(sql).setParameter("building_name",l.getBuilding_name()).setParameter("floor_name",l.getFloor_name()).setParameter("slot_name",l.getSlot_name()).uniqueResult();
+	    System.out.println("confirmtosave");
+		return loc;
+	}
+	@Override
+	public Boolean checkBuildingName(String building_name) {
+		// TODO Auto-generated method stub
+		String sql = "FROM Location WHERE building_name=:building_name";
+		List<Location>location =  sessionFactory.openSession().createQuery(sql).setParameter("building_name", building_name).list();
+		if(location == null)
+		{
+			return false;
+		}else {
+			return true;
+		}
+		
+	}
 	@Override
 	public List userLogin(String admin_name, String admin_password) {
 		// TODO Auto-generated method stub
-		Session session=this.sessionFactory.getCurrentSession();
-		 String sql ="FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password";
-		Query query = (Query) session.createQuery(sql);
-		 query.setParameter("admin_name", admin_name).setParameter("admin_password",admin_password).uniqueResult(); 
-		 List result=query.list();
-		
-		
-	  return result;
+		return null;
 	}
-	
 	@Override
 	public List userLogin1(String user_name, String user_password) {
 		// TODO Auto-generated method stub
-		Session session=this.sessionFactory.getCurrentSession();
-		 String sql ="FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password";
-		Query query = (Query) session.createQuery(sql);
-		 query.setParameter("user_name", user_name).setParameter("user_password",user_password).uniqueResult(); 
-		 List result=query.list();
-		
-		
-	  return result;
+		return null;
 	}
 
 	
