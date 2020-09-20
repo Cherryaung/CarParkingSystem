@@ -8,7 +8,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-  <title>Car Parking System(Delete)</title>
+  <title>Car Parking System(Search)</title>
   <style>
   
   </style>
@@ -17,8 +17,8 @@
   <h1 align="center">Car Parking System</h1>
   <h:form>
 <p:growl id="msgs" showDetail="true" />  
-<p:panel header="Delete Slot" style="margin-bottom:10px;">  
-<h:panelGrid columns="7" cellpadding="5">  
+<p:panel header="Search Parked History" style="margin-bottom:10px;">  
+<h:panelGrid columns="9" cellpadding="5">  
   <p:outputLabel for="building" value="Building :" />
   <p:selectOneMenu id="building" value="#{locationBean.location.building_name}" style="width:100px">
      <p:ajax listener="#{locationBean.onBuildingChange()}" update="floor"/>
@@ -40,16 +40,11 @@
      <f:selectItems value="#{locationBean.listslots()}" />
   </p:selectOneMenu>
    
-<p:commandButton value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
-<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-</p:commandButton> 
+  <p:outputLabel for="parked_date" value="Date :" />
+  <p:calendar id="parked_date" value="#{locationBean.history.parked_date}" required="true" /> 
+ <p:commandButton value="Search" icon="ui-icon-check" styleClass="ui-priority-primary"/>
 </h:panelGrid>
 </p:panel>
-
-<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{locationBean.DeleteSlot()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
-<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
-</p:confirmDialog> 
 </h:form>
 </h:body>
 </html>

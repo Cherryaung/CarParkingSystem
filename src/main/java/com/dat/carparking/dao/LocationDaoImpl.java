@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Query;
-
+//import javax.persistence.Query;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.SharedSessionContract;
@@ -136,14 +136,29 @@ public class LocationDaoImpl implements LocationDao{
 		
 	}
 	@Override
-	public List userLogin(String admin_name, String admin_password) {
+	public List adminLogin(String admin_name, String admin_password) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password";
+		Query query = (Query) session.createQuery(sql);
+		 query.setParameter("admin_name", admin_name).setParameter("admin_password",admin_password).uniqueResult(); 
+		 List result=query.list();
+		
+		
+	  return result;
 	}
+	
 	@Override
-	public List userLogin1(String user_name, String user_password) {
+	public List userLogin(String user_name, String user_password) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="FROM User WHERE user_name=:user_name AND user_password=:user_password";
+		Query query = (Query) session.createQuery(sql);
+		 query.setParameter("user_name", user_name).setParameter("user_password",user_password).uniqueResult(); 
+		 List result=query.list();
+		
+		
+	  return result;
 	}
 
 	

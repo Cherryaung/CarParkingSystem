@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -20,6 +21,7 @@ import javax.faces.context.FacesContext;
 import com.dat.carparking.model.Admin;
 import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
+import com.dat.carparking.model.User;
 import com.dat.carparking.service.LocationService;
 @ManagedBean
 @SessionScoped
@@ -40,10 +42,26 @@ public class LocationBean implements Serializable{
 	public String admin_name;
 	public String admin_password;
 	
+	//for properties of user class
+	public String user_name;
+	public String user_password;
+	private static final long serialVersionUID = -2132320822029255792L;
+
 	//for new objects
 	public History history=new History();
     public Location location= new Location();
-    public Admin admin = new Admin();
+    private Admin admin;
+    public User user=new User();
+    @PostConstruct
+    public void init() {
+    	admin=new Admin();
+    }
+     public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
     
     public List<String> floors;
     public List<String> buildings;
@@ -112,18 +130,35 @@ public class LocationBean implements Serializable{
 	}
     
 	//Getter and Setter for admin's property
-	public String getAdmin_name() {
-		return admin_name;
-	}
-	public void setAdmin_name(String admin_name) {
-		this.admin_name = admin_name;
-	}
-	public String getAdmin_password() {
-		return admin_password;
-	}
-	public void setAdmin_password(String admin_password) {
-		this.admin_password = admin_password;
-	}
+		public String getAdmin_name() {
+			return admin_name;
+		}
+		public void setAdmin_name(String admin_name) {
+			this.admin_name = admin_name;
+		}
+		public String getAdmin_password() {
+			return admin_password;
+		}
+		public void setAdmin_password(String admin_password) {
+			this.admin_password = admin_password;
+		}
+		//Getter and setter for user's property
+		public String getUser_name() {
+			return user_name;
+		}
+
+		public void setUser_name(String user_name) {
+			this.user_name = user_name;
+		}
+
+		public String getUser_password() {
+			return user_password;
+		}
+
+		public void setUser_password(String user_password) {
+			this.user_password = user_password;
+		}
+
 
 	//Getter and setter for lists(floor,building,slot)
     public List<String> getFloors() {
@@ -340,6 +375,45 @@ public class LocationBean implements Serializable{
 		  context.addMessage(null, new FacesMessage("Successfully deleted."));
 		 System.out.println("deleted successfully");
 	 }
+	 public String login()
+	 {
+	 	List t=locationService.adminLogin(admin.getAdmin_name(), admin.getAdmin_password());
+	 	
+	 	
+	 	
+	 	
+	 	if(t.isEmpty())
+	 	{
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Wrong User Name or Password."));
+	 		System.out.println("Invalid!");
+	 		return "admin_login_page";
+	 		 
+	 	}else {
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
+	 		System.out.println("Successful!");
+	 	      return "newbuilding";
+	 	}
+	 	}
+	 //return null;
+	 public String login1()
+	 {
+	 	List t=locationService.userLogin(user.getUser_name(), user.getUser_password());
+	 	
+	 	
+	 	
+	 	
+	 	if(t.isEmpty())
+	 	{
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Wrong User Name or Password."));
+	 		System.out.println("Invalid!");
+	 		return "admin_login_page";
+	 		 
+	 	}else {
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
+	 		System.out.println("Successful!");
+	 	      return "newbuilding";
+	 	}
+	 	}
 		/*
 		 * public String login() { String name = admin.getAdmin_name(); String pass =
 		 * admin.getAdmin_password(); System.out.println("name: "+ name+" pass: "+pass);
@@ -361,6 +435,12 @@ public class LocationBean implements Serializable{
 			 floors.add("floor"+i);
 		 }
 		 return "admin_add_new_floor";
+	 }
+	 //Back Testing
+	 public String BackTesting()
+	 {
+		 System.out.println("back");
+		 return "admin_home_page";
 	 }
 }
 

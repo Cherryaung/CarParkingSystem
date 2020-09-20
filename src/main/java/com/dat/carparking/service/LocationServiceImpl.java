@@ -82,15 +82,15 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
-	public List userLogin(String admin_name, String admin_password) {
+	public List adminLogin(String admin_name, String admin_password) {
 		// TODO Auto-generated method stub
-		return locationDao.userLogin(admin_name, admin_password);
+		return locationDao.adminLogin(admin_name, admin_password);
 	}
 	@Transactional
 	@Override
-	public List userLogin1(String user_name, String user_password) {
+	public List userLogin(String user_name, String user_password) {
 		// TODO Auto-generated method stub
-		return locationDao.userLogin1(user_name, user_password);
+		return locationDao.userLogin(user_name, user_password);
 	}
 	@Transactional
 	@Override

@@ -19,8 +19,8 @@ public interface LocationService {
 	 void DeleteSlot(String selected_building, String selectedFloor, String selected_slot);
 	 void DeleteFloor(String selected_building, String selectedFloor);
 	 void DeleteBuilding(String selected_building);
-	 public List userLogin(String admin_name, String admin_password);
-	 public List userLogin1(String user_name, String user_password);
+	 public List adminLogin(String admin_name, String admin_password);
+	 public List userLogin(String user_name, String user_password);
 	 public Boolean checkBuildingName(String building_name);
 	 public Location confirmtosave(Location l);
 }

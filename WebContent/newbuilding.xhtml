@@ -14,6 +14,9 @@
 <h:body>
 <h1>Add Building</h1>
 <h:form>
+<p:commandButton value="Back" id="back" action="#{locationBean.BackTesting()}" styleClass="ui-priority-primary" />	
+</h:form>
+<h:form>
    <p:panel header="New Building" style="margin-bottom:10px;" id="createbuilding">  
     <h:panelGrid columns="4" cellpadding="5">  
        <p:outputLabel for="buildingname" value="Building name: " />     
@@ -81,6 +84,7 @@
        		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
     		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
+             
              <h:form>
    			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
   			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
@@ -88,6 +92,6 @@
    			 </p:confirmDialog>     
 			</h:form> 
 			 </f:facet>
-        </p:dataTable>  
+        </p:dataTable>  		
 </h:body>
 </html>
