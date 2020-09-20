@@ -47,7 +47,7 @@ commandbutton:hover{
        <p:inputText id="name" value="#{locationBean.admin.admin_name}" required="true" requiredMessage="User Name is required"/>
        <p:outputLabel for="password" value="Password:" />
        <p:inputText id="password" value="#{locationBean.admin.admin_password}" required="true" requiredMessage="Password is required" />
-       <p:commandButton type="submit" style="float:right;" value="login" actionListener="#{locationBean.login()}" validateClient="true" />
+       <p:commandButton type="submit" style="float:right;" value="login" action="#{locationBean.login()}" validateClient="true" />
        </h:panelGrid>
     </p:panel>
   </h:form>

@@ -391,7 +391,7 @@ public class LocationBean implements Serializable{
 	 	}else {
 	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
 	 		System.out.println("Successful!");
-	 	      return "newbuilding";
+	 	      return "admin_home_page";
 	 	}
 	 	}
 	 //return null;
@@ -411,7 +411,7 @@ public class LocationBean implements Serializable{
 	 	}else {
 	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
 	 		System.out.println("Successful!");
-	 	      return "newbuilding";
+	 	      return "user_home_page";
 	 	}
 	 	}
 		/*
