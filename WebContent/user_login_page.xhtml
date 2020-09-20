@@ -10,23 +10,28 @@
 <h:head>
 <title>Security Login Page</title>
 <style>
-  	.back_img{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_4.jpg);
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
   			  background-repeat:no-repeat;
-  			  background-size:cover;} 
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
   	h1{text-align:center;
   	   padding-top:0px;
   	   font-family: 'Dancing Script', cursive;
-	   font-size: 50px;} 
-	   .commandbutton {
-	border: none;
-	outline: none;
-	padding: 20px 20px;
-	border-radius: 50px;
-	color: #C0C0C0;
-	background: #808080;
-	margin-bottom: 50px;
-	box-shadow: 0 3px 20px 0 #0000003b;
-}
+	   font-size: 60px;} 
+	h2{
+		padding-top:25px;
+		text-align:center;
+		font-size: 30px;}
+	.btn {
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:20px;
+		float:right;}
 commandbutton:hover{
 	cursor: pointer;
 }
@@ -36,19 +41,19 @@ commandbutton:hover{
 
 <h1>Security</h1>
   
-  <h:form>
+ <h:form>
  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
   <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
    <p:growl id="msgs" showDetail="true"/>
-    <p:panel id="panel" header="Security User Login Form">
-     <h:panelGrid columns="2" cellpadding="5">
+   	<h2>Security Login Form</h2> 
+     <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
        <p:outputLabel for="name" value="User Name:" />
        <p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="User Name is required"/>
        <p:outputLabel for="password" value="Password:" />
        <p:inputText id="password" value="#{locationBean.user.user_password}" required="true" requiredMessage="Password is required" />
-       <p:commandButton type="submit" style="float:right;" value="login" action="#{locationBean.login1()}" validateClient="true" />
+       <p:outputLabel></p:outputLabel>
+       <p:commandButton type="submit" styleClass="btn" value="login" action="#{locationBean.login1()}" validateClient="true" />
      </h:panelGrid>
-    </p:panel>
   </h:form>
 </h:body>
 </html>
