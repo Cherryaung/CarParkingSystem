@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking</title>
+</h:head>
+<h:body>
+<h1>Add New Floor in existing building</h1>
+<h:form>
+   <p:panel header="New Floor Numbers" style="margin-bottom:10px;" id="newfloornumbers">  
+    <h:panelGrid columns="4" cellpadding="5">  
+       <p:outputLabel for="buildingname" value="Building name: " />     
+       <p:selectOneMenu id="buildingname" value="#{locationBean.location.building_name}" style="width:120px;font-family: Times New Roman">
+         <p:ajax listener="#{locationBean.onBuildingChange()}"/>
+         <f:selectItem itemLabel="Select Building" style="font-family: Times New Roman" itemValue="" noSelectionOption="true"/>
+         <f:selectItems value="#{locationBean.listBuildings()}" style="font-family: Times New Roman" />
+       </p:selectOneMenu>
+       
+       <p:outputLabel for="floor_number" value="Number of floor: " />  
+        <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number">
+        </p:inputText>
+    </h:panelGrid>
+<p:separator />  
+<p:commandButton value="ADD" update=":form1:floorupdate" actionListener="#{locationBean.newfloorlist()}" styleClass="ui-priority-primary" />  
+</p:panel>   
+</h:form>
+
+<!-- drop down -->
+<h:form id="form1">  
+<p:growl id="msgs" showDetail="true" />  
+<p:panel header="Creating slots" style="margin-bottom:10px;" id="floorupdate">  
+<h:panelGrid columns="2" cellpadding="5">  
+
+<p:outputLabel for="floor" value="Floor : " />  
+<p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:150px">  
+<p:ajax listener="#{locationBean.onFloorChange}" />  
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{locationBean.floors}" />  
+</p:selectOneMenu>  
+
+<p:outputLabel value="Number of slot: " />     
+<p:inputText value="#{locationBean.location.slot_name}"/>
+
+</h:panelGrid>
+<p:separator />  
+<p:commandButton value="Submit" update="dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" />  
+</p:panel>  
+</h:form>  
+
+<!-- before save into db, show datatable -->
+<p:growl id="growl" sticky="false" life="3000" />
+  <p:dataTable id="dt" var="l" rows="15" rowKey="row" value="#{locationBean.location_list}">  
+            <p:column headerText="Building Name">  
+                <h:outputText value="#{l.building_name}"/>  
+            </p:column>  
+            <p:column headerText="Floor Name">  
+                <h:outputText value="#{l.floor_name}" />  
+            </p:column>  
+            <p:column headerText="Slot Name">  
+                <h:outputText value="#{l.slot_name}" />  
+            </p:column>  
+
+           <!--  <p:column headerText="Action"> 
+            <p:growl showDetail="true" />  
+			<p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord(l)}" styleClass="ui-priority-primary">		
+       		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+             <h:form>
+   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+   			 </p:confirmDialog>     
+			</h:form>
+			 </p:column> -->  
+			 <f:facet name="footer">
+			 <p:growl showDetail="true" /> 
+			 <p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update=":form1:floorupdate" styleClass="ui-priority-primary">		
+       		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+    		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
+             <h:form>
+   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+   			 </p:confirmDialog>     
+			</h:form> 
+			 </f:facet>
+        </p:dataTable>  
+</h:body>
+</html>

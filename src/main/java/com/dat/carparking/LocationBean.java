@@ -253,9 +253,9 @@ public class LocationBean implements Serializable{
 	String selected_building;
 	public void onBuildingChange()
 	{
-		System.out.println("Selected Building:"+building_name);
-		if(building_name !=null && !building_name.equals("")) { 
-			selected_building = building_name; 
+		System.out.println("Selected Building:"+location.getBuilding_name());
+		if(location.getBuilding_name() !=null && !location.getBuilding_name().equals("")) { 
+			selected_building = location.getBuilding_name(); 
 		}  
 	}
 	 
@@ -348,5 +348,19 @@ public class LocationBean implements Serializable{
 		 * if(admin != null) { System.out.println("success"); return "admin_home_page";
 		 * }else { System.out.println("fail"); return "admin_login_page"; } }
 		 */
+	 //add new floor in existing building
+	 public String newfloorlist()
+	 {
+		 Set<String> existing_floor_list = listfloors();
+		 int floor_number_inexistingbuilding = existing_floor_list.size();
+		 int count=Integer.parseInt(location.getFloor_name());
+		 int total_floor_number = count+floor_number_inexistingbuilding;
+		 floors=new LinkedList();
+		 for(int i=floor_number_inexistingbuilding+1;i<=total_floor_number;i++)
+		 {
+			 floors.add("floor"+i);
+		 }
+		 return "admin_add_new_floor";
+	 }
 }
 
