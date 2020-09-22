@@ -1,6 +1,7 @@
 package com.dat.carparking.dao;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -8,7 +9,6 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.SharedSessionContract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dat.carparking.model.Location;
@@ -160,7 +160,21 @@ public class LocationDaoImpl implements LocationDao{
 		
 	  return result;
 	}
-
+	@Override
+	public List<Date> findDateList() {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Date> date_list = session.createQuery("SELECT parked_date FROM History").list();
+		return date_list;
+	}
 	
+	@Override
+	public List<History> historylists() {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		List<History> history_lists = session.createQuery("FROM History").list();
+		
+		return history_lists;
+	}
 }
 

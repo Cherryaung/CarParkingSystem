@@ -22,5 +22,7 @@ public interface LocationDao {
 	 public List userLogin(String user_name, String user_password);
 	 public Boolean checkBuildingName(String building_name);
 	 public Location confirmtosave(Location l);
+	 public List<Date> findDateList();
+	 public List<History> historylists();
 }
 

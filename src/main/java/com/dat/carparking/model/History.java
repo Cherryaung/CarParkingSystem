@@ -14,7 +14,31 @@ import javax.persistence.Table;
 @Table(name="history")
 public class History {
 	private int record_id;
-	private int location_id;
+	private String building_name;
+	private String floor_name;
+	private String slot_name;
+	
+	 @Column(name="building_name")
+	public String getBuilding_name() {
+		return building_name;
+	}
+	public void setBuilding_name(String building_name) {
+		this.building_name = building_name;
+	}
+	 @Column(name="floor_name")
+	public String getFloor_name() {
+		return floor_name;
+	}
+	public void setFloor_name(String floor_name) {
+		this.floor_name = floor_name;
+	}
+	 @Column(name="slot_name")
+	public String getSlot_name() {
+		return slot_name;
+	}
+	public void setSlot_name(String slot_name) {
+		this.slot_name = slot_name;
+	}
 	private String car_number;
 	private Time entry_time;
 	private Time exit_time;
@@ -29,15 +53,7 @@ public class History {
 		public void setRecord_id(int record_id) {
 			this.record_id = record_id;
 		}
-		
-	@Column(name="location_id")
-	public int getLocation_id() {
-		return location_id;
-	}
-	public void setLocation_id(int location_id) {
-		this.location_id = location_id;
-	}
-	
+
 	@Column(name="car_number")
 	public String getCar_number() {
 		return car_number;

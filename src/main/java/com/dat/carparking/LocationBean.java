@@ -1,25 +1,18 @@
 package com.dat.carparking;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
 import com.dat.carparking.model.Admin;
-import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
 import com.dat.carparking.model.User;
 import com.dat.carparking.service.LocationService;
@@ -31,13 +24,6 @@ public class LocationBean implements Serializable{
 	public String floor_name;
 	public String slot_name;
 	
-	//for properties of history class
-	public int location_id;
-	public String car_number;
-	public Time entry_time;
-	public Time exit_time;
-	public Date parked_date;
-	
 	//for properties of admin class
 	public String admin_name;
 	public String admin_password;
@@ -48,7 +34,6 @@ public class LocationBean implements Serializable{
 	private static final long serialVersionUID = -2132320822029255792L;
 
 	//for new objects
-	public History history=new History();
     public Location location= new Location();
     private Admin admin;
     public User user=new User();
@@ -97,38 +82,7 @@ public class LocationBean implements Serializable{
 		this.slot_name = slot_name;
 	}
 	
-	//Getters and Setters for history's property
-	public int getLocation_id() {
-		return location_id;
-	}
-	public void setLocation_id(int location_id) {
-		this.location_id = location_id;
-	}
-	public String getCar_number() {
-		return car_number;
-	}
-	public void setCar_number(String car_number) {
-		this.car_number = car_number;
-	}
-	public Time getEntry_time() {
-		return entry_time;
-	}
-	public void setEntry_time(Time entry_time) {
-		this.entry_time = entry_time;
-	}
-	public Time getExit_time() {
-		return exit_time;
-	}
-	public void setExit_time(Time exit_time) {
-		this.exit_time = exit_time;
-	}
-	public Date getParked_date() {
-		return parked_date;
-	}
-	public void setParked_date(Date parked_date) {
-		this.parked_date = parked_date;
-	}
-    
+
 	//Getter and Setter for admin's property
 		public String getAdmin_name() {
 			return admin_name;
@@ -182,7 +136,7 @@ public class LocationBean implements Serializable{
 		this.slots = slots;
 	}
 	
-	//Getters and Setters for objects(location,history, admin, service)
+	//Getters and Setters for objects(location, service)
 	public Location getLocation() {
 			return location;
 		}
@@ -190,18 +144,6 @@ public class LocationBean implements Serializable{
 	public void setLocation(Location location) {
 			this.location = location;
 		}
-	public History getHistory() {
-		return history;
-	}
-	public void setHistory(History history) {
-		this.history = history;
-	}
-	public Admin getAdmin() {
-		return admin;
-	}
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
     public LocationService getLocationService() {
 		return locationService;
 	}
@@ -218,26 +160,24 @@ public class LocationBean implements Serializable{
 	}
 	
 	//define floor names and insert into floor list (add new building)
-	/*
-	 * public String AddBuilding() {
-	 * 
-	 * return "newbuilding"; }
-	 */
-	public String floorList() {
+	public String floorList() 
+	{
 		  System.out.println("floorlist");
 		  floors=new LinkedList();
 		  int count=Integer.parseInt(location.getFloor_name());
 		  for(int i=1;i<=count;i++) 
 		  {
 			floors.add("Floor"+i);
-			}
+		  }
 		  return "newbuilding";
 	}
 	
 	String selectedFloor;
-	public void onFloorChange() {  
+	public void onFloorChange()
+	{  
 		System.out.println("Selected floor:"+floor_name);
-		if(floor_name !=null && !floor_name.equals("")) { 
+		if(floor_name !=null && !floor_name.equals("")) 
+		{ 
 			selectedFloor = floor_name; 
 		}  
 	}
@@ -262,13 +202,8 @@ public class LocationBean implements Serializable{
 		return "newbuilding";
 	}
  //save each location record into db (add new building) 
-	public String persistRecord() {
-		/*
-		 * for(Location l: this.location_list) { Location loc =
-		 * locationService.confirmtosave(l); if(loc==null) {
-		 * locationService.persistRecord(l); System.out.println("save"); }else {
-		 * System.out.println("already exit"); } }
-		 */
+	public String persistRecord() 
+	{
 		String floor_to_remove="";
 		for(Location l:this.location_list)
 		{
@@ -318,6 +253,12 @@ public class LocationBean implements Serializable{
 		return selected_building;
 	}
 
+	public String getSelected_slot() {
+		return selected_slot;
+	}
+	public void setSelected_slot(String selected_slot) {
+		this.selected_slot = selected_slot;
+	}
 	public void setSelected_building(String selected_building) {
 		this.selected_building = selected_building;
 	}
@@ -358,23 +299,7 @@ public class LocationBean implements Serializable{
 	{
 		locationService.DeleteBuilding(selected_building);
 	}
-	//delete history records by date
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-	 public void deleteRecords() throws ParseException {
-		 String date = format.format(history.getParked_date());
-		 System.out.println(date);
-		 Date parked_date=format.parse(date);
-		 System.out.println(parked_date);
-		 List<History> records = locationService.listRecords(parked_date);
-		 for(History h: records)
-		 {
-			locationService.deleteRecord(h); 
-			System.out.println("delete");
-		 }
-		  FacesContext context = FacesContext.getCurrentInstance();
-		  context.addMessage(null, new FacesMessage("Successfully deleted."));
-		 System.out.println("deleted successfully");
-	 }
+
 	 public String login()
 	 {
 	 	List t=locationService.adminLogin(admin.getAdmin_name(), admin.getAdmin_password());
@@ -435,12 +360,6 @@ public class LocationBean implements Serializable{
 			 floors.add("floor"+i);
 		 }
 		 return "admin_add_new_floor";
-	 }
-	 //Back Testing
-	 public String BackTesting()
-	 {
-		 System.out.println("back");
-		 return "admin_home_page";
 	 }
 }
 

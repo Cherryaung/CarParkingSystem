@@ -104,6 +104,16 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		return locationDao.confirmtosave(l);
 	}
+	@Transactional
+	public List<Date> findDateList() {
+		// TODO Auto-generated method stub
+		return locationDao.findDateList();
+	}
 	
-	
+	@Transactional
+	@Override
+	public List<History> historylists() {
+		// TODO Auto-generated method stub
+		return locationDao.historylists();
+	}
 }
