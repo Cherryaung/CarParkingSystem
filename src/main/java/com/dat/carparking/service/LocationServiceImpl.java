@@ -116,4 +116,10 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		return locationDao.historylists();
 	}
+	@Transactional
+	@Override
+	public List<String> findAllFloorlist() {
+		// TODO Auto-generated method stub
+		return locationDao.findAllFloorlist();
+	}
 }

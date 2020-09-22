@@ -25,4 +25,5 @@ public interface LocationService {
 	 public Location confirmtosave(Location l);
 	 public List<Date> findDateList();
 	 public List<History> historylists();
+	 public List<String> findAllFloorlist();
 }

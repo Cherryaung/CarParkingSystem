@@ -5,7 +5,9 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -34,7 +36,8 @@ public class HistoryBean implements Serializable{
 	public Time entry_time;
 	public Time exit_time;
 	public Date parked_date;
-    	
+	public List<String> buildings;	
+	public List<String> floors;
 	//history obj
 	public History history=new History();
 	
@@ -114,6 +117,20 @@ public class HistoryBean implements Serializable{
 	public void setLocationService(LocationService locationService) {
 		this.locationService = locationService;
 	}
+	public List<String> getBuildings() {
+		return buildings;
+	}
+
+	public void setBuildings(List<String> buildings) {
+		this.buildings = buildings;
+	}
+	public List<String> getFloors() {
+		return floors;
+	}
+
+	public void setFloors(List<String> floors) {
+		this.floors = floors;
+	}
 	//Delete records by date
 	  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		 public void deleteRecords() throws ParseException {
@@ -154,5 +171,22 @@ public class HistoryBean implements Serializable{
 	public void setHistorylist(List<History> historylist) {
 		this.historylist = historylist;
 	}
+	public static <T> Set<T> convertListToSet(List<T> lists) 
+    { 
+        // create a set from the List 
+        return new HashSet<>(lists); 
+    } 
 	
+	public Set<String>listBuildings(){
+		buildings = this.locationService.findBuildinglist();
+		Set<String> buildingSet = convertListToSet(buildings); 
+		
+		return buildingSet;
+	}
+	public Set<String>listFloors(){
+		floors = this.locationService.findAllFloorlist();
+		Set<String> floorSet = convertListToSet(floors); 
+		
+		return floorSet;
+	}
 }

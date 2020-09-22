@@ -176,5 +176,12 @@ public class LocationDaoImpl implements LocationDao{
 		
 		return history_lists;
 	}
+	@Override
+	public List<String> findAllFloorlist() {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		List<String> floors = session.createQuery("SELECT floor_name FROM Location").list();
+		return floors;
+	}
 }
 

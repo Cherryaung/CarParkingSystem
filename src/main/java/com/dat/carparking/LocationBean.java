@@ -339,15 +339,6 @@ public class LocationBean implements Serializable{
 	 	      return "user_home_page";
 	 	}
 	 	}
-		/*
-		 * public String login() { String name = admin.getAdmin_name(); String pass =
-		 * admin.getAdmin_password(); System.out.println("name: "+ name+" pass: "+pass);
-		 * admin = locationService.login(name,pass);
-		 * 
-		 * if(admin != null) { System.out.println("success"); return "admin_home_page";
-		 * }else { System.out.println("fail"); return "admin_login_page"; } }
-		 */
-	 //add new floor in existing building
 	 public String newfloorlist()
 	 {
 		 Set<String> existing_floor_list = listfloors();
