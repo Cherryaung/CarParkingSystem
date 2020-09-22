@@ -11,17 +11,18 @@
 <title>Admin Login Page</title>
 
 <style>
-  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoHorizontalView.JPG);
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
   			  background-repeat:no-repeat;
-  			  background-size:cover;} 
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
   	h1{text-align:center;
   	   padding-top:0px;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
 	h2{text-align:center;
   	   padding-top:25px;
-  	   font-family: 'Dancing Script', cursive;
-	   font-size: 40px;} 
+	   font-size: 30px;} 
  	.btn{
 		color:#333;
   		border:2px solid;
@@ -29,8 +30,8 @@
   		text-decoration:none;
   		display:inline-block;
   		font-weight:600;
-		margin-left:920px;
-		margin-top:20px;}
+		margin-top:20px;
+		float:right;}
 </style>
 </h:head>
 <h:body styleClass="back_img">
@@ -41,16 +42,15 @@
  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
   <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
    <p:growl id="msgs" showDetail="true"/>
-    <div id="admin_login_div">
 	<h2>Admin Login Form</h2> 
-     <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;margin-top:50px;">
+     <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
        <p:outputLabel for="name" value="User Name:"/>
        <p:inputText id="name" value="#{locationBean.admin.admin_name}" required="true" requiredMessage="User Name is required"/>
        <p:outputLabel for="password" value="Password:" />
        <p:inputText id="password" value="#{locationBean.admin.admin_password}" required="true" requiredMessage="Password is required" />
+       <p:outputLabel></p:outputLabel>
+	   <p:commandButton type="submit" styleClass="btn" value="login" actionListener="#{locationBean.login()}" validateClient="true" /> 
      </h:panelGrid>
-     <p:commandButton type="submit" styleClass="btn" value="login" actionListener="#{locationBean.login()}" validateClient="true" />
-    </div>
 </h:form>
 </h:body>
 </html>
