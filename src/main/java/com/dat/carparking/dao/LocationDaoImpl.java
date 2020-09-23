@@ -183,5 +183,14 @@ public class LocationDaoImpl implements LocationDao{
 		List<String> floors = session.createQuery("SELECT floor_name FROM Location").list();
 		return floors;
 	}
+	@Override
+	public void persistHistory(History history) {
+		// TODO Auto-generated method stub
+	Session session = this.sessionFactory.getCurrentSession();
+	
+		sessionFactory.getCurrentSession().save(history);
+		
+															
+	}
 }
 

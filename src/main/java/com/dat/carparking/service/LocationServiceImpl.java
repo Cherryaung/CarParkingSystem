@@ -29,6 +29,13 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
+	public void persistHistory(History history) {
+		// TODO Auto-generated method stub
+		locationDao.persistHistory(history);
+		
+	}
+	@Transactional
+	@Override
 	public List<History> listRecords(Date parked_date){
 		return locationDao.listRecords(parked_date);
 	}
