@@ -352,5 +352,9 @@ public class LocationBean implements Serializable{
 		 }
 		 return "admin_add_new_floor";
 	 }
+	 
+	 public String redirectBuildings() {
+		 return "admin_view_building";
+	 }
 }
 

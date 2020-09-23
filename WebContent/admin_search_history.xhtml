@@ -8,11 +8,26 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
- <title>Car Parking System</title>
+ <title>Car Parking System</title><style>
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  			  background-repeat:no-repeat;
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
+  	h1{text-align:center;
+  	   padding-top:0px;
+  	   font-family: 'Dancing Script', cursive;
+	   font-size: 60px;} 
+	h2{text-align:center;
+  	   padding-top:25px;
+	   font-size: 30px;} 
+</style>
 </h:head>
-<h:body>
+<h:body styleClass="back_img">
+<h1>Admin</h1>
 <h:form>
-    <p:dataTable var="h" value="#{historyBean.historylist}" widgetVar="history_record"
+<h2>Search History</h2> 
+    <p:dataTable style="margin-top:30px;" var="h" value="#{historyBean.historylist}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{historyBean.filteredRecords}">
  
         <p:column filterBy="#{h.building_name}" headerText="Building Name" filterMatchMode="exact">

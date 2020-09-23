@@ -9,42 +9,65 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
   <title>Car Parking System(Delete)</title>
-  <style>
-  
-  </style>
+    <style>
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  			  background-repeat:no-repeat;
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
+  	h1{text-align:center;
+  	   padding-top:0px;
+  	   font-family: 'Dancing Script', cursive;
+	   font-size: 60px;} 
+	h2{
+		padding-top:25px;
+		text-align:center;
+		font-size: 30px;}
+	.ui-priority-primary .ui-confirmdialog-yes .ui-confirmdialog-no{
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:10px;
+		float:right;}
+</style>
 </h:head>
-<h:body>
-  <h1 align="center">Car Parking System</h1>
+<h:body styleClass="back_img">
+  <h1>Admin</h1>
   <h:form>
 <p:growl id="msgs" showDetail="true" />  
-<p:panel header="Delete Slot" style="margin-bottom:10px;">  
-<h:panelGrid columns="7" cellpadding="5">  
-  <p:outputLabel for="building" value="Building :" />
-  <p:selectOneMenu id="building" value="#{locationBean.location.building_name}" style="width:100px">
-     <p:ajax listener="#{locationBean.onBuildingChange()}" update="floor"/>
-     <f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true"/>
-     <f:selectItems value="#{locationBean.listBuildings()}" />
-  </p:selectOneMenu>
+<h2>Delete Slot</h2> 
+<div>
+	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
+  		<p:outputLabel for="building" value="Building :" />
+  		<p:selectOneMenu id="building" value="#{locationBean.location.building_name}" style="width:100px">
+     		<p:ajax listener="#{locationBean.onBuildingChange()}" update="floor"/>
+     		<f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{locationBean.listBuildings()}" />
+  		</p:selectOneMenu>
    
-  <p:outputLabel for="floor" value="Floor :" />
-  <p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:100px">
-     <p:ajax listener="#{locationBean.onFloorChange()}" update="slot"/>
-     <f:selectItem itemLabel="Select Floor" itemValue="" noSelectionOption="true"/>
-     <f:selectItems value="#{locationBean.listfloors()}" />
-  </p:selectOneMenu>
+  		<p:outputLabel for="floor" value="Floor :" />
+  		<p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:100px">
+     		<p:ajax listener="#{locationBean.onFloorChange()}" update="slot"/>
+     		<f:selectItem itemLabel="Select Floor" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{locationBean.listfloors()}" />
+  		</p:selectOneMenu>
  
-  <p:outputLabel for="slot" value="Slot :" />
-  <p:selectOneMenu id="slot" value="#{locationBean.slot_name}" style="width:100px">
-     <p:ajax listener="#{locationBean.onslotChange()}"/>
-     <f:selectItem itemLabel="Select Slot" itemValue="" noSelectionOption="true"/>
-     <f:selectItems value="#{locationBean.listslots()}" />
-  </p:selectOneMenu>
+  		<p:outputLabel for="slot" value="Slot :" />
+  		<p:selectOneMenu id="slot" value="#{locationBean.slot_name}" style="width:100px">
+     		<p:ajax listener="#{locationBean.onslotChange()}"/>
+     		<f:selectItem itemLabel="Select Slot" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{locationBean.listslots()}" />
+  		</p:selectOneMenu>
    
-<p:commandButton value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
-<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-</p:commandButton> 
-</h:panelGrid>
-</p:panel>
+   		<p:outputLabel></p:outputLabel>
+		<p:commandButton value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary" style="float:right;">
+		<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+		</p:commandButton> 
+	</h:panelGrid>
+</div>
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
 <p:commandButton value="Yes" actionListener="#{locationBean.DeleteSlot()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
