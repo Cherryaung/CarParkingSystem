@@ -2,6 +2,7 @@ package com.dat.carparking;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,8 +34,8 @@ public class HistoryBean implements Serializable{
 	public String floor_name;
 	public String slot_name;
 	public String car_number;
-	public Time entry_time;
-	public Time exit_time;
+	public Timestamp entry_time;
+	public Timestamp exit_time;
 	public Date parked_date;
 	public List<String> buildings;	
 	public List<String> floors;
@@ -78,19 +79,19 @@ public class HistoryBean implements Serializable{
 		this.car_number = car_number;
 	}
 
-	public Time getEntry_time() {
+	public Timestamp getEntry_time() {
 		return entry_time;
 	}
 
-	public void setEntry_time(Time entry_time) {
+	public void setEntry_time(Timestamp entry_time) {
 		this.entry_time = entry_time;
 	}
 
-	public Time getExit_time() {
+	public Timestamp getExit_time() {
 		return exit_time;
 	}
 
-	public void setExit_time(Time exit_time) {
+	public void setExit_time(Timestamp exit_time) {
 		this.exit_time = exit_time;
 	}
 
@@ -189,4 +190,16 @@ public class HistoryBean implements Serializable{
 		
 		return floorSet;
 	}
+	//method insert data into history table
+		 public String persistHistory() {
+			 Date date = new Date();  
+		        Timestamp ts=new Timestamp(date.getTime());  
+		        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
+		        System.out.println(formatter.format(ts));
+		        history.setEntry_time(ts);
+		        history.setParked_date(new Date());
+		        locationService.persistHistory(this.history);
+			return "History";
+			 
+		 }
 }

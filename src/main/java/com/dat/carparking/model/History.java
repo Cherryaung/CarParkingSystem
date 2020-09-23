@@ -1,6 +1,7 @@
 package com.dat.carparking.model;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -40,8 +41,8 @@ public class History {
 		this.slot_name = slot_name;
 	}
 	private String car_number;
-	private Time entry_time;
-	private Time exit_time;
+	private Timestamp entry_time;
+	private Timestamp exit_time;
 	private Date parked_date;
 	 
 	 @Id
@@ -63,18 +64,18 @@ public class History {
 	}
 	
 	@Column(name="entry_time")
-	public Time getEntry_time() {
+	public Timestamp getEntry_time() {
 		return entry_time;
 	}
-	public void setEntry_time(Time entry_time) {
+	public void setEntry_time(Timestamp entry_time) {
 		this.entry_time = entry_time;
 	}
 	
 	@Column(name="exit_time")
-	public Time getExit_time() {
+	public Timestamp getExit_time() {
 		return exit_time;
 	}
-	public void setExit_time(Time exit_time) {
+	public void setExit_time(Timestamp exit_time) {
 		this.exit_time = exit_time;
 	}
 	
@@ -85,5 +86,5 @@ public class History {
 	public void setParked_date(Date parked_date) {
 		this.parked_date = parked_date;
 	}
-	 
+	
 }
