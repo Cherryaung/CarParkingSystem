@@ -71,59 +71,92 @@
 <h1>Admin</h1>
 
 <div id="building_div">
-	<h2>Building</h2> 
+<h2>Building</h2> 
+<h:form>
+ <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+   <p:growl id="msgs" showDetail="true"/>
 	<p:panelGrid id="buidling_panel" style="margin: 0 auto" styleClass="noBorders">
 		<p:column>
-			<p:commandButton type="submit" value="Building1" id="building1" immediate="true" action="#{locationBean.redirectBuildings()}"/>
+			<p:commandButton type="submit" value="Building1" id="building1" action="#{locationBean.redirectBuildings()}"/>
 		</p:column>
 		<p:column>
 			<p:commandButton type="submit" value="Building2" id="building2" action="#{locationBean.redirectBuildings()}"/>	
 		</p:column>
 	</p:panelGrid>
+</h:form>
 </div>
+
 <div id="history_div">
-	<h2>History</h2> 
+<h2>History</h2> 
+<h:form>
+ <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+   <p:growl id="msgs" showDetail="true"/>
 	<p:panelGrid id="history_panel" style="margin: 0 auto" styleClass="noBorders">
 		<p:column>
-			<p:button value="Parked History" id="parkedHistory" styleClass="commandButton" href="admin_view_building.xhtml"/>
+			<p:commandButton type="submit" value="Parked History" id="parkedHistory" action="#{locationBean.redirectSearchHistory()}"/>
 		</p:column>
 		<p:column>
-			<p:button value="Delete History" id="deleteHistory" styleClass="commandButton"/>	
+			<p:commandButton type="submit" value="Delete History" id="deleteHistory" action="#{locationBean.redirectDeleteHistory()}"/>	
 		</p:column>
 	</p:panelGrid>
+</h:form>
 </div>
+
 <div id="add_div">
-	<h2>Adding Buildings and Floors</h2> 
+<h2>Adding Buildings and Floors</h2> 
+<h:form>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+   <p:growl id="msgs" showDetail="true"/>
 	<p:panelGrid id="add_panel" style="margin: 0 auto" styleClass="noBorders">
 		<p:column>
-			<p:button value="Add New Building" id="addBuilding" styleClass="commandButton" href="newbuilding.xhtml"/>
+			<p:commandButton value="Add New Building" id="addBuilding" action="#{locationBean.redirectAddNewBuilding()}"/>
 		</p:column>
 		<p:column>
-			<p:button value="Add New Floor" id="addfloor" styleClass="commandButton"/>	
+			<p:commandButton value="Add New Floor" id="addFloor" action="#{locationBean.redirectAddNewFloor()}"/>	
 		</p:column>
 	</p:panelGrid>
+</h:form>
 </div>
+
 <div id="delete_div">
-	<h2>Deleting Buildings and Slots</h2> 
+<h2>Deleting Buildings and Slots</h2> 
+<h:form>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+   <p:growl id="msgs" showDetail="true"/>
 	<p:panelGrid id="delete_panel" style="margin: 0 auto" styleClass="noBorders">
 		<p:column>
-			<p:button value="Delete Building" id="deleteBuilding" styleClass="commandButton" href="admin_view_building.xhtml"/>
+			<p:commandButton value="Delete Building" id="deleteBuilding" action="#{locationBean.redirectDeleteBuilding()}"/>
 		</p:column>
 		<p:column>
-			<p:button value="Delete Slot" id="deleteSlot" styleClass="commandButton"/>	
+			<p:commandButton value="Delete Floor" id="deleteFloor" action="#{locationBean.redirectDeleteFloor()}"/>	
+		</p:column>
+		<p:column>
+			<p:commandButton value="Delete Slot" id="deleteSlot" action="#{locationBean.redirectDeleteSlot()}"/>	
 		</p:column>
 	</p:panelGrid>
+</h:form>
 </div>
+
 <div id="manage_div">
-	<h2>Manage Accounts</h2> 
+<h2>Manage Accounts</h2> 
+<h:form>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+   <p:growl id="msgs" showDetail="true"/>
 	<p:panelGrid id="manage_panel" style="margin: 0 auto" styleClass="noBorders">
 		<p:column>
-			<p:button value="Change Admin Password" id="changeAdminPassword" styleClass="commandButton" href="admin_view_building.xhtml"/>
+			<p:commandButton value="Change Admin Password" id="changeAdminPassword" action="#{locationBean.redirectChangeAdminPassword()}"/>
 		</p:column>
 		<p:column>
-			<p:button value="Create New User Account" id="createNewUserAccount" styleClass="commandButton"/>	
+			<p:commandButton value="Create New User Account" id="createNewUserAccount" action="#{locationBean.redirectCreateNewUserAccount()}"/>	
 		</p:column>
 	</p:panelGrid>
+</h:form>
 </div>
+
 </h:body>
 </html>
