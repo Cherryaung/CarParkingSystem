@@ -9,41 +9,55 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Bank Customer Lists</title>
+	<style>
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  			  background-repeat:no-repeat;
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
+  	h1{text-align:center;
+  	   padding-top:0px;
+  	   font-family: 'Dancing Script', cursive;
+	   font-size: 60px;} 
+	h2{
+		padding-top:25px;
+		text-align:center;
+		font-size: 30px;}
+	.btn {
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:20px;}
+commandbutton:hover{
+	cursor: pointer;
+}
+</style>
 	<h:outputStylesheet name="primeicons/primeicons.css"
 		library="primefaces" />
 </h:head>
 
-<h:body>
-	<h2 align="center">Car Parking System</h2>
-	
-	 
-		<p:panel id="basic" header="Create User Accounts" 
-			>
+<h:body styleClass="back_img">
+<h1>Admin</h1>
+	<h2>Creating New Account For Security</h2>	 
+		<div>
 			<h:form id="form1">
-
-				<p:growl id="msgs" showDetail="true"
-					skipDetailIfEqualsSummary="true" />
-
-				<h:panelGrid columns="2" cellpadding="7">
-				<p:outputLabel value="User Name:" />
+				<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+				<h:panelGrid columns="2" cellpadding="7" style="margin: 0 auto;">
+					<p:outputLabel value="User Name:" />
 					<p:inputText value="#{locationBean.user.user_name}" required="true">
 					</p:inputText>
-					<p:outputLabel value="Password:" />
-					<p:inputText value="#{locationBean.user.user_password}"
-						required="true">
-					</p:inputText>
-						</h:panelGrid>
-						
-						 &nbsp; &nbsp; &nbsp;
-				<p:commandButton value="Submit" icon="pi pi-check" update="form1"
-					oncomplete="" action="#{locationBean.persistAccount()}" /> &nbsp;&nbsp;
-			<p:commandButton value="Cancel" icon="pi pi-times"
-					onclick="dlg1.hide();" />
-
-			</h:form>
-		</p:panel>
-	
 					
+					<p:outputLabel value="Password:" />
+					<p:password id="password" value="#{locationBean.user.user_password}" required="true" requiredMessage="Password is required"/>
+					
+					<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" action="#{locationBean.persistAccount()}" styleClass="btn"/>
+					<p:commandButton value="Cancel" icon="pi pi-times" onclick="dlg1.hide();" styleClass="btn"/>
+				</h:panelGrid>
+			</h:form>
+		</div>		
 	 </h:body>
 </html>
 						
