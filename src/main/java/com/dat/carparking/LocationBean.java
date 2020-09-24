@@ -222,6 +222,8 @@ public class LocationBean implements Serializable{
 		}
 		location_list.clear();
 		floors.remove(floor_to_remove);
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Added a New Floor!"));
+ 		System.out.println("Successful!");
 		return "newbuilding";
 	}
 	//Cancel to save records
@@ -298,16 +300,22 @@ public class LocationBean implements Serializable{
 	public void DeleteSlot()
 	{
 		locationService.DeleteSlot(selected_building,selectedFloor,selected_slot);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
+ 		System.out.println("Successful!");
 	}
 	//delete floor
 	public void DeleteFloor()
 	{
 		locationService.DeleteFloor(selected_building,selectedFloor);
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
+ 		System.out.println("Successful!");
 	}
 	//delete building
 	public void DeleteBuilding()
 	{
 		locationService.DeleteBuilding(selected_building);
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
+ 		System.out.println("Successful!");
 	}
 
 	 public String login()
@@ -389,10 +397,13 @@ public class LocationBean implements Serializable{
 		 return "admin_delete_slot";
 	 }
 	 public String redirectChangeAdminPassword() {
-		 return "admin_delete_slot";
+		 return "admin_change_password";
 	 }
-	 public String redirectCreateUserAccount() {
-		 return "admin_delete_slot";
+	 public String redirectChangeUserPassword() {
+		 return "user_change_password";
+	 }
+	 public String redirectCreateNewUserAccount() {
+		 return "admin_create_new_user_account";
 	 }
 	 public String redirectAdminLoginPage() {
 		 return "admin_login_page";
@@ -400,6 +411,8 @@ public class LocationBean implements Serializable{
 	 public String redirectSecurityLoginPage() {
 		 return "user_login_page";
 	 }
+
+
 	// method CRUD
 		public String persistAccount() {
 				locationService.persistAccount(this.user);
