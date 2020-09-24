@@ -10,27 +10,50 @@
 <h:head>
   <title>Car Parking System(Delete)</title>
   <style>
-  
-  </style>
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  			  background-repeat:no-repeat;
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
+  	h1{text-align:center;
+  	   padding-top:0px;
+  	   font-family: 'Dancing Script', cursive;
+	   font-size: 60px;} 
+	h2{
+		padding-top:25px;
+		text-align:center;
+		font-size: 30px;}
+	.ui-priority-primary .ui-confirmdialog-yes .ui-confirmdialog-no{
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:10px;
+		float:right;}
+</style>
 </h:head>
-<h:body>
-  <h1 align="center" style="font-family: Times New Roman">Car Parking System</h1>
+<h:body styleClass="back_img">
+  <h1>Admin</h1>
   <h:form style="margin:0 auto">
 <p:growl id="msgs" showDetail="true" />  
-<p:panel header="Delete Building" style="margin:0 auto;font-family: Times New Roman">  
-<h:panelGrid columns="3" cellpadding="2px">  
-  <p:outputLabel for="building" value="Building :"  style="font-family: Times New Roman"/>
-  <p:selectOneMenu id="building" value="#{locationBean.building_name}" style="width:120px;font-family: Times New Roman">
-     <p:ajax listener="#{locationBean.onBuildingChange()}"/>
-     <f:selectItem itemLabel="Select Building" style="font-family: Times New Roman" itemValue="" noSelectionOption="true"/>
-     <f:selectItems value="#{locationBean.listBuildings()}" style="font-family: Times New Roman" />
-  </p:selectOneMenu>
+<h2>Delete Building</h2> 
+<div style="margin-top:30px;">
+	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
+  		<p:outputLabel for="building" value="Building :"  style="font-family: Times New Roman"/>
+  		<p:selectOneMenu id="building" value="#{locationBean.building_name}" style="width:120px;font-family: Times New Roman">
+     		<p:ajax listener="#{locationBean.onBuildingChange()}"/>
+    		<f:selectItem itemLabel="Select Building" style="font-family: Times New Roman" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{locationBean.listBuildings()}" style="font-family: Times New Roman" />
+  		</p:selectOneMenu>
 
-<p:commandButton value="Delete" style="font-family: Times New Roman" icon="ui-icon-check" styleClass="ui-priority-primary">
-<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-</p:commandButton> 
-</h:panelGrid>
-</p:panel>
+		<p:outputLabel></p:outputLabel>
+		<p:commandButton value="Delete" style="font-family: Times New Roman;float:right;" icon="ui-icon-check" styleClass="ui-priority-primary">
+		<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+		</p:commandButton> 
+	</h:panelGrid>
+</div>
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
 <p:commandButton value="Yes" actionListener="#{locationBean.DeleteBuilding()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  

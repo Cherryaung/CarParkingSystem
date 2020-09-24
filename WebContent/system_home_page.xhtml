@@ -9,7 +9,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<title>Car Parking System</title>
+<h1>Car Parking System</h1>
 <style>
   	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
   			  background-repeat:no-repeat;
@@ -20,7 +20,11 @@
   	   padding-top:0px;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
-	 .btn {
+	h2{
+		padding-top:25px;
+		text-align:center;
+		font-size: 30px;}
+	.btn {
 		color:#333;
   		border:2px solid;
   		border-radius:3px;
@@ -29,29 +33,16 @@
   		font-weight:600;
 		margin-top:10px;
 		vertical-align: middle;
-  		margin-top: 15px;
-  		float:right;}
+  		margin-top: 15px;}
 </style>
 </h:head>
 <h:body styleClass="back_img">
-<h1>Security</h1>
-<h:form>
-<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
-      <p:outputLabel value="Parking Building :" text-aling="center"/>
-      <p:inputText id="parkingBuilding" value="" label="parkingBuilding" required="true"> 
-      </p:inputText>     
-      <p:outputLabel value="Parking Floor:"/>
-      <p:inputText id="parkingFloor" value="" label="parkingFloor" required="true">
-      </p:inputText>  
-      <p:outputLabel value="Parking slot :"/>
-      <p:inputText id="parkingSlot" value="" label="parkingSlot" required="true" > 
-      </p:inputText>
-      <p:outputLabel value="Car Number :"/>
-      <p:inputText id="carNumber" value="" label="carNumber" required="true" > 
-      </p:inputText>   
-      <p:outputLabel></p:outputLabel> 
-      <p:commandButton styleClass="btn" value="Clear" icon="pi pi-check"/> 
-     </h:panelGrid>
-</h:form>
+<h2>Choose User Role</h2>
+	<h:form> 
+		<h:panelGrid columns="2" id="buidling_panel" cellpadding="8" style="margin: 0 auto;">
+			<p:commandButton value="Admin" id="admin" styleClass="btn" action="#{locationBean.redirectAdminLoginPage()}" /> 
+			<p:commandButton value="Security" id="user" styleClass="btn" action="#{locationBean.redirectSecurityLoginPage()}"/> 
+		</h:panelGrid>
+	</h:form> 
 </h:body>
 </html>

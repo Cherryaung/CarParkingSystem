@@ -352,5 +352,42 @@ public class LocationBean implements Serializable{
 		 }
 		 return "admin_add_new_floor";
 	 }
+	
+	 //for admin home page redirecting pages
+	 public String redirectBuildings() {
+		 return "admin_view_building";
+	 }
+	 public String redirectSearchHistory() {
+		 return "admin_search_history";
+	 }
+	 public String redirectDeleteHistory() {
+		 return "delete_history_by_date";
+	 }
+	 public String redirectAddNewBuilding() {
+		 return "admin_add_new_building";
+	 }
+	 public String redirectAddNewFloor() {
+		 return "admin_add_new_floor";
+	 }
+	 public String redirectDeleteBuilding() {
+		 return "admin_delete_building";
+	 }
+	 public String redirectDeleteFloor() {
+		 return "admin_delete_floor";
+	 }
+	 public String redirectDeleteSlot() {
+		 return "admin_delete_slot";
+	 }
+	 public String redirectChangeAdminPassword() {
+		 return "admin_delete_slot";
+	 }
+	 public String redirectCreateUserAccount() {
+		 return "admin_delete_slot";
+	 }
+	 public String redirectAdminLoginPage() {
+		 return "admin_login_page";
+	 }
+	 public String redirectSecurityLoginPage() {
+		 return "user_login_page";
+	 }
 }
-

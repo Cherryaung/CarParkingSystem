@@ -11,19 +11,49 @@
 
 <h:head>
 <title>Car Parking</title>
+<style>
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  			  background-repeat:no-repeat;
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
+  	h1{text-align:center;
+  	   padding-top:0px;
+  	   font-family: 'Dancing Script', cursive;
+	   font-size: 60px;} 
+	h2{
+		padding-top:25px;
+		text-align:center;
+		font-size: 30px;}
+	.ui-priority-primary .ui-confirmdialog-yes .ui-confirmdialog-no{
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:10px;
+		float:right;}
+</style>
 </h:head>
-<h:body>
+<h:body styleClass="back_img">
+<h1>Admin</h1>
 <h:form>
 <p:growl id="msgs" showDetail="true" />  
-<p:panel id="panel" header="Admin">  
-<h:panelGrid columns="2" cellpadding="5">  
-<p:outputLabel for="parked_date" value="Date :" />
-<p:calendar id="parked_date" value="#{historyBean.history.parked_date}" required="true" />
-<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
-<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-</p:commandButton>  
-</h:panelGrid>
-</p:panel>
+<h2>Delete History</h2> 
+<div>
+	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
+		<p:outputLabel for="parked_date" value="Date :" />
+		<p:calendar id="parked_date" value="#{historyBean.history.parked_date}" required="true" />
+		
+		<p:outputLabel></p:outputLabel>
+		<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
+			<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+		</p:commandButton>  
+	</h:panelGrid>
+</div>
+
+
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
 <p:commandButton value="Yes" actionListener="#{historyBean.deleteRecords()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  

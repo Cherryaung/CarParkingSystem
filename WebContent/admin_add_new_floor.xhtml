@@ -42,7 +42,7 @@
 		margin-top:50px;}
 </style>
 </h:head>
-<h:body>
+<h:body  styleClass="back_img">
 <h1>Admin</h1>
 <h2>Add New Floor in existing building</h2>
 <h:form>
@@ -70,7 +70,7 @@
 
 <h:form id="form1">  
 <p:growl id="msgs" showDetail="true" />   
-	<p:panel style="border:none;" id="floorupdate" collapsed="true" widgetVar="form1panel">  
+	<p:panel style="border:none;" id="floorupdate" toggleable="true" closable="true"  collapsed="true" widgetVar="form1panel">  
 		<h3>Creating Slot</h3>
 		<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;"> 
 			<p:outputLabel for="floor" value="Floor : " />  
