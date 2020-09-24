@@ -43,9 +43,9 @@ commandbutton:hover{
   
  <h:form>
  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
-  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
-   <p:growl id="msgs" showDetail="true"/>
-   	<h2>Security Login Form</h2> 
+ <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+ <p:growl id="msgs" showDetail="true"/>
+ <h2>Security Login Form</h2> 
      <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
        <p:outputLabel for="name" value="User Name:" />
        <p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="User Name is required"/>

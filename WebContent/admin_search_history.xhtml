@@ -33,7 +33,7 @@
         <p:column filterBy="#{h.building_name}" headerText="Building Name" filterMatchMode="exact">
             <f:facet name="filter">
                 <p:selectOneMenu onchange="PF('history_record').filter()" styleClass="custom-filter">
-                    <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItem itemLabel="Select Building" itemValue="#{null}" noSelectionOption="true" />
                     <f:selectItems value="#{historyBean.listBuildings()}" />
                 </p:selectOneMenu>
             </f:facet>
@@ -42,7 +42,7 @@
         <p:column filterBy="#{h.floor_name}" headerText="Floor Name" filterMatchMode="contains">
             <f:facet name="filter">
                 <p:selectOneMenu onchange="PF('history_record').filter()" styleClass="custom-filter">
-                    <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItem itemLabel="Select Floor" itemValue="#{null}" noSelectionOption="true" />
                     <f:selectItems value="#{historyBean.listFloors()}" />
                 </p:selectOneMenu>
             </f:facet>
@@ -55,7 +55,9 @@
             <h:outputText value="#{h.car_number}" />
         </p:column>
         <p:column filterBy="#{h.entry_time}" headerText="Entry Time" filterMatchMode="contains">
-            <h:outputText value="#{h.entry_time}" />
+            <h:outputText value="#{h.entry_time}">
+            	<f:convertDateTime pattern="HH:mm:ss" />
+            </h:outputText>
         </p:column>
         <p:column filterBy="#{h.exit_time}" headerText="Exit Time" filterMatchMode="contains">
             <h:outputText value="#{h.exit_time}" />
