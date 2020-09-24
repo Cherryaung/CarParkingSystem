@@ -384,4 +384,10 @@ public class LocationBean implements Serializable{
 	 public String redirectCreateUserAccount() {
 		 return "admin_delete_slot";
 	 }
+	 public String redirectAdminLoginPage() {
+		 return "admin_login_page";
+	 }
+	 public String redirectSecurityLoginPage() {
+		 return "user_login_page";
+	 }
 }

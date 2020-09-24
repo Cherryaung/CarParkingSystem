@@ -11,29 +11,32 @@
 <h:head>
 <title>Car Parking System</title>
 <style>
-  	.back_img{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_4.jpg);
+  	  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
   			  background-repeat:no-repeat;
-  			  background-size:cover;} 
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
   	h1{text-align:center;
   	   padding-top:0px;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 50px;} 
-	   .commandbutton {
-	border: none;
-	outline: none;
-	padding: 20px 20px;
-	border-radius: 50px;
-	color: #C0C0C0;
-	background: #808080;
-	margin-bottom: 50px;
-	box-shadow: 0 3px 20px 0 #0000003b;
-}
+	.btn {
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:10px;
+		vertical-align: middle;
+  		margin-top: 15px;
+  		float:right;}
 </style>
 </h:head>
 <h:body styleClass="back_img">
 <h1>Admin</h1>
 <h:form > 
-<h:panelGrid columns="2">
+<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
       <p:outputLabel value="Parking Building :" text-aling="center"/>
       <p:inputText id="parkingBuilding" value="#{historyBean.history.building_name}" label="parkingBuilding" required="true"> 
       </p:inputText>     
@@ -45,8 +48,9 @@
       </p:inputText>
       <p:outputLabel value="Car Number :"/>
       <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" > 
-       </p:inputText>    
-       <p:commandButton value="Occupied" action="#{historyBean.persistHistory()}" icon="pi pi-check"/> 
+      </p:inputText>
+      <p:outputLabel></p:outputLabel>    
+      <p:commandButton styleClass="btn" value="Occupied" action="#{historyBean.persistHistory()}" icon="pi pi-check"/> 
      </h:panelGrid>
 </h:form>
 </h:body>
