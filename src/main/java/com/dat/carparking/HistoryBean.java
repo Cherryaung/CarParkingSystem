@@ -200,7 +200,7 @@ public class HistoryBean implements Serializable{
 		        history.setParked_date(new Date());
 		        locationService.persistHistory(this.history);
 		        FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("User Occupied Successfully"));
+				context.addMessage(null, new FacesMessage("User Occupied Car Parking Slot Successfully"));
 			return "History";
 			 
 		 }
