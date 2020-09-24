@@ -27,6 +27,7 @@ public class LocationBean implements Serializable{
 	//for properties of admin class
 	public String admin_name;
 	public String admin_password;
+	public String new_password;
 	
 	//for properties of user class
 	public String user_name;
@@ -54,6 +55,7 @@ public class LocationBean implements Serializable{
    
     
 	List<Location> location_list = new ArrayList <>();
+	 public List<User> accounts = new ArrayList<User>();
     @ManagedProperty(value="#{locationService}")
     LocationService locationService;
     
@@ -111,6 +113,14 @@ public class LocationBean implements Serializable{
 
 		public void setUser_password(String user_password) {
 			this.user_password = user_password;
+		}
+		public String getNew_password() {
+			return new_password;
+		}
+
+
+		public void setNew_password(String new_password) {
+			this.new_password = new_password;
 		}
 
 
@@ -390,4 +400,37 @@ public class LocationBean implements Serializable{
 	 public String redirectSecurityLoginPage() {
 		 return "user_login_page";
 	 }
+	// method CRUD
+		public String persistAccount() {
+				locationService.persistAccount(this.user);
+				FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Create Account Successfully!"));
+		 		System.out.println("Successful!");
+				return "create_user_account";
+			}
+		public List<User>listAccounts(){
+				return this.locationService.listAccounts();
+			}
+		public String showAccount(User user) {
+				this.user=user;
+				return "show";
+			}
+		public String editPassword(User users) {
+			this.user= users;
+			return "edit";
+			
+		}
+			 
+		public String updatePassword() {
+		        String user_name=user.getUser_name();
+		        String user_password=user.getUser_password();
+		        String new_password=this.new_password;
+		        locationService.updatePassword(user_name,user_password,new_password);
+				 FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
+				 return "admin_home_page";
+			 }
+		
+
+
+		
 }

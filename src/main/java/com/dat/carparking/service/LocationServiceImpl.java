@@ -129,4 +129,22 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		return locationDao.findAllFloorlist();
 	}
+	@Transactional
+	@Override
+	public void persistAccount(User users){
+		// TODO Auto-generated method stub
+		locationDao.persistAccount(users);
+	}
+	@Transactional
+	@Override
+	public void updatePassword(String user_name, String user_password,String new_password) {
+		// TODO Auto-generated method stub
+		locationDao.updatePassword(user_name,user_password,new_password);
+	}
+	@Transactional
+	@Override
+	public List<User>listAccounts(){
+		// TODO Auto-generated method stub
+		return this.locationDao.listAccounts();
+	}
 }

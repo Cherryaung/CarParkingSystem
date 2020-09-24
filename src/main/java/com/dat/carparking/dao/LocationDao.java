@@ -6,6 +6,7 @@ import java.util.List;
 import com.dat.carparking.model.Admin;
 import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
+import com.dat.carparking.model.User;
 
 public interface LocationDao {
 	 void persistRecord(Location location);
@@ -21,6 +22,9 @@ public interface LocationDao {
 	 public List<String> findSlotlist(String selectedFloor,String selected_building);
 	 public List adminLogin(String admin_name, String admin_password);
 	 public List userLogin(String user_name, String user_password);
+	 public void persistAccount(User users);
+	 void updatePassword(String user_name, String user_password,String new_password);
+	 public List<User>listAccounts();
 	 public Boolean checkBuildingName(String building_name);
 	 public Location confirmtosave(Location l);
 	 public List<Date> findDateList();

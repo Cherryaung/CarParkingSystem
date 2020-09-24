@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dat.carparking.model.Location;
+import com.dat.carparking.model.User;
 import com.dat.carparking.model.Admin;
 import com.dat.carparking.model.History;
 
@@ -191,6 +192,35 @@ public class LocationDaoImpl implements LocationDao{
 		sessionFactory.getCurrentSession().save(history);
 		
 															
+	}
+	@Override
+	public void persistAccount(User users) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(users);
+	}
+	@Override
+	public void updatePassword(String user_name, String user_password,String new_password) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="UPDATE User SET user_password=:new_password WHERE user_name=:user_name and user_password=:user_password";
+		 Query query = (Query) session.createQuery(sql);
+		 query.setParameter("user_name",user_name);
+		 query.setParameter("user_password",user_password);
+		 query.setParameter("new_password",new_password);
+		 int result=query.executeUpdate();
+		 
+		
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User>listAccounts(){
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession(); 
+		List<User> accList = session.createQuery("from User").list();
+		for(User p : accList){ 
+			
+		}
+		return accList;
 	}
 }
 
