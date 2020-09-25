@@ -191,16 +191,24 @@ public class HistoryBean implements Serializable{
 		return floorSet;
 	}
 	//method insert data into history table
-		 public String persistHistory() {
+		 public String persistHistory(String bname,String fname,String sname) {
+			 System.out.println("Building Name:"+bname);
+			 System.out.println("Floor Name:"+fname);
+			 System.out.println("Slot Name:"+sname);
 			 String status = "occupied";
 			 Date date = new Date();  
 		        Timestamp ts=new Timestamp(date.getTime());  
 		        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
 		        System.out.println(formatter.format(ts));
-		        history.setEntry_time(ts);
-		        history.setParked_date(new Date());
-		        locationService.persistHistory(this.history);
-		        locationService.changeStatusToOccupy(history.getBuilding_name(),history.getFloor_name(),history.getSlot_name(),status);
+		        History h = new History();
+		        h.setBuilding_name(bname);
+		        h.setFloor_name(fname);
+		        h.setSlot_name(sname);
+		        h.setEntry_time(ts);
+		        h.setCar_number(history.getCar_number());
+		        h.setParked_date(new Date());
+		        locationService.persistHistory(h);
+		        locationService.changeStatusToOccupy(bname,fname,sname,status);
 		        FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage(null, new FacesMessage("User Occupied Car Parking Slot Successfully"));
 			return "History";

@@ -46,19 +46,19 @@ commandbutton:hover{
 <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
 
       <p:outputLabel value="Parking Building :" text-aling="center"/>
-      <p:inputText id="parkingBuilding" value="#{historyBean.history.building_name}" label="parkingBuilding" required="true"> 
-      </p:inputText>     
+      <p:outputLabel id="parkingBuilding" value="#{locationBean.location.building_name}" var="" label="parkingBuilding" required="true"> 
+      </p:outputLabel>     
       <p:outputLabel value="Parking Floor:"/>
-      <p:inputText id="parkingFloor" value="#{historyBean.history.floor_name}" label="parkingFloor" required="true">
-      </p:inputText>  
+      <p:outputLabel id="parkingFloor" value="#{locationBean.location.floor_name}" label="parkingFloor" required="true">
+      </p:outputLabel>  
       <p:outputLabel value="Parking slot :"/>
-      <p:inputText id="parkingSlot" value="#{historyBean.history.slot_name}" label="parkingSlot" required="true" > 
-      </p:inputText>
+      <p:outputLabel id="parkingSlot" value="#{locationBean.location.slot_name}" label="parkingSlot" required="true" > 
+      </p:outputLabel>
       <p:outputLabel value="Car Number :"/>
-      <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" > 
+     <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" > 
        </p:inputText> 
        <p:outputLabel></p:outputLabel>   
-       <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory()}" styleClass="btn" update="useroccupied" icon="pi pi-check"/> 
+       <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name)}" styleClass="btn" update="useroccupied" icon="pi pi-check"/> 
      </h:panelGrid>
 </h:form>
 </div>
