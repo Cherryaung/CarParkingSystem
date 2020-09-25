@@ -23,7 +23,7 @@ public class LocationBean implements Serializable{
 	public String building_name;
 	public String floor_name;
 	public String slot_name;
-	public String status;
+	
 	//for properties of admin class
 	public String admin_name;
 	public String admin_password;
@@ -49,9 +49,9 @@ public class LocationBean implements Serializable{
 		this.user = user;
 	}
     
-    public List<String> floors=new LinkedList();
-    public List<String> buildings=new LinkedList();
-    public List<String> slots=new LinkedList();
+    public List<String> floors;
+    public List<String> buildings;
+    public List<String> slots;
    
     
 	List<Location> location_list = new ArrayList <>();
@@ -83,14 +83,7 @@ public class LocationBean implements Serializable{
 	public void setSlot_name(String slot_name) {
 		this.slot_name = slot_name;
 	}
-	public String getStatus()
-	{
-		return status;
-	}
-    public void setStatus(String status)
-    {
-    	this.status = status;
-    }
+	
 
 	//Getter and Setter for admin's property
 		public String getAdmin_name() {
@@ -179,40 +172,14 @@ public class LocationBean implements Serializable{
 	//define floor names and insert into floor list (add new building)
 	public String floorList() 
 	{
-		System.out.println("method invoked");
-		String B_Name = location.getBuilding_name();
-		Set<String> B_Lists = listBuildings();
-		Boolean is_exist = false;
-		for(String b: B_Lists)
-		{
-			if(B_Name.equalsIgnoreCase(b))
-			{
-				is_exist = true;
-				location.setBuilding_name(null);
-				System.out.println("already exist");
-				break;
-			}
-		}
-		if(is_exist == false)
-		{
 		  System.out.println("floorlist");
 		  floors=new LinkedList();
 		  int count=Integer.parseInt(location.getFloor_name());
-		  System.out.println("Count: "+count);
-		  if(count!= 0) 
+		  for(int i=1;i<=count;i++) 
 		  {
-		     for(int i=1;i<=count;i++) 
-		     {
-		     	floors.add("Floor"+i);}
-		  }else 
-		  {
-				FacesContext.getCurrentInstance().addMessage("msgfloor_number", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Input Error!!", "Only numeric that is greater than 0"));
-
+			floors.add("Floor"+i);
 		  }
-		}else {
-			FacesContext.getCurrentInstance().addMessage("msgExistingBuilding", new FacesMessage(FacesMessage.SEVERITY_ERROR, "This building name already exist. Please type new building name.", "This building name already exist. Please type new building name."));
-		}
-		return "admin_add_new_building";
+		  return "newbuilding";
 	}
 	
 	String selectedFloor;
@@ -242,7 +209,7 @@ public class LocationBean implements Serializable{
 		 }
 		System.out.println("successful");
 
-		return "admin_add_new_building";
+		return "newbuilding";
 	}
  //save each location record into db (add new building) 
 	public String persistRecord() 
@@ -255,14 +222,12 @@ public class LocationBean implements Serializable{
 		}
 		location_list.clear();
 		floors.remove(floor_to_remove);
-		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Added a New Floor!"));
- 		System.out.println("Successful!");
-		return "admin_add_new_building";
+		return "newbuilding";
 	}
 	//Cancel to save records
 	public String Canceltoaddrecord() {
 		location_list.clear();
-		return "admin_add_new_building";
+		return "newbuilding";
 	}
 	//delete location
 	String selected_building;
@@ -308,11 +273,11 @@ public class LocationBean implements Serializable{
 		this.selected_building = selected_building;
 	}
 
-	public List<String>listfloors(){
-		System.out.println(selected_building);
-		floors = this.locationService.findFloorlist(selected_building);//edit again
+	public Set<String>listfloors(){
 		
-		return floors;
+		floors = this.locationService.findFloorlist(selected_building);
+		Set<String> floorSet = convertListToSet(floors);
+		return floorSet;
 	}
 	String selected_slot;
 	public void onslotChange()
@@ -322,32 +287,27 @@ public class LocationBean implements Serializable{
 			selected_slot = slot_name; 
 		}  
 	}
-	public List<String>listslots(){
-		slots = this.locationService.findSlotlist(selectedFloor,selected_building);//edit again
-		
-		return slots;
+	public Set<String>listslots(){
+		slots = this.locationService.findSlotlist(selectedFloor,selected_building);
+		System.out.println("Slot list");
+		Set<String> slotSet = convertListToSet(slots);
+		return slotSet;
 	}
 	
 	//delete slot
 	public void DeleteSlot()
 	{
 		locationService.DeleteSlot(selected_building,selectedFloor,selected_slot);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
- 		System.out.println("Successful!");
 	}
 	//delete floor
 	public void DeleteFloor()
 	{
 		locationService.DeleteFloor(selected_building,selectedFloor);
-		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
- 		System.out.println("Successful!");
 	}
 	//delete building
 	public void DeleteBuilding()
 	{
 		locationService.DeleteBuilding(selected_building);
-		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
- 		System.out.println("Successful!");
 	}
 
 	 public String login()
@@ -391,14 +351,14 @@ public class LocationBean implements Serializable{
 	 	}
 	 public String newfloorlist()
 	 {
-		 List<String> existing_floor_list = listfloors();
+		 Set<String> existing_floor_list = listfloors();
 		 int floor_number_inexistingbuilding = existing_floor_list.size();
 		 int count=Integer.parseInt(location.getFloor_name());
 		 int total_floor_number = count+floor_number_inexistingbuilding;
 		 floors=new LinkedList();
 		 for(int i=floor_number_inexistingbuilding+1;i<=total_floor_number;i++)
 		 {
-			 floors.add("Floor"+i);
+			 floors.add("floor"+i);
 		 }
 		 return "admin_add_new_floor";
 	 }
@@ -429,13 +389,10 @@ public class LocationBean implements Serializable{
 		 return "admin_delete_slot";
 	 }
 	 public String redirectChangeAdminPassword() {
-		 return "admin_change_password";
+		 return "admin_delete_slot";
 	 }
-	 public String redirectChangeUserPassword() {
-		 return "user_change_password";
-	 }
-	 public String redirectCreateNewUserAccount() {
-		 return "admin_create_new_user_account";
+	 public String redirectCreateUserAccount() {
+		 return "admin_delete_slot";
 	 }
 	 public String redirectAdminLoginPage() {
 		 return "admin_login_page";
@@ -443,8 +400,6 @@ public class LocationBean implements Serializable{
 	 public String redirectSecurityLoginPage() {
 		 return "user_login_page";
 	 }
-
-
 	// method CRUD
 		public String persistAccount() {
 				locationService.persistAccount(this.user);
@@ -475,17 +430,7 @@ public class LocationBean implements Serializable{
 				 return "admin_home_page";
 			 }
 		
-		 //view
-		 public String toggleStatus(String fname,String sname)
-		 {
-			 String status = locationService.getStatus(selected_building,fname,sname);
-			 if(status.equalsIgnoreCase("available"))
-			 {
-				 return "green";
-			 }else {
-				 return "red";
-			 }
-		 }
+
 
 		
 }

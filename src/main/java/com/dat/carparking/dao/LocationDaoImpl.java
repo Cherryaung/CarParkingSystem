@@ -1,5 +1,6 @@
 package com.dat.carparking.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -253,5 +254,16 @@ public class LocationDaoImpl implements LocationDao{
 		System.out.println("Status:"+status);
 		return status;
 	}
-}
+	@Override
+	public void addExit_Time(String building_name, String floor_name, String slot_name,Timestamp exitTime) {
+		// TODO Auto-generated method stub
+			Session	session=this.sessionFactory.getCurrentSession();
+				String hql="update History set exit_time=:exit_time where building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+				Query query=session.createQuery(hql);
+				query.setParameter("exit_time",exitTime).setParameter("building_name", building_name).setParameter("floor_name", floor_name).setParameter("slot_name", slot_name);
+				query.executeUpdate();
+			}
+		
+	}
+
 

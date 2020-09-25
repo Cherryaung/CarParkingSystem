@@ -1,5 +1,6 @@
 package com.dat.carparking.service;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -149,14 +150,16 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
-	public void changeStatusToOccupy(String bname, String fname, String sname,String status) {
+	public void changeStatusToOccupy(String bname,String fname,String sname,String status) {
 		// TODO Auto-generated method stub
-		locationDao.changeStatusToOccupy(bname, fname, sname,status);
+		locationDao.changeStatusToOccupy(bname, fname, sname, status);
 	}
 	@Transactional
 	@Override
-	public String getStatus(String bname, String fname, String sname) {
-		// TODO Auto-generated method stub
-		return locationDao.getStatus(bname,fname,sname);
+	public void addExit_time(String building_name, String floor_name, String slot_name, Timestamp ts) {
+	// TODO Auto-generated method stub
+	locationDao.addExit_Time(building_name, floor_name, slot_name, ts);
 	}
+	
+	
 }

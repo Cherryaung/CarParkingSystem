@@ -206,4 +206,14 @@ public class HistoryBean implements Serializable{
 			return "History";
 			 
 		 }
+		 //method user clear carparking slot 
+		 public void updateHistory(String floor_name,String slot_name) {
+			 Date date = new Date();  
+			  Timestamp ts=new Timestamp(date.getTime());
+			  locationService.addExit_time(history.getBuilding_name(), history.getFloor_name(), history.getSlot_name(), ts);
+				System.out.println(" clear slot Buidling "+history.getBuilding_name()+" floor_name "+floor_name+" slot_name "+slot_name);
+				FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage("User Clear Car Parking Slot Successfully"));
+			  
+		}
 }

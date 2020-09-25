@@ -1,5 +1,6 @@
 package com.dat.carparking.service;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public interface LocationService {
 	 public List<Date> findDateList();
 	 public List<History> historylists();
 	 public List<String> findAllFloorlist();
+	void addExit_time(String building_name, String floor_name, String slot_name, Timestamp ts);
 	 void changeStatusToOccupy(String bname,String fname,String sname,String status);
-	 public String getStatus(String bname,String fname,String sname);
+
 }
