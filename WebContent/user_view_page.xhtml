@@ -42,7 +42,7 @@ background: #FF5733 !important;}
    <td><h:outputText/></td>
    <td>
    <c:forEach var="s" items="${locationBean.listslots()}">
-   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" />
+   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" action="#{locationBean.ClearOrOccupy(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}"/>
    </c:forEach>
    </td>
    </tr>

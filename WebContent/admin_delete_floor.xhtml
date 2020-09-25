@@ -40,9 +40,10 @@
 <p:growl id="msgs" showDetail="true" /> 
 <h2>Delete Floor</h2>  
 <div>
+<p:messages for="msg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
 	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
   		<p:outputLabel for="building" value="Building :" />
-  		<p:selectOneMenu id="building" value="#{locationBean.building_name}" style="width:120px">
+  		<p:selectOneMenu id="building" value="#{locationBean.location.building_name}" style="width:120px">
      		<p:ajax listener="#{locationBean.onBuildingChange()}" update="floor"/>
      		<f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{locationBean.listBuildings()}" />
@@ -64,7 +65,7 @@
 
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{locationBean.DeleteFloor()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{locationBean.DeleteFloor()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" validateClient="true" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

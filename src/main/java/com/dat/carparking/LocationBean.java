@@ -487,5 +487,17 @@ public class LocationBean implements Serializable{
 			 }
 		 }
 
-		
+		//user view
+		 public String ClearOrOccupy(String color,String fname,String sname)
+		 {
+			 location.setBuilding_name(selected_building);
+			 location.setFloor_name(fname);
+			 location.setSlot_name(sname);
+			 if(color.equalsIgnoreCase("green"))
+			 {
+				 return "user_occupied_car_parking_slot";
+			 }else {
+				 return "user_clear_car_parking_slot";
+			 }
+		 }
 }
