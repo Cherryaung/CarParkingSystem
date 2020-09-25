@@ -10,22 +10,57 @@
 
 <h:head>
 <title>Car Parking</title>
+<style>
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  			  background-repeat:no-repeat;
+  			  background-size:full;
+  			  background-attachment:fixed;
+  			  background-position:center;} 
+  	h1{text-align:center;
+  	   padding-top:0px;
+  	   font-family: 'Dancing Script', cursive;
+	   font-size: 60px;} 
+	h2{
+		padding-top:25px;
+		text-align:center;
+		font-size: 30px;}
+	h3{
+		padding-top:25px;
+		text-align:center;
+		font-size: 20px;
+		font-color:black;}
+	.btn {
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:10px;
+		float:right;}
+	#dt{
+		margin-top:50px;}
+</style>
 </h:head>
 <h:body>
-<h1>Add Building</h1>
+<h1>Admin</h1>
+<h2>Add New Building in existing building</h2>
 <h:form>
-<p:messages for="msgExistingBuilding" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
-   <p:panel header="New Building" style="margin-bottom:10px;" id="createbuilding">  
-    <h:panelGrid columns="4" cellpadding="5">  
+   <p:messages for="msgExistingBuilding" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+   <p:panel style="margin-bottom:10px;border:none;" id="createbuilding">  
+   <h3>Please enter building name and the number of floors on each building.</h3>
+    <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
        <p:outputLabel for="buildingname" value="Building name: " />     
        <p:inputText id="buildingname" value="#{locationBean.location.building_name}" required="true"/>
       
        <p:outputLabel for="floor_number" value="Number of floor: " />  
         <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number">
         </p:inputText>
-    </h:panelGrid>
-<p:separator />  
-<p:commandButton value="ADD" update=":form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
+        
+        <p:outputLabel></p:outputLabel>
+        <p:commandButton value="ADD" update=":form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
+    </h:panelGrid> 
+
 </p:panel>   
 </h:form>
 
@@ -33,22 +68,22 @@
 <h:form id="form1"> 
 <p:messages for="msgNullBuilding" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/> 
 <p:growl id="msgs" showDetail="true" />  
-<p:panel header="Creating slots" style="margin-bottom:10px;" id="floorupdate">  
-<h:panelGrid columns="2" cellpadding="5">  
+<p:panel style="margin-bottom:10px;border:none;" id="floorupdate"> 
+	<h3>Please enter the number of slots on each selected floor.</h3> 
+	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
+		<p:outputLabel for="floor" value="Floor : " />  
+		<p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:150px">  
+			<p:ajax listener="#{locationBean.onFloorChange}" />  
+			<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+			<f:selectItems value="#{locationBean.floors}" />  
+		</p:selectOneMenu>  
 
-<p:outputLabel for="floor" value="Floor : " />  
-<p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:150px">  
-<p:ajax listener="#{locationBean.onFloorChange}" />  
-<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
-<f:selectItems value="#{locationBean.floors}" />  
-</p:selectOneMenu>  
+		<p:outputLabel value="Number of slot: " />     
+		<p:inputText value="#{locationBean.location.slot_name}"/>
 
-<p:outputLabel value="Number of slot: " />     
-<p:inputText value="#{locationBean.location.slot_name}"/>
-
-</h:panelGrid>
-<p:separator />  
-<p:commandButton value="Submit" update="dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" validateClient="true"/>  
+		<p:outputLabel></p:outputLabel>
+		<p:commandButton value="Submit" update="dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" validateClient="true"/>
+	</h:panelGrid>
 </p:panel>  
 </h:form>  
 

@@ -410,7 +410,7 @@ public class LocationBean implements Serializable{
 	
 	 //for admin home page redirecting pages
 	 public String redirectBuildings() {
-		 return "admin_view_building";
+		 return "admin_view_slot_page";
 	 }
 	 public String redirectSearchHistory() {
 		 return "admin_search_history";

@@ -70,7 +70,7 @@
 
 <h:form id="form1">  
 <p:growl id="msgs" showDetail="true" />   
-	<p:panel style="border:none;" id="floorupdate" toggleable="true" closable="true"  collapsed="true" widgetVar="form1panel">  
+	<p:panel style="border:none;" id="floorupdate" toggleable="true" closable="true" widgetVar="form1panel">  
 		<h3>Creating Slot</h3>
 		<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;"> 
 			<p:outputLabel for="floor" value="Floor : " />  
@@ -119,6 +119,8 @@
     		</p:commandButton>
     		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
              <h:form>
+             <p:messages for="msg" autoUpdate="true" closable="true" showSummary="true" showDetail="true" severity="info"/>     
+   			 <p:growl id="msgs" showDetail="true" /> 
    			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
   			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
      		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />

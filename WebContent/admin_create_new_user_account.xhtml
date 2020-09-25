@@ -41,8 +41,7 @@ commandbutton:hover{
 
 <h:body styleClass="back_img">
 <h1>Admin</h1>
-	<h2>Creating New Account For Security</h2>	 
-		<div>
+	<h2>Creating New Account For Security</h2>
 			<h:form id="form1">
 				<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 				<h:panelGrid columns="2" cellpadding="7" style="margin: 0 auto;">
@@ -56,8 +55,7 @@ commandbutton:hover{
 					<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" action="#{locationBean.persistAccount()}" styleClass="btn"/>
 					<p:commandButton value="Cancel" icon="pi pi-times" onclick="dlg1.hide();" styleClass="btn"/>
 				</h:panelGrid>
-			</h:form>
-		</div>		
+			</h:form>	
 	 </h:body>
 </html>
 						
