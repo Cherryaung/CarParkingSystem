@@ -1,5 +1,6 @@
 package com.dat.carparking.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -216,6 +217,19 @@ public class LocationDaoImpl implements LocationDao{
 		 
 		
 	}
+	@Override
+	public void updatePasswordAdmin(String admin_name, String admin_password,String new_password) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="UPDATE Admin SET admin_password=:new_password WHERE admin_name=:admin_name and admin_password=:admin_password";
+		 Query query = (Query) session.createQuery(sql);
+		 query.setParameter("admin_name",admin_name);
+		 query.setParameter("admin_password",admin_password);
+		 query.setParameter("new_password",new_password);
+		 int result=query.executeUpdate();
+		 
+		
+	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User>listAccounts(){
@@ -253,5 +267,28 @@ public class LocationDaoImpl implements LocationDao{
 		System.out.println("Status:"+status);
 		return status;
 	}
-}
+	@Override
+	public void changeStatusToClear(String bname, String fname, String sname, String status) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql="UPDATE Location SET status=:status WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+		Query query = (Query) session.createQuery(sql);
+		query.setParameter("building_name", bname);
+		query.setParameter("floor_name", fname);
+		query.setParameter("slot_name",sname);
+		query.setParameter("status", status);
+		query.executeUpdate();
+	}
+	@Override
+	public void addExit_Time(String building_name, String floor_name, String slot_name,String car_number,Timestamp exitTime) {
+		// TODO Auto-generated method stub
+			Session	session=this.sessionFactory.getCurrentSession();
+				String hql="update History set exit_time=:exit_time where building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name AND car_number=:car_number";
+				Query query=session.createQuery(hql);
+				query.setParameter("exit_time",exitTime).setParameter("building_name", building_name).setParameter("floor_name", floor_name).setParameter("slot_name", slot_name).setParameter("car_number",car_number);
+				query.executeUpdate();
+			}
+		
+	}
+
 

@@ -35,23 +35,27 @@
 </h:head>
 <h:body styleClass="back_img">
 <h1>Security</h1>
-<h:form>
+<div>
+<h:form id="userclear" >
+<p:messages/>
 <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
+
       <p:outputLabel value="Parking Building :" text-aling="center"/>
-      <p:inputText id="parkingBuilding" value="" label="parkingBuilding" required="true"> 
-      </p:inputText>     
+      <p:outputLabel id="parkingBuilding" value="#{locationBean.location.building_name}" label="parkingBuilding" > 
+      </p:outputLabel>     
       <p:outputLabel value="Parking Floor:"/>
-      <p:inputText id="parkingFloor" value="" label="parkingFloor" required="true">
-      </p:inputText>  
+      <p:outputLabel id="parkingFloor" value="#{locationBean.location.floor_name}" label="parkingFloor">
+      </p:outputLabel>  
       <p:outputLabel value="Parking slot :"/>
-      <p:inputText id="parkingSlot" value="" label="parkingSlot" required="true" > 
-      </p:inputText>
+      <p:outputLabel id="parkingSlot" value="#{locationBean.location.slot_name}" label="parkingSlot" > 
+      </p:outputLabel>
       <p:outputLabel value="Car Number :"/>
-      <p:inputText id="carNumber" value="" label="carNumber" required="true" > 
-      </p:inputText>   
-      <p:outputLabel></p:outputLabel> 
-      <p:commandButton styleClass="btn" value="Clear" icon="pi pi-check"/> 
+      <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" > 
+       </p:inputText> 
+       <p:outputLabel></p:outputLabel>   
+       <p:commandButton value="Clear" actionListener="#{historyBean.updateHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name)}" styleClass="btn" update="userclear" icon="pi pi-check"/> 
      </h:panelGrid>
 </h:form>
+</div>
 </h:body>
 </html>

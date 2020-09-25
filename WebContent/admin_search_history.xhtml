@@ -60,7 +60,9 @@
             </h:outputText>
         </p:column>
         <p:column filterBy="#{h.exit_time}" headerText="Exit Time" filterMatchMode="contains">
-            <h:outputText value="#{h.exit_time}" />
+            <h:outputText value="#{h.exit_time}">
+            <f:convertDateTime pattern="HH:mm:ss" />
+            </h:outputText>
         </p:column>
         <p:column filterBy="#{h.parked_date}" headerText="Date" filterMatchMode="contains">
             <h:outputText value="#{h.parked_date}">

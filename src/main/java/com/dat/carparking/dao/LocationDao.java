@@ -1,5 +1,6 @@
 package com.dat.carparking.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public interface LocationDao {
 	 public List userLogin(String user_name, String user_password);
 	 public void persistAccount(User users);
 	 void updatePassword(String user_name, String user_password,String new_password);
+	 void updatePasswordAdmin(String admin_name, String admin_password,String new_password);
 	 public List<User>listAccounts();
 	 public Boolean checkBuildingName(String building_name);
 	 public Location confirmtosave(Location l);
@@ -32,5 +34,7 @@ public interface LocationDao {
 	 public List<String> findAllFloorlist();
 	 public String getStatus(String bname,String fname,String sname);
      void changeStatusToOccupy(String bname,String fname,String sname,String status);
+     void changeStatusToClear(String bname,String fname,String sname,String status);
+     void addExit_Time(String building_name, String floor_name, String slot_name,String car_number,Timestamp exitTime);
 }
 

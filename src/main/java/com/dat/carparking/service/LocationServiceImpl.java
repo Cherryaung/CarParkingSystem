@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.sql.Timestamp;
 import com.dat.carparking.dao.LocationDao;
 import com.dat.carparking.model.Admin;
 import com.dat.carparking.model.User;
@@ -143,6 +143,12 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
+	public void updatePasswordAdmin(String admin_name, String admin_password,String new_password) {
+		// TODO Auto-generated method stub
+		locationDao.updatePassword(admin_name,admin_password,new_password);
+	}
+	@Transactional
+	@Override
 	public List<User>listAccounts(){
 		// TODO Auto-generated method stub
 		return this.locationDao.listAccounts();
@@ -158,5 +164,17 @@ public class LocationServiceImpl implements LocationService{
 	public String getStatus(String bname, String fname, String sname) {
 		// TODO Auto-generated method stub
 		return locationDao.getStatus(bname,fname,sname);
+	}
+	@Transactional
+	@Override
+	public void changeStatusToClear(String bname, String fname, String sname, String status) {
+		// TODO Auto-generated method stub
+		locationDao.changeStatusToClear(bname, fname, sname, status);
+	}
+	@Transactional
+	@Override
+	public void addExit_time(String building_name, String floor_name, String slot_name,String car_number,Timestamp ts) {
+	// TODO Auto-generated method stub
+	locationDao.addExit_Time(building_name, floor_name, slot_name,car_number, ts);
 	}
 }

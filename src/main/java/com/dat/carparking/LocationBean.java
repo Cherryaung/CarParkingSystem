@@ -32,16 +32,16 @@ public class LocationBean implements Serializable{
 	//for properties of user class
 	public String user_name;
 	public String user_password;
-	private static final long serialVersionUID = -2132320822029255792L;
+//	private static final long serialVersionUID = -2132320822029255792L;
 
 	//for new objects
     public Location location= new Location();
-    private Admin admin;
+   // private Admin admin;
     public User user=new User();
-    @PostConstruct
-    public void init() {
-    	admin=new Admin();
-    }
+    public Admin admin=new Admin();
+	/*
+	 * @PostConstruct public void init() { admin=new Admin(); }
+	 */
      public User getUser() {
 		return user;
 	}
@@ -157,7 +157,12 @@ public class LocationBean implements Serializable{
 	public Location getLocation() {
 			return location;
 		}
-
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 	public void setLocation(Location location) {
 			this.location = location;
 		}
@@ -466,15 +471,23 @@ public class LocationBean implements Serializable{
 		}
 			 
 		public String updatePassword() {
-		        String user_name=user.getUser_name();
-		        String user_password=user.getUser_password();
-		        String new_password=this.new_password;
-		        locationService.updatePassword(user_name,user_password,new_password);
-				 FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
-				 return "admin_home_page";
-			 }
-		
+	        String user_name=user.getUser_name();
+	        String user_password=user.getUser_password();
+	        String new_password=this.new_password;
+	        locationService.updatePassword(user_name,user_password,new_password);
+			 FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
+			 return "admin_home_page";
+		 }
+	public String updatePasswordAdmin() {
+        String admin_name=admin.getAdmin_name();
+        String admin_password=admin.getAdmin_password();
+        String new_password=this.new_password;
+        locationService.updatePasswordAdmin(admin_name,admin_password,new_password);
+		 FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
+		 return "admin_home_page";
+	 }
 		 //view
 		 public String toggleStatus(String fname,String sname)
 		 {

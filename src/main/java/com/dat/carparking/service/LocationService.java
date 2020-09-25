@@ -2,7 +2,7 @@ package com.dat.carparking.service;
 
 import java.util.Date;
 import java.util.List;
-
+import java.sql.Timestamp;
 import com.dat.carparking.model.Admin;
 import com.dat.carparking.model.User;
 import com.dat.carparking.model.History;
@@ -24,6 +24,7 @@ public interface LocationService {
 	 public List userLogin(String user_name, String user_password);
 	 void persistAccount(User users);
 	 void updatePassword(String user_name, String user_password,String new_password);
+	 void updatePasswordAdmin(String admin_name, String admin_password,String new_password);
 	 public List<User>listAccounts();
 	 public Boolean checkBuildingName(String building_name);
 	 public Location confirmtosave(Location l);
@@ -31,5 +32,7 @@ public interface LocationService {
 	 public List<History> historylists();
 	 public List<String> findAllFloorlist();
 	 void changeStatusToOccupy(String bname,String fname,String sname,String status);
+	 void changeStatusToClear(String bname,String fname,String sname,String status);
 	 public String getStatus(String bname,String fname,String sname);
+	 void addExit_time(String building_name, String floor_name, String slot_name,String car_number,Timestamp ts);
 }
