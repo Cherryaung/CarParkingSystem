@@ -217,6 +217,19 @@ public class LocationDaoImpl implements LocationDao{
 		 
 		
 	}
+	@Override
+	public void updatePasswordAdmin(String admin_name, String admin_password,String new_password) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="UPDATE Admin SET admin_password=:new_password WHERE admin_name=:admin_name and admin_password=:admin_password";
+		 Query query = (Query) session.createQuery(sql);
+		 query.setParameter("admin_name",admin_name);
+		 query.setParameter("admin_password",admin_password);
+		 query.setParameter("new_password",new_password);
+		 int result=query.executeUpdate();
+		 
+		
+	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User>listAccounts(){

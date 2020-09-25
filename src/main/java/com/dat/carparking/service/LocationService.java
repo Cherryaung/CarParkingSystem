@@ -25,6 +25,7 @@ public interface LocationService {
 	 public List userLogin(String user_name, String user_password);
 	 void persistAccount(User users);
 	 void updatePassword(String user_name, String user_password,String new_password);
+	 void updatePasswordAdmin(String admin_name, String admin_password,String new_password);
 	 public List<User>listAccounts();
 	 public Boolean checkBuildingName(String building_name);
 	 public Location confirmtosave(Location l);

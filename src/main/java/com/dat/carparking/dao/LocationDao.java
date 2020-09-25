@@ -25,6 +25,7 @@ public interface LocationDao {
 	 public List userLogin(String user_name, String user_password);
 	 public void persistAccount(User users);
 	 void updatePassword(String user_name, String user_password,String new_password);
+	 void updatePasswordAdmin(String admin_name, String admin_password,String new_password);
 	 public List<User>listAccounts();
 	 public Boolean checkBuildingName(String building_name);
 	 public Location confirmtosave(Location l);

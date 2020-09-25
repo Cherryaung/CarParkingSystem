@@ -144,6 +144,12 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
+	public void updatePasswordAdmin(String admin_name, String admin_password,String new_password) {
+		// TODO Auto-generated method stub
+		locationDao.updatePassword(admin_name,admin_password,new_password);
+	}
+	@Transactional
+	@Override
 	public List<User>listAccounts(){
 		// TODO Auto-generated method stub
 		return this.locationDao.listAccounts();

@@ -32,16 +32,18 @@ public class LocationBean implements Serializable{
 	//for properties of user class
 	public String user_name;
 	public String user_password;
-	private static final long serialVersionUID = -2132320822029255792L;
+	//private static final long serialVersionUID = -2132320822029255792L;
 
 	//for new objects
     public Location location= new Location();
-    private Admin admin;
-    public User user=new User();
-    @PostConstruct
+    public Admin admin=new Admin();
+    
+
+	public User user=new User();
+   /* @PostConstruct
     public void init() {
     	admin=new Admin();
-    }
+    }*/
      public User getUser() {
 		return user;
 	}
@@ -86,6 +88,12 @@ public class LocationBean implements Serializable{
 	
 
 	//Getter and Setter for admin's property
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 		public String getAdmin_name() {
 			return admin_name;
 		}
@@ -429,6 +437,16 @@ public class LocationBean implements Serializable{
 				context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
 				 return "admin_home_page";
 			 }
+		public String updatePasswordAdmin() {
+	        String admin_name=admin.getAdmin_name();
+	        String admin_password=admin.getAdmin_password();
+	        String new_password=this.new_password;
+	        locationService.updatePasswordAdmin(admin_name,admin_password,new_password);
+			 FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
+			 return "admin_home_page";
+		 }
+	
 		
 
 
