@@ -147,4 +147,16 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		return this.locationDao.listAccounts();
 	}
+	@Transactional
+	@Override
+	public void changeStatusToOccupy(String bname, String fname, String sname,String status) {
+		// TODO Auto-generated method stub
+		locationDao.changeStatusToOccupy(bname, fname, sname,status);
+	}
+	@Transactional
+	@Override
+	public String getStatus(String bname, String fname, String sname) {
+		// TODO Auto-generated method stub
+		return locationDao.getStatus(bname,fname,sname);
+	}
 }

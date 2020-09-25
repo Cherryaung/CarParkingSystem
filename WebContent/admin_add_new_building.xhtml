@@ -10,76 +10,46 @@
 
 <h:head>
 <title>Car Parking</title>
-<style>
-  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
-  			  background-repeat:no-repeat;
-  			  background-size:full;
-  			  background-attachment:fixed;
-  			  background-position:center;} 
-  	h1{text-align:center;
-  	   padding-top:0px;
-  	   font-family: 'Dancing Script', cursive;
-	   font-size: 60px;} 
-	h2{
-		padding-top:25px;
-		text-align:center;
-		font-size: 30px;}
-	h3{
-		padding-top:25px;
-		text-align:center;
-		font-size: 20px;
-		font-color:black;}
-	.btn {
-		color:#333;
-  		border:2px solid;
-  		border-radius:3px;
-  		text-decoration:none;
-  		display:inline-block;
-  		font-weight:600;
-		margin-top:10px;
-		float:right;}
-	#dt{
-		margin-top:50px;}
-</style>
 </h:head>
-<h:body  styleClass="back_img">
-<h1>Admin</h1>
-<h2>Add New Building</h2>
+<h:body>
+<h1>Add Building</h1>
 <h:form>
-   <p:panel style="border:none;margin-top:50px;" id="createbuilding">  
-   	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
+<p:messages for="msgExistingBuilding" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+   <p:panel header="New Building" style="margin-bottom:10px;" id="createbuilding">  
+    <h:panelGrid columns="4" cellpadding="5">  
        <p:outputLabel for="buildingname" value="Building name: " />     
        <p:inputText id="buildingname" value="#{locationBean.location.building_name}" required="true"/>
       
        <p:outputLabel for="floor_number" value="Number of floor: " />  
         <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number">
         </p:inputText>
-        
-        <p:outputLabel></p:outputLabel>
-        <p:commandButton value="ADD" update=":form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="btn" /> 
     </h:panelGrid>
-   </p:panel>   
+<p:separator />  
+<p:commandButton value="ADD" update=":form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
+</p:panel>   
 </h:form>
 
 <!-- drop down -->
-<h:form id="form1">  
-	<p:growl id="msgs" showDetail="true" />  
-	<p:panel style="border:none;margin-top:50px;" id="floorupdate">  
-		<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
-			<p:outputLabel for="floor" value="Floor : " />  
-			<p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:150px">  
-				<p:ajax listener="#{locationBean.onFloorChange}" />  
-				<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
-				<f:selectItems value="#{locationBean.floors}" />  
-			</p:selectOneMenu>
-			
-			<p:outputLabel value="Number of slot: " />     
-			<p:inputText value="#{locationBean.location.slot_name}"/>
-			
-			<p:outputLabel></p:outputLabel>
-			<p:commandButton value="Submit" styleClass="btn" update="dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" />  
-		</h:panelGrid>
-	</p:panel>  
+<h:form id="form1"> 
+<p:messages for="msgNullBuilding" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/> 
+<p:growl id="msgs" showDetail="true" />  
+<p:panel header="Creating slots" style="margin-bottom:10px;" id="floorupdate">  
+<h:panelGrid columns="2" cellpadding="5">  
+
+<p:outputLabel for="floor" value="Floor : " />  
+<p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:150px">  
+<p:ajax listener="#{locationBean.onFloorChange}" />  
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{locationBean.floors}" />  
+</p:selectOneMenu>  
+
+<p:outputLabel value="Number of slot: " />     
+<p:inputText value="#{locationBean.location.slot_name}"/>
+
+</h:panelGrid>
+<p:separator />  
+<p:commandButton value="Submit" update="dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" validateClient="true"/>  
+</p:panel>  
 </h:form>  
 
 <!-- before save into db, show datatable -->
@@ -93,20 +63,7 @@
             </p:column>  
             <p:column headerText="Slot Name">  
                 <h:outputText value="#{l.slot_name}" />  
-            </p:column>  
-
-           <!--  <p:column headerText="Action"> 
-            <p:growl showDetail="true" />  
-			<p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord(l)}" styleClass="ui-priority-primary">		
-       		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
-    		</p:commandButton>
-             <h:form>
-   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-   			 </p:confirmDialog>     
-			</h:form>
-			 </p:column> -->  
+            </p:column>   
 			 <f:facet name="footer">
 			 <p:growl showDetail="true" /> 
 			 <p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update=":form1:floorupdate" styleClass="ui-priority-primary">		

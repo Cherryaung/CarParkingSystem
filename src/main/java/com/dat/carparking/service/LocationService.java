@@ -30,4 +30,6 @@ public interface LocationService {
 	 public List<Date> findDateList();
 	 public List<History> historylists();
 	 public List<String> findAllFloorlist();
+	 void changeStatusToOccupy(String bname,String fname,String sname,String status);
+	 public String getStatus(String bname,String fname,String sname);
 }

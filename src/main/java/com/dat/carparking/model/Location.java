@@ -14,6 +14,7 @@ private int location_id;
 private String building_name;
 private String floor_name;
 private String slot_name;
+private String status;
 
 public Location()
 {
@@ -23,6 +24,7 @@ public Location(String buildingName, String floorName,String slotName)
 	building_name = buildingName;
 	floor_name = floorName;
 	slot_name = slotName;
+	status="available";
 	}
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
@@ -30,7 +32,13 @@ public Location(String buildingName, String floorName,String slotName)
 public int getLocation_id() {
 	return location_id;
 }
-
+@Column(name="status")
+public String getStatus() {
+	return status;
+}
+public void setStatus(String status) {
+	this.status = status;
+}
 public void setLocation_id(int location_id) {
 	this.location_id = location_id;
 }

@@ -30,5 +30,7 @@ public interface LocationDao {
 	 public List<Date> findDateList();
 	 public List<History> historylists();
 	 public List<String> findAllFloorlist();
+	 public String getStatus(String bname,String fname,String sname);
+     void changeStatusToOccupy(String bname,String fname,String sname,String status);
 }
 

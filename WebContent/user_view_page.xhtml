@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Car Parking System</title>
+<style>
+.parking-status-available{
+background: #229954 !important;}
+.parking-status-occupied{
+background: #FF5733 !important;}
+
+</style>
+</h:head>
+<h:body> 
+<h:form>
+ <p:panel>
+  <h:panelGrid columns="4" cellpadding="7">
+   <p:outputLabel for="Building" value="Building :" />
+  		<p:selectOneMenu id="Building" value="#{locationBean.location.building_name}" style="width:120px">
+     		<p:ajax listener="#{locationBean.onBuildingChange()}" update="floor"/>
+     		<f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{locationBean.listBuildings()}" />
+  		</p:selectOneMenu>
+   <p:outputLabel for="floor" value="Floor Name :" />
+   <p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:100px">
+     <p:ajax listener="#{locationBean.onFloorChange()}" process="@this" update="slotTable"/>
+     <f:selectItem itemLabel="Select Floor" itemValue="" noSelectionOption="true"/>
+     <f:selectItems value="#{locationBean.listfloors()}" />
+  </p:selectOneMenu>
+  </h:panelGrid>
+ </p:panel>
+</h:form>
+<h:form id="slotTable">
+<table id="slotTable">
+ <tr>
+   <td><h:outputText/></td>
+   <td>
+   <c:forEach var="s" items="${locationBean.listslots()}">
+   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" />
+   </c:forEach>
+   </td>
+   </tr>
+</table>
+</h:form>
+</h:body>
+</html>

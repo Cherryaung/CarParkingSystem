@@ -192,6 +192,7 @@ public class HistoryBean implements Serializable{
 	}
 	//method insert data into history table
 		 public String persistHistory() {
+			 String status = "occupied";
 			 Date date = new Date();  
 		        Timestamp ts=new Timestamp(date.getTime());  
 		        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
@@ -199,6 +200,7 @@ public class HistoryBean implements Serializable{
 		        history.setEntry_time(ts);
 		        history.setParked_date(new Date());
 		        locationService.persistHistory(this.history);
+		        locationService.changeStatusToOccupy(history.getBuilding_name(),history.getFloor_name(),history.getSlot_name(),status);
 		        FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage(null, new FacesMessage("User Occupied Car Parking Slot Successfully"));
 			return "History";

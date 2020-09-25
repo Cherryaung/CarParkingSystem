@@ -1,6 +1,7 @@
 package com.dat.carparking.dao;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -69,22 +70,26 @@ public class LocationDaoImpl implements LocationDao{
 	public List<String> findFloorlist(String selected_building) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession(); 
-		List<String> floor = session.createQuery("SELECT floor_name FROM Location WHERE building_name=:building_name").setParameter("building_name", selected_building).list();
-		for(String p : floor){ 
-			
-		}
-		return floor;
-	
+		String sql = "SELECT floor_name FROM Location WHERE building_name=:building_name";
+		Query query = (Query) session.createQuery(sql);
+		query.setParameter("building_name", selected_building);
+		List<String> floorList= new LinkedList(new LinkedHashSet(query.list()));
+		return floorList;
 	}
 	@Override
 	public List<String> findSlotlist(String selectedFloor,String selected_building) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
-		List<String> slot = session.createQuery("SELECT slot_name FROM Location WHERE building_name=:building_name AND floor_name=:floor_name").setParameter("building_name", selected_building).setParameter("floor_name",selectedFloor).list();
-        for(String p : slot){ 
-			System.out.println(p);
-		}
-		return slot;
+		String sql = "SELECT slot_name FROM Location WHERE building_name=:building_name AND floor_name=:floor_name";
+		Query query  = (Query) session.createQuery(sql);
+		query.setParameter("building_name", selected_building);
+		query.setParameter("floor_name", selectedFloor);
+		List<String> slotList = new LinkedList(new LinkedHashSet(query.list()));
+	    for(String slot:slotList)
+	    {
+	    	System.out.println(slot);
+	    }
+		return slotList;
 	}
 	@Override
 	public void DeleteSlot(String selected_building, String selectedFloor, String selected_slot) {
@@ -221,6 +226,32 @@ public class LocationDaoImpl implements LocationDao{
 			
 		}
 		return accList;
+	}
+	@Override
+	public void changeStatusToOccupy(String bname, String fname, String sname,String status) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql="UPDATE Location SET status=:status WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+		Query query = (Query) session.createQuery(sql);
+		query.setParameter("building_name", bname);
+		query.setParameter("floor_name", fname);
+		query.setParameter("slot_name",sname);
+		query.setParameter("status", status);
+		query.executeUpdate();
+	}
+	@Override
+	public String getStatus(String bname, String fname, String sname) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql="FROM Location WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+		Query query = (Query) session.createQuery(sql);
+		query.setParameter("building_name", bname);
+		query.setParameter("floor_name", fname);
+		query.setParameter("slot_name",sname);
+		Location l = (Location) query.uniqueResult();
+		String status = l.getStatus();
+		System.out.println("Status:"+status);
+		return status;
 	}
 }
 
