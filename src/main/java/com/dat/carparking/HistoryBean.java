@@ -146,7 +146,7 @@ public class HistoryBean implements Serializable{
 				System.out.println("delete");
 			 }
 			  FacesContext context = FacesContext.getCurrentInstance();
-			  context.addMessage(null, new FacesMessage("Successfully deleted."));
+			  context.addMessage(null, new FacesMessage("Deleted Record Successfully"));
 			 System.out.println("deleted successfully");
 		 }
 	 //Search

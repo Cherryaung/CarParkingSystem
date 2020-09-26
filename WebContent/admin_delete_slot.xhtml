@@ -36,10 +36,12 @@
 </h:head>
 <h:body styleClass="back_img">
   <h1>Admin</h1>
-  <h:form>
+  <h:form id="deleteslot" >
+<p:messages/>
 <p:growl id="msgs" showDetail="true" />  
 <h2>Delete Slot</h2> 
 <div>
+
 	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
   		<p:outputLabel for="building" value="Building :" />
   		<p:selectOneMenu id="building" value="#{locationBean.location.building_name}" style="width:100px">
@@ -70,7 +72,7 @@
 </div>
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{locationBean.DeleteSlot()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{locationBean.DeleteSlot()}"  update="deleteslot" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

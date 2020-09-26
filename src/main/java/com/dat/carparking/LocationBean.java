@@ -260,7 +260,7 @@ public class LocationBean implements Serializable{
 		}
 		location_list.clear();
 		floors.remove(floor_to_remove);
-		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Added a New Floor!"));
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Added Building Sucessfully!!!!", "Successfully Added a New Floor!"));
  		System.out.println("Successful!");
 		return "admin_add_new_building";
 	}
@@ -337,23 +337,22 @@ public class LocationBean implements Serializable{
 	public void DeleteSlot()
 	{
 		locationService.DeleteSlot(selected_building,selectedFloor,selected_slot);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
- 		System.out.println("Successful!");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Deleted Slot Successfully!!!"));
 	}
 	//delete floor
 	public void DeleteFloor()
 	{
 		locationService.DeleteFloor(selected_building,selectedFloor);
-		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
- 		System.out.println("Successful!");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Deleted Floor Successfully"));
 	}
 	//delete building
 	public void DeleteBuilding()
 	{
 		locationService.DeleteBuilding(selected_building);
-		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Successfully Deleted!"));
- 		System.out.println("Successful!");
-	}
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Deleted Buildig Successfully"));	}
 
 	 public String login()
 	 {
