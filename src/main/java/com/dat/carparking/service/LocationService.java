@@ -35,4 +35,7 @@ public interface LocationService {
 	 void changeStatusToClear(String bname,String fname,String sname,String status);
 	 public String getStatus(String bname,String fname,String sname);
 	 void addExit_time(String building_name, String floor_name, String slot_name,String car_number,Timestamp ts);
+     public String getCarNumberForClear(String building_name,String floor_name,String slot_name);
+     public Timestamp getEntryTimeByCarNumber(String car_number,String building_name,String floor_name,String slot_name);
+   //  public Timestamp getExitTime(String building_name, String floor_name, String slot_name);
 }

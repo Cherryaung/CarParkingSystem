@@ -145,7 +145,7 @@ public class HistoryBean implements Serializable{
 				locationService.deleteRecord(h); 
 				System.out.println("delete");
 			 }
-			  FacesContext context = FacesContext.getCurrentInstance();
+			 FacesContext context = FacesContext.getCurrentInstance();
 			  context.addMessage(null, new FacesMessage("Deleted Record Successfully"));
 			 System.out.println("deleted successfully");
 		 }
@@ -215,11 +215,12 @@ public class HistoryBean implements Serializable{
 			 
 		 }
 		 //method user clear carparking slot 
-		 public void updateHistory(String bname,String fname,String sname) {
+		 public void updateHistory(String bname,String fname,String sname,String car_number) {
+			 
 			 String status = "available";
 			 Date date = new Date();  
 			  Timestamp ts=new Timestamp(date.getTime());
-			  locationService.addExit_time(bname,fname,sname,history.getCar_number(),ts);
+			  locationService.addExit_time(bname,fname,sname,car_number,ts);
 			  locationService.changeStatusToClear(bname,fname,sname,status);
 			  System.out.println(" clear slot Buidling "+history.getBuilding_name()+" floor_name "+floor_name+" slot_name "+slot_name);
 				FacesContext context = FacesContext.getCurrentInstance();

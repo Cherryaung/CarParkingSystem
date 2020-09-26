@@ -12,7 +12,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.context.RequestContext;
+
 import com.dat.carparking.model.Admin;
+import com.dat.carparking.model.History;
 import com.dat.carparking.model.Location;
 import com.dat.carparking.model.User;
 import com.dat.carparking.service.LocationService;
@@ -32,10 +36,13 @@ public class LocationBean implements Serializable{
 	//for properties of user class
 	public String user_name;
 	public String user_password;
-//	private static final long serialVersionUID = -2132320822029255792L;
+
+   
+   
 
 	//for new objects
     public Location location= new Location();
+    public History h = new History();
    // private Admin admin;
     public User user=new User();
     public Admin admin=new Admin();
@@ -48,7 +55,12 @@ public class LocationBean implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-    
+	public History getH() {
+		return h;
+	}
+	public void setH(History h) {
+		this.h = h;
+	}
     public List<String> floors=new LinkedList();
     public List<String> buildings=new LinkedList();
     public List<String> slots=new LinkedList();
@@ -288,7 +300,10 @@ public class LocationBean implements Serializable{
 	public Set<String>listBuildings(){
 		buildings = this.locationService.findBuildinglist();
 		Set<String> buildingSet = convertListToSet(buildings); 
-		
+		for(String b: buildingSet)
+		{
+			System.out.println(b);
+		}
 		return buildingSet;
 	}
 	public String getSelectedFloor() {
@@ -352,7 +367,8 @@ public class LocationBean implements Serializable{
 	{
 		locationService.DeleteBuilding(selected_building);
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Deleted Buildig Successfully"));	}
+		context.addMessage(null, new FacesMessage("Deleted Buildig Successfully"));
+	}
 
 	 public String login()
 	 {
@@ -509,7 +525,27 @@ public class LocationBean implements Serializable{
 			 {
 				 return "user_occupied_car_parking_slot";
 			 }else {
+				 System.out.println("To Find Car Number");
+				 h.setCar_number(locationService.getCarNumberForClear(selected_building,fname,sname));
 				 return "user_clear_car_parking_slot";
+			 }
+		 }
+		//Dynamic Dialog
+		 public void DynamicDialog(String toggleColor,String floor,String slot)
+		 {
+			 System.out.println(toggleColor);
+			 if(toggleColor.equalsIgnoreCase("green"))
+			 {
+				 location.setSlot_name(slot);
+				 RequestContext context = RequestContext.getCurrentInstance();
+				 context.execute("PF('green').show();"); 
+			 }else {
+				 location.setSlot_name(slot);
+				 h.setCar_number(locationService.getCarNumberForClear(selected_building,floor,slot));
+				 h.setEntry_time(locationService.getEntryTimeByCarNumber(h.getCar_number(),selected_building,floor,slot));
+				 System.out.println(h.getCar_number());
+				 RequestContext context = RequestContext.getCurrentInstance();
+				 context.execute("PF('red').show();"); 
 			 }
 		 }
 }

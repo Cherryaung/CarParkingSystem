@@ -52,11 +52,37 @@
    <td><h:outputText/></td>
    <td>
    <c:forEach var="s" items="${locationBean.listslots()}">
-   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}"/>
+   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" actionListener="#{locationBean.DynamicDialog(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}" update="@widgetVar(red) @widgetVar(green)"/>
    </c:forEach>
    </td>
    </tr>
 </table>
+<!-- Green -->
+<p:dialog id="green" widgetVar="green">
+ <h:form>
+   <h:panelGrid columns="1" border="0" height="250" width="250" showEffect="explode">
+    <p:outputLabel value="Parking Slot: "/>
+     <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
+   <p:outputLabel value="STILL AVAILABLE!!!"></p:outputLabel>
+   </h:panelGrid>
+ </h:form>
+</p:dialog>
+<!-- Red -->
+<p:dialog header="detail" id="red" widgetVar="red">
+ <h:form>
+   <h:panelGrid columns="2" border="0" height="250" width="250" showEffect="explode">
+     <p:outputLabel value="Parking Slot: "/>
+     <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
+     <p:outputLabel value="Car Number: " />
+     <p:outputLabel id="carnumber" value="#{locationBean.h.car_number}" label="carnumber" /> 
+     <p:outputLabel value="Entry Time: "/>
+      <p:outputLabel id="entrytime" value="#{locationBean.h.entry_time}" label="entrytime" >
+      <f:convertDateTime pattern="HH:mm:ss" />
+      </p:outputLabel> 
+   </h:panelGrid>
+ </h:form>
+</p:dialog>
 </h:form>
+
 </h:body>
 </html>

@@ -36,5 +36,8 @@ public interface LocationDao {
      void changeStatusToOccupy(String bname,String fname,String sname,String status);
      void changeStatusToClear(String bname,String fname,String sname,String status);
      void addExit_Time(String building_name, String floor_name, String slot_name,String car_number,Timestamp exitTime);
+     public String getCarNumberForClear(String building_name,String floor_name,String slot_name);
+     public Timestamp getEntryTimeByCarNumber(String car_number,String building_name,String floor_name,String slot_name);
+   //  public Timestamp getExitTime(String building_name, String floor_name, String slot_name);
 }
 

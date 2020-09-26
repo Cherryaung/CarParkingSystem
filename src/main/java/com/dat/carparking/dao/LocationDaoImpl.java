@@ -62,7 +62,7 @@ public class LocationDaoImpl implements LocationDao{
 		Session session = this.sessionFactory.getCurrentSession(); 
 		List<String> building = session.createQuery("SELECT building_name FROM Location").list();
 		for(String p : building){ 
-			
+			System.out.println(p);
 		}
 		return building;
 	
@@ -288,6 +288,34 @@ public class LocationDaoImpl implements LocationDao{
 				query.setParameter("exit_time",exitTime).setParameter("building_name", building_name).setParameter("floor_name", floor_name).setParameter("slot_name", slot_name).setParameter("car_number",car_number);
 				query.executeUpdate();
 			}
+	@Override
+	public String getCarNumberForClear(String building_name, String floor_name, String slot_name) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		String hql = "SELECT car_number From History WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name AND exit_time IS NULL";
+		Query query = session.createQuery(hql);
+		query.setParameter("building_name",building_name);
+		query.setParameter("floor_name", floor_name);
+		query.setParameter("slot_name",slot_name);
+		
+	//	History h = (History) query.uniqueResult();
+		//String car_number = h.getCar_number();
+		
+		return (String)query.uniqueResult();
+	}
+	@Override
+	public Timestamp getEntryTimeByCarNumber(String car_number, String building_name, String floor_name,
+			String slot_name) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		String hql = "SELECT entry_time From History WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name AND car_number=:car_number";
+		Query query = session.createQuery(hql);
+		query.setParameter("building_name",building_name);
+		query.setParameter("floor_name", floor_name);
+		query.setParameter("slot_name",slot_name);
+		query.setParameter("car_number",car_number);
+		return (Timestamp) query.uniqueResult();
+	}
 		
 	}
 

@@ -177,4 +177,24 @@ public class LocationServiceImpl implements LocationService{
 	// TODO Auto-generated method stub
 	locationDao.addExit_Time(building_name, floor_name, slot_name,car_number, ts);
 	}
+	@Transactional
+	@Override
+	public String getCarNumberForClear(String building_name, String floor_name, String slot_name) {
+		// TODO Auto-generated method stub
+		return locationDao.getCarNumberForClear(building_name,floor_name,slot_name);
+	}
+	@Transactional
+	@Override
+	public Timestamp getEntryTimeByCarNumber(String car_number, String building_name, String floor_name,
+			String slot_name) {
+		// TODO Auto-generated method stub
+		return locationDao.getEntryTimeByCarNumber(car_number, building_name, floor_name, slot_name);
+	}
+	/*
+	 * @Transactional
+	 * 
+	 * @Override public Timestamp getExitTime(String building_name, String
+	 * floor_name, String slot_name) { // TODO Auto-generated method stub return
+	 * locationDao.getExitTime(building_name, floor_name, slot_name); }
+	 */
 }
