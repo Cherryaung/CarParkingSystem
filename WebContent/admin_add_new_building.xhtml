@@ -44,11 +44,11 @@
 </h:head>
 <h:body>
 <h1>Admin</h1>
-<h2>Add New Building in existing building</h2>
+<h2>Add New Building</h2>
 <h:form id="addbuilding">
    <p:messages/>
    <p:panel style="margin-bottom:10px;border:none;" id="createbuilding">  
-   <h3>Please enter building name and the number of floors on each building.</h3>
+   <h3>Please enter building name and the number of floors.</h3>
     <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
        <p:outputLabel for="buildingname" value="Building name: " />     
        <p:inputText id="buildingname" value="#{locationBean.location.building_name}" required="true"/>
@@ -59,7 +59,7 @@
         </p:inputText>
         
         <p:outputLabel></p:outputLabel>
-        <p:commandButton value="ADD" update="addbuilding :form1:floorupdate" actionListener="#{locationBean.floorList1()}" action="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
+        <p:commandButton value="ADD" update="addbuilding :form1:floorupdate" action="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
     </h:panelGrid> 
 
 </p:panel>   

@@ -215,17 +215,17 @@ public class LocationBean implements Serializable{
 		  System.out.println("floorlist");
 		  floors=new LinkedList();
 		  int count=Integer.parseInt(location.getFloor_name());
-		  System.out.println("Count: "+count);
-		  if(count!= 0) 
-		  {
-		     for(int i=1;i<=count;i++) 
-		     {
-		     	floors.add("Floor"+i);}
-		  }else 
-		  {
-				FacesContext.getCurrentInstance().addMessage("msgfloor_number", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Input Error!!", "Only numeric that is greater than 0"));
-
-		  }
+			if(count>10) 
+			{
+				FacesContext.getCurrentInstance().addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "More than 10 floors are not allowed!!!!!", "More than 10 floors are not allowed!!!!!"));
+			}
+			else
+			{
+			  for(int i=1;i<=count;i++) 
+			  {
+				floors.add("Floor"+i);
+			  }
+			}
 		}else {
 			FacesContext.getCurrentInstance().addMessage("msgExistingBuilding", new FacesMessage(FacesMessage.SEVERITY_ERROR, "This building name already exist. Please type new building name.", "This building name already exist. Please type new building name."));
 		}
@@ -573,19 +573,17 @@ public class LocationBean implements Serializable{
 
 		 }
 			 //defined floor list method
-			 public String floorList1() {
-					
-					System.out.println("floorlist");
-					
-					
-					int count=Integer.parseInt(location.getFloor_name());
-					if(count>10) {
-						FacesContext.getCurrentInstance().addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "More than 10 floors are not allowed!!!!!", "More than 10 floors are not allowed!!!!!"));
-					}
-					else {
-					for(int i=1;i<=count;i++) {
-						floors.add("Floor"+i);}
-					}
-					return "admin_add_new_building.xhtml";
-				}
+				/*
+				 * public String floorList1() {
+				 * 
+				 * System.out.println("floorlist");
+				 * 
+				 * 
+				 * int count=Integer.parseInt(location.getFloor_name()); if(count>10) {
+				 * FacesContext context = FacesContext.getCurrentInstance();
+				 * context.addMessage(null, new
+				 * FacesMessage("More than 10 floors are not allowed!")); } else { for(int
+				 * i=1;i<=count;i++) { floors.add("Floor"+i);} } return
+				 * "admin_add_new_building"; }
+				 */
 		 }
