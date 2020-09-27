@@ -465,7 +465,9 @@ public class LocationBean implements Serializable{
 	 public String redirectSecurityLoginPage() {
 		 return "user_login_page";
 	 }
-
+	 public String redirectHomePage() {
+		 return "system_home_page";
+	 }
 
 	// method CRUD
 		public String persistAccount() {
