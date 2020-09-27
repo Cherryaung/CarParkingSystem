@@ -36,7 +36,8 @@
 </h:head>
 <h:body styleClass="back_img">
   <h1>Admin</h1>
-  <h:form style="margin:0 auto">
+  <h:form id="deleteBuilding" style="margin:0 auto">
+  <p:messages/>  
 <p:growl id="msgs" showDetail="true" />  
 <h2>Delete Building</h2> 
 <div style="margin-top:30px;">
@@ -56,7 +57,7 @@
 </div>
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{locationBean.DeleteBuilding()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{locationBean.DeleteBuilding()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" validateClient="true" update="deleteBuilding"/>  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>
