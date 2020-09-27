@@ -580,8 +580,7 @@ public class LocationBean implements Serializable{
 					
 					int count=Integer.parseInt(location.getFloor_name());
 					if(count>10) {
-						FacesContext context = FacesContext.getCurrentInstance();
-						context.addMessage(null, new FacesMessage("More than 10 floors are not allowed!"));
+						FacesContext.getCurrentInstance().addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "More than 10 floors are not allowed!!!!!", "More than 10 floors are not allowed!!!!!"));
 					}
 					else {
 					for(int i=1;i<=count;i++) {
