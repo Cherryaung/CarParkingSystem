@@ -381,12 +381,12 @@ public class LocationBean implements Serializable{
 	 	
 	 	if(t.isEmpty())
 	 	{
-	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Wrong User Name or Password."));
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Check again!"));
 	 		System.out.println("Invalid!");
 	 		return "admin_login_page";
 	 		 
 	 	}else {
-	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", ""));
 	 		System.out.println("Successful!");
 	 	      return "admin_home_page";
 	 	}
@@ -401,12 +401,12 @@ public class LocationBean implements Serializable{
 	 	
 	 	if(t.isEmpty())
 	 	{
-	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Wrong User Name or Password."));
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Check again."));
 	 		System.out.println("Invalid!");
 	 		return "admin_login_page";
 	 		 
 	 	}else {
-	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Login Success!"));
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", ""));
 	 		System.out.println("Successful!");
 	 	      return "user_home_page";
 	 	}
@@ -493,7 +493,7 @@ public class LocationBean implements Serializable{
 	        String new_password=this.new_password;
 	        locationService.updatePassword(user_name,user_password,new_password);
 			 FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
+			context.addMessage(null, new FacesMessage("Password Updated Successfuly"));
 			 return "admin_home_page";
 		 }
 	public String updatePasswordAdmin() {
