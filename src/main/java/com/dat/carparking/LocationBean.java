@@ -245,19 +245,16 @@ public class LocationBean implements Serializable{
 	//method screen save in (add new building)
 	public String addRecord() {
 		  String buildingName=location.getBuilding_name();
-		  int slotcount=Integer.parseInt(location.getSlot_name());
-		  for(int i=1;i<=slotcount;i++) 
+		  if(buildingName!=null)
 		  {
+		    int slotcount=Integer.parseInt(location.getSlot_name());
+		    for(int i=1;i<=slotcount;i++) 
+		     {
 			  String slot_name = "Slot"+i;
 			  location_list.add(new Location(buildingName,selectedFloor,slot_name));
-		  }
-		 for(Location l: location_list)
-		 {
-			 System.out.println("Building name:"+l.getBuilding_name());
-			 System.out.println("Floor name:"+l.getFloor_name());
-			 System.out.println("Slot name:"+l.getSlot_name());
-		 }
+		     }
 		System.out.println("successful");
+		  }
 
 		return "admin_add_new_building";
 	}
@@ -265,15 +262,20 @@ public class LocationBean implements Serializable{
 	public String persistRecord() 
 	{
 		String floor_to_remove="";
-		for(Location l:this.location_list)
-		{
-			floor_to_remove = l.getFloor_name();
-			locationService.persistRecord(l);
-		}
-		location_list.clear();
-		floors.remove(floor_to_remove);
+	    if(location_list.isEmpty())
+	    {
+	    	FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Invalid Building Name", "Building Name already exit"));
+	    }else {
+		     for(Location l:this.location_list)
+		      {
+			   floor_to_remove = l.getFloor_name();
+			   locationService.persistRecord(l);
+		      }
+		      location_list.clear();
+		      floors.remove(floor_to_remove);
 		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Added Building Sucessfully!!!!", "Successfully Added a New Floor!"));
  		System.out.println("Successful!");
+	    }
 		return "admin_add_new_building";
 	}
 	//Cancel to save records
