@@ -44,21 +44,22 @@
 </h:head>
 <h:body>
 <h1>Admin</h1>
-<h2>Add New Building</h2>
-<h:form>
-   <p:messages for="msgExistingBuilding" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+<h2>Add New Building in existing building</h2>
+<h:form id="addbuilding">
+   <p:messages/>
    <p:panel style="margin-bottom:10px;border:none;" id="createbuilding">  
-   <h3>Please enter building name and the number of floors.</h3>
+   <h3>Please enter building name and the number of floors on each building.</h3>
     <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
        <p:outputLabel for="buildingname" value="Building name: " />     
        <p:inputText id="buildingname" value="#{locationBean.location.building_name}" required="true"/>
       
        <p:outputLabel for="floor_number" value="Number of floor: " />  
-        <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number">
+        <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number" validatorMessage="only number value allowed for floor">
+       <f:validateDoubleRange minimum="2"/>
         </p:inputText>
         
         <p:outputLabel></p:outputLabel>
-        <p:commandButton value="ADD" update=":form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
+        <p:commandButton value="ADD" update="addbuilding :form1:floorupdate" actionListener="#{locationBean.floorList1()}" action="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
     </h:panelGrid> 
 
 </p:panel>   
@@ -66,6 +67,7 @@
 
 <!-- drop down -->
 <h:form id="form1"> 
+<p:messages/>
 <p:messages for="msg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/> 
 <p:growl id="msgs" showDetail="true" />  
 <p:panel style="margin-bottom:10px;border:none;" id="floorupdate"> 
@@ -79,10 +81,12 @@
 		</p:selectOneMenu>  
 
 		<p:outputLabel value="Number of slot: " />     
-		<p:inputText value="#{locationBean.location.slot_name}"/>
+		<p:inputText value="#{locationBean.location.slot_name}" required="true" label="slot_number" validatorMessage="only number value allowed for slot">
+		<f:validateDoubleRange minimum="2"/>
+		</p:inputText>
 
 		<p:outputLabel></p:outputLabel>
-		<p:commandButton value="Submit" update="dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" validateClient="true"/>
+		<p:commandButton value="Submit" update="form1 dt" actionListener="#{locationBean.addRecord()}" icon="ui-icon-check" validateClient="true"/>
 	</h:panelGrid>
 </p:panel>  
 </h:form>  

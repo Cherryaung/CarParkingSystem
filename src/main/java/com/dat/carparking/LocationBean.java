@@ -570,5 +570,23 @@ public class LocationBean implements Serializable{
 				 RequestContext context = RequestContext.getCurrentInstance();
 				 context.execute("PF('gray').show();");
 			 }
+
 		 }
-}
+			 //defined floor list method
+			 public String floorList1() {
+					
+					System.out.println("floorlist");
+					
+					
+					int count=Integer.parseInt(location.getFloor_name());
+					if(count>10) {
+						FacesContext context = FacesContext.getCurrentInstance();
+						context.addMessage(null, new FacesMessage("More than 10 floors are not allowed!"));
+					}
+					else {
+					for(int i=1;i<=count;i++) {
+						floors.add("Floor"+i);}
+					}
+					return "admin_add_new_building.xhtml";
+				}
+		 }
