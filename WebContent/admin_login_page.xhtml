@@ -38,9 +38,9 @@
 
 <h1>Admin</h1>
   
-<h:form>
- <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
-  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+<h:form id="admin">
+ <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/> 
+ <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>    
    <p:growl id="msgs" showDetail="true"/>
 	<h2>Admin Login Form</h2> 
      <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
@@ -49,7 +49,7 @@
        <p:outputLabel for="password" value="Password:" />
        <p:password id="password" value="#{locationBean.admin.admin_password}" required="true" requiredMessage="Password is required"/>
        <p:outputLabel></p:outputLabel>
-	   <p:commandButton type="submit" styleClass="btn" value="login" actionListener="#{locationBean.login()}" validateClient="true" /> 
+	   <p:commandButton type="submit" styleClass="btn" value="login" update="admin" action="#{locationBean.login()}" validateClient="true" /> 
      </h:panelGrid>
 </h:form>
 </h:body>

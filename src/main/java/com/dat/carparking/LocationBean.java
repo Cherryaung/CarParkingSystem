@@ -403,7 +403,7 @@ public class LocationBean implements Serializable{
 	 	{
 	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Check again."));
 	 		System.out.println("Invalid!");
-	 		return "admin_login_page";
+	 		return "user_login_page";
 	 		 
 	 	}else {
 	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", ""));
@@ -502,7 +502,7 @@ public class LocationBean implements Serializable{
         String new_password=this.new_password;
         locationService.updatePasswordAdmin(admin_name,admin_password,new_password);
 		 FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Transaction Updated Successfuly"));
+		context.addMessage(null, new FacesMessage("Password Updated Successfuly"));
 		 return "admin_home_page";
 	 }
 		 //view

@@ -41,7 +41,7 @@ commandbutton:hover{
 
 <h1>Security</h1>
   
- <h:form>
+ <h:form id="userlogin">
  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
  <p:growl id="msgs" showDetail="true"/>
@@ -52,7 +52,7 @@ commandbutton:hover{
        <p:outputLabel for="password" value="Password:" />
        <p:password id="password" value="#{locationBean.user.user_password}" required="true" requiredMessage="Password is required"/>
        <p:outputLabel></p:outputLabel>
-       <p:commandButton type="submit" styleClass="btn" value="login" action="#{locationBean.login1()}" validateClient="true" />
+       <p:commandButton type="submit" styleClass="btn" value="login" update="userlogin" action="#{locationBean.login1()}" validateClient="true" />
      </h:panelGrid>
   </h:form>
 </h:body>
