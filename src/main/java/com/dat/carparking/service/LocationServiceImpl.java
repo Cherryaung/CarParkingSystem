@@ -197,4 +197,16 @@ public class LocationServiceImpl implements LocationService{
 	 * floor_name, String slot_name) { // TODO Auto-generated method stub return
 	 * locationDao.getExitTime(building_name, floor_name, slot_name); }
 	 */
+	@Transactional
+	@Override
+	public void SlotDisable(String bname, String fname, String sname) {
+		// TODO Auto-generated method stub
+		locationDao.SlotDisable(bname,fname,sname);
+	}
+	@Transactional
+	@Override
+	public void SlotAvailable(String bname, String fname, String sname) {
+		// TODO Auto-generated method stub
+		locationDao.SlotAvailable(bname, fname, sname);
+	}
 }

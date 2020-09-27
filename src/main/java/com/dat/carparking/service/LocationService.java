@@ -38,4 +38,6 @@ public interface LocationService {
      public String getCarNumberForClear(String building_name,String floor_name,String slot_name);
      public Timestamp getEntryTimeByCarNumber(String car_number,String building_name,String floor_name,String slot_name);
    //  public Timestamp getExitTime(String building_name, String floor_name, String slot_name);
+     void SlotDisable(String bname,String fname,String sname);
+     void SlotAvailable(String bname,String fname,String sname);
 }

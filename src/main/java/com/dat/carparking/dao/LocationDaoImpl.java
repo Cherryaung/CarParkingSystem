@@ -316,6 +316,32 @@ public class LocationDaoImpl implements LocationDao{
 		query.setParameter("car_number",car_number);
 		return (Timestamp) query.uniqueResult();
 	}
+	@Override
+	public void SlotDisable(String bname, String fname, String sname) {
+		// TODO Auto-generated method stub
+		String status = "disable";
+		Session session = this.sessionFactory.getCurrentSession();
+		String hql = "Update Location SET status=:status WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+		Query query = session.createQuery(hql);
+		query.setParameter("building_name", bname);
+		query.setParameter("floor_name", fname);
+		query.setParameter("slot_name",sname);
+		query.setParameter("status", status);
+		query.executeUpdate();
+	}
+	@Override
+	public void SlotAvailable(String bname, String fname, String sname) {
+		// TODO Auto-generated method stub
+		String status = "available";
+		Session session = this.sessionFactory.getCurrentSession();
+		String hql = "Update Location SET status=:status WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
+		Query query = session.createQuery(hql);
+		query.setParameter("building_name", bname);
+		query.setParameter("floor_name", fname);
+		query.setParameter("slot_name",sname);
+		query.setParameter("status", status);
+		query.executeUpdate();
+	}
 		
 	}
 

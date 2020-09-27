@@ -42,11 +42,21 @@ background: #FF5733 !important;}
    <td><h:outputText/></td>
    <td>
    <c:forEach var="s" items="${locationBean.listslots()}">
-   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" action="#{locationBean.ClearOrOccupy(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}"/>
+   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" action="#{locationBean.ClearOrOccupy(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}" update="@widgetVar(gray)"/>
    </c:forEach>
    </td>
    </tr>
 </table>
 </h:form>
+<!-- Gray -->
+<p:dialog id="gray" widgetVar="gray">
+ <h:form>
+   <h:panelGrid columns="1" border="0" height="250" width="250" showEffect="explode">
+    <p:outputLabel value="Parking Slot: "/>
+    <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
+    <p:outputLabel value="Temporarily Unavailable!!!"></p:outputLabel> 
+   </h:panelGrid>
+ </h:form>
+</p:dialog>
 </h:body>
 </html>

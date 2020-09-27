@@ -510,11 +510,23 @@ public class LocationBean implements Serializable{
 			 if(status.equalsIgnoreCase("available"))
 			 {
 				 return "green";
-			 }else {
+			 }else if(status.equalsIgnoreCase("occupied")){
 				 return "red";
+			 }else
+			 {
+				 return "gray";
 			 }
 		 }
-
+       //Disable View
+		 public void SlotDisable(String fname,String sname)
+		 {
+			 locationService.SlotDisable(selected_building,fname,sname);
+		 }
+		//Available View
+		 public void SlotAvailable(String fname,String sname)
+		 {
+			 locationService.SlotAvailable(selected_building,fname,sname);
+		 }
 		//user view
 		 public String ClearOrOccupy(String color,String fname,String sname)
 		 {
@@ -524,10 +536,15 @@ public class LocationBean implements Serializable{
 			 if(color.equalsIgnoreCase("green"))
 			 {
 				 return "user_occupied_car_parking_slot";
-			 }else {
+			 }else if(color.equalsIgnoreCase("red")){
 				 System.out.println("To Find Car Number");
 				 h.setCar_number(locationService.getCarNumberForClear(selected_building,fname,sname));
 				 return "user_clear_car_parking_slot";
+			 }else {
+				 location.setSlot_name(sname);
+				 RequestContext context = RequestContext.getCurrentInstance();
+				 context.execute("PF('gray').show();");
+				 return "user_view_page";
 			 }
 		 }
 		//Dynamic Dialog
@@ -539,13 +556,17 @@ public class LocationBean implements Serializable{
 				 location.setSlot_name(slot);
 				 RequestContext context = RequestContext.getCurrentInstance();
 				 context.execute("PF('green').show();"); 
-			 }else {
+			 }else if(toggleColor.equalsIgnoreCase("red")){
 				 location.setSlot_name(slot);
 				 h.setCar_number(locationService.getCarNumberForClear(selected_building,floor,slot));
 				 h.setEntry_time(locationService.getEntryTimeByCarNumber(h.getCar_number(),selected_building,floor,slot));
 				 System.out.println(h.getCar_number());
 				 RequestContext context = RequestContext.getCurrentInstance();
 				 context.execute("PF('red').show();"); 
+			 }else {
+				 location.setSlot_name(slot);
+				 RequestContext context = RequestContext.getCurrentInstance();
+				 context.execute("PF('gray').show();");
 			 }
 		 }
 }

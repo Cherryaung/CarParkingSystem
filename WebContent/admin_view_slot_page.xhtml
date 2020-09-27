@@ -27,6 +27,20 @@
 		background: #229954 !important;}
 	.parking-status-occupied{
 		background: #FF5733 !important;}
+	.parking-status-disable{
+		background: #FF5733 !important;}
+		.btn {
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:20px;
+		float:right;}
+commandbutton:hover{
+	cursor: pointer;
+}
 </style>
 </h:head>
 <h:body styleClass="back_img"> 
@@ -52,18 +66,20 @@
    <td><h:outputText/></td>
    <td>
    <c:forEach var="s" items="${locationBean.listslots()}">
-   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" actionListener="#{locationBean.DynamicDialog(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}" update="@widgetVar(red) @widgetVar(green)"/>
+   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" actionListener="#{locationBean.DynamicDialog(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}" update="@widgetVar(red) @widgetVar(green) @widgetVar(gray)"/>
    </c:forEach>
    </td>
    </tr>
 </table>
+</h:form>
 <!-- Green -->
 <p:dialog id="green" widgetVar="green">
  <h:form>
    <h:panelGrid columns="1" border="0" height="250" width="250" showEffect="explode">
     <p:outputLabel value="Parking Slot: "/>
-     <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
-   <p:outputLabel value="STILL AVAILABLE!!!"></p:outputLabel>
+    <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
+    <p:outputLabel value="STILL AVAILABLE!!!"></p:outputLabel> 
+     <p:commandButton value="Disable" actionListener="#{locationBean.SlotDisable(locationBean.selectedFloor,locationBean.location.slot_name)}" styleClass="btn" update="slotTable"/> 
    </h:panelGrid>
  </h:form>
 </p:dialog>
@@ -82,7 +98,16 @@
    </h:panelGrid>
  </h:form>
 </p:dialog>
-</h:form>
-
+<!-- Gray -->
+<p:dialog id="gray" widgetVar="gray">
+ <h:form>
+   <h:panelGrid columns="1" border="0" height="250" width="250" showEffect="explode">
+    <p:outputLabel value="Parking Slot: "/>
+    <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
+    <p:outputLabel value="Temporarily Unavailable!!!"></p:outputLabel> 
+     <p:commandButton value="Available" actionListener="#{locationBean.SlotAvailable(locationBean.selectedFloor,locationBean.location.slot_name)}" styleClass="btn" update="slotTable"/> 
+   </h:panelGrid>
+ </h:form>
+</p:dialog>
 </h:body>
 </html>
