@@ -46,11 +46,20 @@ commandbutton:hover{
 				<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 				<h:panelGrid columns="2" cellpadding="7" style="margin: 0 auto;">
 					<p:outputLabel value="User Name:" />
-					<p:inputText value="#{locationBean.user.user_name}" required="true">
+					<p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="Username is required" validatorMessage="only characters for name.">
+					<f:validateRegex pattern="[a-zA-Z]+"/>
 					</p:inputText>
 					
-					<p:outputLabel value="Password:" />
-					<p:password id="password" value="#{locationBean.user.user_password}" required="true" requiredMessage="Password is required"/>
+					<p:outputLabel for="password" value="Password:" />
+					<p:password id="password" value="#{locationBean.user.user_password}" feedback="true" match="repeated_password" label="Password 1" required="true" requiredMessage="Password is required" promptLabel="Please insert only character,integers and length between 8 and 15.">
+					<f:validateRegex pattern="[a-zA-Z0-9]+"/>
+					<f:validateLength minimum="8" maximum="15"/>
+				    </p:password>
+					<p:outputLabel for="repeated_password" value="Re-enter Password:" />
+					<p:password id="repeated_password" value="#{locationBean.new_password}" feedback="true" label="Password 2" required="true" requiredMessage="Password is required" promptLabel="Please insert  only character,integers and length between 8 and 15." >
+					<f:validateRegex pattern="[a-zA-Z0-9]+" />
+					<f:validateLength minimum="8" maximum="15"/>
+					</p:password>
 					
 					<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" action="#{locationBean.persistAccount()}" styleClass="btn"/>
 					<p:commandButton value="Cancel" icon="pi pi-times" onclick="dlg1.hide();" styleClass="btn"/>
