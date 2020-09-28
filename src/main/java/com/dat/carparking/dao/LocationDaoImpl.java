@@ -168,6 +168,30 @@ public class LocationDaoImpl implements LocationDao{
 	  return result;
 	}
 	@Override
+	public List validate(String user_name, String user_password) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="FROM User WHERE user_name=:user_name AND user_password=:user_password";
+		Query query = (Query) session.createQuery(sql);
+		 query.setParameter("user_name", user_name).setParameter("user_password",user_password).uniqueResult(); 
+		 List result=query.list();
+		
+		
+	  return result;
+	}
+	@Override
+	public List  validateAdmin(String admin_name, String admin_password) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		 String sql ="FROM Admin WHERE admin_name=:admin_name AND admin_password=:admin_password";
+		Query query = (Query) session.createQuery(sql);
+		 query.setParameter("admin_name", admin_name).setParameter("admin_password",admin_password).uniqueResult(); 
+		 List result=query.list();
+		
+		
+	  return result;
+	}
+	@Override
 	public List<Date> findDateList() {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();

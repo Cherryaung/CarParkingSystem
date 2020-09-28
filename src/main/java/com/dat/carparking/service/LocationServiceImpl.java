@@ -101,6 +101,18 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
+	public List validate(String user_name, String user_password) {
+		// TODO Auto-generated method stub
+		return locationDao.validate(user_name, user_password);
+	}
+	@Transactional
+	@Override
+	public List validateAdmin(String admin_name, String admin_password) {
+		// TODO Auto-generated method stub
+		return locationDao.validateAdmin(admin_name, admin_password);
+	}
+	@Transactional
+	@Override
 	public Boolean checkBuildingName(String building_name) {
 		// TODO Auto-generated method stub
 		return locationDao.checkBuildingName(building_name);
@@ -145,7 +157,7 @@ public class LocationServiceImpl implements LocationService{
 	@Override
 	public void updatePasswordAdmin(String admin_name, String admin_password,String new_password) {
 		// TODO Auto-generated method stub
-		locationDao.updatePassword(admin_name,admin_password,new_password);
+		locationDao.updatePasswordAdmin(admin_name,admin_password,new_password);
 	}
 	@Transactional
 	@Override

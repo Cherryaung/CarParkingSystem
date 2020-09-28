@@ -493,19 +493,41 @@ public class LocationBean implements Serializable{
 	        String user_name=user.getUser_name();
 	        String user_password=user.getUser_password();
 	        String new_password=this.new_password;
-	        locationService.updatePassword(user_name,user_password,new_password);
-			 FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Password Updated Successfuly"));
-			 return "admin_home_page";
+	       
+	        List t=locationService.validate(user.getUser_name(), user.getUser_password());
+	        if(t.isEmpty())
+		 	{
+		 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Check again."));
+		 		System.out.println("Invalid!");
+		 		return "user_change_password";
+		 		 
+		 	}else {
+		 		 locationService.updatePassword(user_name,user_password,new_password);	 
+		 	FacesContext context = FacesContext.getCurrentInstance();
+					context.addMessage(null, new FacesMessage("Password Updated Successfuly!"));
+					 return "admin_home_page";
+					 
+		 	}
+		 		
+			
 		 }
 	public String updatePasswordAdmin() {
         String admin_name=admin.getAdmin_name();
         String admin_password=admin.getAdmin_password();
         String new_password=this.new_password;
+        List t=locationService.validateAdmin(admin.getAdmin_name(), admin.getAdmin_password());
+        if(t.isEmpty())
+	 	{
+	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Check again."));
+	 		System.out.println("Invalid!");
+	 		return "admin_change_password";
+	 		 
+	 	}else {
         locationService.updatePasswordAdmin(admin_name,admin_password,new_password);
 		 FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Password Updated Successfuly"));
+		context.addMessage(null, new FacesMessage("Password Updated Successfuly!"));
 		 return "admin_home_page";
+	 	}
 	 }
 		 //view
 		 public String toggleStatus(String fname,String sname)

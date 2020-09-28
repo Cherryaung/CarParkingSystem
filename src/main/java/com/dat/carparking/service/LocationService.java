@@ -22,6 +22,8 @@ public interface LocationService {
 	 void DeleteBuilding(String selected_building);
 	 public List adminLogin(String admin_name, String admin_password);
 	 public List userLogin(String user_name, String user_password);
+	 public List validate(String user_name, String user_password);
+	 public List validateAdmin(String admin_name, String admin_password);
 	 void persistAccount(User users);
 	 void updatePassword(String user_name, String user_password,String new_password);
 	 void updatePasswordAdmin(String admin_name, String admin_password,String new_password);
