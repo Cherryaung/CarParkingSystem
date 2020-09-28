@@ -29,9 +29,9 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
-	public void persistHistory(History history) {
+	public Boolean persistHistory(History history) {
 		// TODO Auto-generated method stub
-		locationDao.persistHistory(history);
+		return locationDao.persistHistory(history);
 		
 	}
 	@Transactional

@@ -87,7 +87,7 @@
       </p:outputLabel>
       <p:outputLabel value="Car Number :"/>
      <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" validatorMessage="Please check the car number you have entered again.">
-     <f:validateLength minimum="8"/> 
+     <f:validateLength minimum="7"/> 
        </p:inputText> 
        <p:outputLabel></p:outputLabel>   
        <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name)}" styleClass="btn" update="useroccupied" icon="pi pi-check"/> 

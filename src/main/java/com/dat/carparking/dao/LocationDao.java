@@ -11,7 +11,7 @@ import com.dat.carparking.model.User;
 
 public interface LocationDao {
 	 void persistRecord(Location location);
-	 void persistHistory(History history);
+	 public Boolean persistHistory(History history);
 	 public List<History> listRecords(Date parked_date);
 	 void deleteRecord(History history);
 	 public Admin login(String admin_name, String admin_password);

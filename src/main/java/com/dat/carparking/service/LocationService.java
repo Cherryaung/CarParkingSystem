@@ -10,7 +10,7 @@ import com.dat.carparking.model.Location;
 
 public interface LocationService {
 	 void persistRecord(Location location);
-	 void persistHistory(History history);
+	 public Boolean persistHistory(History history);
 	 void deleteRecord(History history);
 	 public List<History> listRecords(Date parked_date);
 	 public Admin login(String admin_name, String admin_password);
@@ -22,8 +22,6 @@ public interface LocationService {
 	 void DeleteBuilding(String selected_building);
 	 public List adminLogin(String admin_name, String admin_password);
 	 public List userLogin(String user_name, String user_password);
-	 public List validate(String user_name, String user_password);
-	 public List validateAdmin(String admin_name, String admin_password);
 	 void persistAccount(User users);
 	 void updatePassword(String user_name, String user_password,String new_password);
 	 void updatePasswordAdmin(String admin_name, String admin_password,String new_password);
@@ -42,4 +40,6 @@ public interface LocationService {
    //  public Timestamp getExitTime(String building_name, String floor_name, String slot_name);
      void SlotDisable(String bname,String fname,String sname);
      void SlotAvailable(String bname,String fname,String sname);
+     public List validate(String user_name, String user_password);
+	 public List validateAdmin(String admin_name, String admin_password);
 }

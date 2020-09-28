@@ -191,29 +191,37 @@ public class HistoryBean implements Serializable{
 		return floorSet;
 	}
 	//method insert data into history table
-		 public String persistHistory(String bname,String fname,String sname) {
-			 System.out.println("Building Name:"+bname);
-			 System.out.println("Floor Name:"+fname);
-			 System.out.println("Slot Name:"+sname);
-			 String status = "occupied";
-			 Date date = new Date();  
-		        Timestamp ts=new Timestamp(date.getTime());  
-		        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
-		        System.out.println(formatter.format(ts));
-		        History h = new History();
-		        h.setBuilding_name(bname);
-		        h.setFloor_name(fname);
-		        h.setSlot_name(sname);
-		        h.setEntry_time(ts);
-		        h.setCar_number(history.getCar_number());
-		        h.setParked_date(new Date());
-		        locationService.persistHistory(h);
-		        locationService.changeStatusToOccupy(bname,fname,sname,status);
-		        FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("User Occupied Car Parking Slot Successfully"));
-			return "History";
-			 
-		 }
+	 public String persistHistory(String bname,String fname,String sname) {
+		 System.out.println("Building Name:"+bname);
+		 System.out.println("Floor Name:"+fname);
+		 System.out.println("Slot Name:"+sname);
+		 String status = "occupied";
+		 Date date = new Date();  
+	        Timestamp ts=new Timestamp(date.getTime());  
+	        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
+	        System.out.println(formatter.format(ts));
+	        History h = new History();
+	        h.setBuilding_name(bname);
+	        h.setFloor_name(fname);
+	        h.setSlot_name(sname);
+	        h.setEntry_time(ts);
+	        h.setCar_number(history.getCar_number());
+	        h.setParked_date(new Date());
+	     Boolean Is_Save=locationService.persistHistory(h);
+	     if(Is_Save == true)
+	     {
+	    	 System.out.println("Save OK");
+	        locationService.changeStatusToOccupy(bname,fname,sname,status);
+	        FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("User Occupied Car Parking Slot Successfully"));
+	     }else {
+	    	 System.out.println("Save not OK");
+	    	 FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage("This car number exit in another slot.Please check the car number you have entered."));
+	     }
+		return "History";
+		 
+	 }
 		 //method user clear carparking slot 
 		 public void updateHistory(String bname,String fname,String sname,String car_number) {
 			 

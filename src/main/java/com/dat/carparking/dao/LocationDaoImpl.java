@@ -215,12 +215,23 @@ public class LocationDaoImpl implements LocationDao{
 		return floors;
 	}
 	@Override
-	public void persistHistory(History history) {
+	public Boolean persistHistory(History history) {
 		// TODO Auto-generated method stub
 	Session session = this.sessionFactory.getCurrentSession();
+	 String sql = "FROM History WHERE car_number=:car_number AND parked_date=:parked_date AND exit_time IS NULL";
+	 Query query = (Query) session.createQuery(sql);
+	 query.setParameter("car_number",history.getCar_number());
+	 query.setParameter("parked_date",history.getParked_date());
 	
+	 if(query.uniqueResult()==null)
+	 {
+		 System.out.println("No car number");
 		sessionFactory.getCurrentSession().save(history);
-		
+		return true;
+	 }else {
+		 System.out.println("Existing car number");
+		 return false;
+	 }
 															
 	}
 	@Override
