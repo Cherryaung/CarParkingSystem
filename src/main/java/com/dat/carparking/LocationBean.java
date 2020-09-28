@@ -194,9 +194,9 @@ public class LocationBean implements Serializable{
 	}
 	
 	//define floor names and insert into floor list (add new building)
-	public String floorList() 
+	public void floorList() 
 	{
-		System.out.println("method invoked");
+		floors.clear();
 		String B_Name = location.getBuilding_name();
 		Set<String> B_Lists = listBuildings();
 		Boolean is_exist = false;
@@ -206,13 +206,11 @@ public class LocationBean implements Serializable{
 			{
 				is_exist = true;
 				location.setBuilding_name(null);
-				System.out.println("already exist");
 				break;
 			}
 		}
 		if(is_exist == false)
 		{
-		  System.out.println("floorlist");
 		  floors=new LinkedList();
 		  int count=Integer.parseInt(location.getFloor_name());
 			if(count>10) 
@@ -227,9 +225,9 @@ public class LocationBean implements Serializable{
 			  }
 			}
 		}else {
-			FacesContext.getCurrentInstance().addMessage("msgExistingBuilding", new FacesMessage(FacesMessage.SEVERITY_ERROR, "This building name already exist. Please type new building name.", "This building name already exist. Please type new building name."));
+			FacesContext.getCurrentInstance().addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "This building name already exist. Please type new building name.", "This building name already exist. Please type new building name."));
 		}
-		return "admin_add_new_building";
+		
 	}
 	
 	String selectedFloor;
@@ -243,9 +241,10 @@ public class LocationBean implements Serializable{
 	}
 	
 	//method screen save in (add new building)
-	public String addRecord() {
+	public void addRecord() {
+		location_list.clear();
 		  String buildingName=location.getBuilding_name();
-		  if(buildingName!=null)
+		  if(buildingName!=null && selectedFloor!=null)
 		  {
 		    int slotcount=Integer.parseInt(location.getSlot_name());
 		    for(int i=1;i<=slotcount;i++) 
@@ -253,10 +252,7 @@ public class LocationBean implements Serializable{
 			  String slot_name = "Slot"+i;
 			  location_list.add(new Location(buildingName,selectedFloor,slot_name));
 		     }
-		System.out.println("successful");
 		  }
-
-		return "admin_add_new_building";
 	}
  //save each location record into db (add new building) 
 	public String persistRecord() 
@@ -264,7 +260,7 @@ public class LocationBean implements Serializable{
 		String floor_to_remove="";
 	    if(location_list.isEmpty())
 	    {
-	    	FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Invalid Building Name", "Building Name already exit"));
+	    	FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "No Record to save", "Building Name already exit"));
 	    }else {
 		     for(Location l:this.location_list)
 		      {
@@ -273,8 +269,7 @@ public class LocationBean implements Serializable{
 		      }
 		      location_list.clear();
 		      floors.remove(floor_to_remove);
-		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Added Building Sucessfully!!!!", "Successfully Added a New Floor!"));
- 		System.out.println("Successful!");
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Successfully Added a New Floor!", ""));
 	    }
 		return "admin_add_new_building";
 	}
@@ -411,7 +406,7 @@ public class LocationBean implements Serializable{
 	 	      return "user_home_page";
 	 	}
 	 	}
-	 public String newfloorlist()
+	 public void newfloorlist()
 	 {
 		 List<String> existing_floor_list = listfloors();
 		 int floor_number_inexistingbuilding = existing_floor_list.size();
@@ -422,7 +417,7 @@ public class LocationBean implements Serializable{
 		 {
 			 floors.add("Floor"+i);
 		 }
-		 return "admin_add_new_floor";
+		
 	 }
 	
 	 //for admin home page redirecting pages
@@ -468,13 +463,12 @@ public class LocationBean implements Serializable{
 	 public String redirectHomePage() {
 		 return "system_home_page";
 	 }
-	 public String redirectAdminHomePage() {
+          public String redirectAdminHomePage() {
 		 return "admin_home_page";
 	 }
 	 public String redirectUserHomePage() {
 		 return "user_home_page";
 	 }
-
 	// method CRUD
 		public String persistAccount() {
 				locationService.persistAccount(this.user);

@@ -87,11 +87,11 @@
       
        <p:outputLabel for="floor_number" value="Number of floor: " />  
         <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number" validatorMessage="only number value allowed for floor">
-       <f:validateDoubleRange minimum="2"/>
+       <f:validateDoubleRange minimum="1"/>
         </p:inputText>
         
         <p:outputLabel></p:outputLabel>
-        <p:commandButton value="ADD" update="addbuilding :form1:floorupdate" action="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
+        <p:commandButton value="ADD" update="addbuilding :form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
     </h:panelGrid> 
 
 </p:panel>   
@@ -114,7 +114,7 @@
 
 		<p:outputLabel value="Number of slot: " />     
 		<p:inputText value="#{locationBean.location.slot_name}" required="true" label="slot_number" validatorMessage="only number value allowed for slot">
-		<f:validateDoubleRange minimum="2"/>
+		<f:validateDoubleRange minimum="1"/>
 		</p:inputText>
 
 		<p:outputLabel></p:outputLabel>
@@ -137,7 +137,7 @@
             </p:column>   
 			 <f:facet name="footer">
 			 <p:growl showDetail="true" /> 
-			 <p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update=":form1:floorupdate" styleClass="ui-priority-primary">		
+			 <p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update="dt :form1:floorupdate" styleClass="ui-priority-primary">		
        		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
     		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
@@ -149,11 +149,11 @@
    			 </p:confirmDialog>     
 			</h:form> 
 			 </f:facet>
-        </p:dataTable>  		
+        </p:dataTable>
 <div class="footer">
 		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
 			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>
 		</p:commandLink>
-</div>
+</div>  		
 </h:body>
 </html>
