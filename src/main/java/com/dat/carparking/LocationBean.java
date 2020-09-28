@@ -526,7 +526,7 @@ public class LocationBean implements Serializable{
         locationService.updatePasswordAdmin(admin_name,admin_password,new_password);
 		 FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Password Updated Successfuly!"));
-		 return "admin_home_page";
+		 return "admin_login_page";
 	 	}
 	 }
 		 //view
