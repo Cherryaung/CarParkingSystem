@@ -97,6 +97,11 @@
             <f:convertDateTime pattern="HH:mm:ss" />
             </h:outputText>
         </p:column>
+        <p:column headerText="Duration">
+        <h:outputText value="#{historyBean.computeDuration(h.entry_time,h.exit_time)}">
+       
+        </h:outputText> 
+        </p:column>
         <p:column filterBy="#{h.parked_date}" headerText="Date" filterMatchMode="contains">
             <h:outputText value="#{h.parked_date}">
              <f:convertDateTime pattern="yyyy/MM/dd" />

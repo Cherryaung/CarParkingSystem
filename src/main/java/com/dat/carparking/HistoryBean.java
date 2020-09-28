@@ -235,4 +235,21 @@ public class HistoryBean implements Serializable{
 				context.addMessage(null, new FacesMessage("User Clear Car Parking Slot Successfully"));
 			  
 		}
+		 public String computeDuration(Timestamp entry,Timestamp exit)
+		 { 
+			 String duration;
+			 if(exit!=null)
+			 {
+            long milliseconds = exit.getTime()-entry.getTime();
+            int seconds = (int) milliseconds/1000;
+            int hours = seconds/3600;
+            int minutes = (seconds%3600)/60;
+            seconds = (seconds%3600)%60;
+             duration= hours+":"+minutes+":"+seconds;
+            System.out.println(duration);
+            return duration;}else {
+            	duration=null;
+            		return duration;
+            }
+		 }
 }
