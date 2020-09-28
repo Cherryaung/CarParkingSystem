@@ -12,7 +12,7 @@
 <title>Car Parking System</title>
 <style>
   	.back_img{
-  		background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  		background-color:white;
   		background-repeat:no-repeat;
   		background-size:full;
   		background-attachment:fixed;
@@ -65,10 +65,44 @@
 	.noBorders tr, .noBorders td {
     	background: none !important;
     	border: none !important;}
+    .btn:before, .btn-primary {
+  		text-transform: uppercase;
+  		letter-spacing: 1px;
+  		margin-top: 5px;  
+  		display: inline-block;
+  		text-align: center;
+  		white-space: nowrap;
+  		vertical-align: middle;
+  		user-select: none;
+  		font-size: 18px;
+  		border-radius: 3px;
+  		color: black;
+    	background-color: white;
+    	border-color: balck;}
+	.btn:before:hover {
+      	color: white;
+      	background-color: black;
+      	border-color: black;}
+    #myLogo{
+    	background: var(--clr2);
+    	width: 180px;
+    	height: 180px;
+    	border-radius: var(--text-radius);}
+    .footer{
+    	margin-top:100px;
+    	text-align:center;}
 </style>
 </h:head>
 <h:body styleClass="back_img">
-<h1>Admin</h1>
+<div>
+<h:form>
+	<h:panelGrid columns="3" cellpadding="7" style="margin-top:30px;margin-left:1000px;">
+			<p:commandButton value="Back" styleClass="btn btn-primary" icon="ui-icon-arrow-back" action="#{locationBean.redirectAdminLoginPage()}"/>
+			<p:commandButton value="Home" styleClass="btn btn-primary" icon="ui-icon-arrow-home" action="#{locationBean.redirectHomePage()}"/>
+			<h1>Admin</h1>
+	</h:panelGrid>
+</h:form>
+</div>
 
 <div id="building_div">
 <h2>Building</h2> 
@@ -148,6 +182,10 @@
 	</p:panelGrid>
 </h:form>
 </div>
-
+<div class="footer">
+		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
+			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>
+		</p:commandLink>
+</div>
 </h:body>
 </html>

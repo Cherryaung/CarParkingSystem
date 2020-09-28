@@ -468,6 +468,12 @@ public class LocationBean implements Serializable{
 	 public String redirectHomePage() {
 		 return "system_home_page";
 	 }
+	 public String redirectAdminHomePage() {
+		 return "admin_home_page";
+	 }
+	 public String redirectUserHomePage() {
+		 return "user_home_page";
+	 }
 
 	// method CRUD
 		public String persistAccount() {

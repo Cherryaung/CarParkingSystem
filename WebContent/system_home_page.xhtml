@@ -73,14 +73,13 @@
   		white-space: nowrap;
   		vertical-align: middle;
   		user-select: none;
-  		border: 2px solid transparent;
   		font-size: 18px;
   		border-radius: .25rem;
   		color: black;
     	background-color: white;
-    	border-color: #666;}
+    	border-color: black;}
 	.btn:hover {
-      	color: #fff;
+      	color: white;
       	background-color: black;
       	border-color: black;}
 	.libre-baskerville{font-family: 'Libre Baskerville'}
@@ -117,8 +116,8 @@
   		text-align: center;}
   	#myLogo{
     	background: var(--clr2);
-    	width: 120px;
-    	height: 120px;
+    	width: 180px;
+    	height: 180px;
     	border-radius: var(--text-radius);}
     .footer{
     	margin-top:300px;
@@ -202,7 +201,7 @@
 	
 	<div class="footer">
 		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
-			<p:graphicImage id="myLogo" url="/resources/images/backgroundPhoto.jpg"/>
+			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>
 		</p:commandLink>
 	</div>
 </h:body>

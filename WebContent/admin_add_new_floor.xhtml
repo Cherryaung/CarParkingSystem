@@ -11,19 +11,17 @@
 <h:head>
 <title>Car Parking</title>
 <style>
-  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_2.jpg);
   			  background-repeat:no-repeat;
-  			  background-size:full;
+  			  background-size:cover;
   			  background-attachment:fixed;
   			  background-position:center;} 
-  	h1{text-align:center;
-  	   padding-top:0px;
+  	h1{
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
-	h2{
-		padding-top:25px;
-		text-align:center;
-		font-size: 30px;}
+	h2{text-align:center;
+	   margin-top:150px;
+	   font-size: 40px;} 
 	h3{
 		padding-top:25px;
 		text-align:center;
@@ -40,13 +38,48 @@
 		float:right;}
 	#dt{
 		margin-top:50px;}
+	.btn .btn-primary {
+  		text-transform: uppercase;
+  		letter-spacing: 1px;
+  		margin-top: 5px;  
+  		display: inline-block;
+  		text-align: center;
+  		white-space: nowrap;
+  		vertical-align: middle;
+  		user-select: none;
+  		font-size: 18px;
+  		border-radius: 3px;
+  		color: black;
+    	background-color: white;
+    	border-color: balck;}
+	.btn:hover {
+      	color: white;
+      	background-color: black;
+      	border-color: black;}
+    #myLogo{
+    	background: var(--clr2);
+    	width: 180px;
+    	height: 180px;
+    	border-radius: var(--text-radius);}
+    .footer{
+    	margin-top:100px;
+    	text-align:center;}
 </style>
 </h:head>
 <h:body  styleClass="back_img">
-<h1>Admin</h1>
-<h2>Add New Floor in existing building</h2>
+<div>
+<h:form>
+	<h:panelGrid columns="3" cellpadding="7" style="margin-top:30px;margin-left:1000px;">
+			<p:commandButton value="Back" styleClass="btn btn-primary" icon="ui-icon-arrow-back" action="#{locationBean.redirectHomePage()}"/>
+			<p:commandButton value="Home" styleClass="btn btn-primary" icon="ui-icon-arrow-home" action="#{locationBean.redirectHomePage()}"/>
+			<h1>Admin</h1>
+	</h:panelGrid>
+</h:form>
+</div>
+
 <h:form id="addfloor">
 <p:messages/>
+	<h2>Add New Floor in existing building</h2>
    <p:panel style="border:none;" id="newfloornumbers">  
    	<h3>Please enter the number of floors you want to add.</h3>
     <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
@@ -132,5 +165,10 @@
 			</h:form> 
 			 </f:facet>
         </p:dataTable>  
+<div class="footer">
+		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
+			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>
+		</p:commandLink>
+</div>
 </h:body>
 </html>
