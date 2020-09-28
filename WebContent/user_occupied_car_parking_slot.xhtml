@@ -11,7 +11,7 @@
 <h:head>
 <title>Car Parking System</title>
 <style>
-  	.back_img{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_2.jpg);
+  	body{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_2.jpg);
   			  background-repeat:no-repeat;
   			  background-size:cover;
   			  background-attachment:fixed;
@@ -61,7 +61,7 @@
     	text-align:center;}
 </style>
 </h:head>
-<h:body styleClass="back_img">
+<h:body>
 <div>
 <h:form>
 	<h:panelGrid columns="3" cellpadding="7" style="margin-top:30px;margin-left:1000px;">
@@ -86,7 +86,8 @@
       <p:outputLabel id="parkingSlot" value="#{locationBean.location.slot_name}" label="parkingSlot" required="true" > 
       </p:outputLabel>
       <p:outputLabel value="Car Number :"/>
-     <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" > 
+     <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" validatorMessage="Please check the car number you have entered again.">
+     <f:validateLength minimum="8"/> 
        </p:inputText> 
        <p:outputLabel></p:outputLabel>   
        <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name)}" styleClass="btn" update="useroccupied" icon="pi pi-check"/> 
