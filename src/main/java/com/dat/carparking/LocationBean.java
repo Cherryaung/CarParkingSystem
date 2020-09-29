@@ -354,7 +354,7 @@ public class LocationBean implements Serializable{
 		if(statuscheck.equalsIgnoreCase("occupied"))
 		{
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("There is a car in this slot."));
+			context.addMessage(null, new FacesMessage("Car Occupied in this slot."));
 		}else {
 		locationService.DeleteSlot(selected_building,selectedFloor,selected_slot);
 		FacesContext context = FacesContext.getCurrentInstance();
