@@ -516,9 +516,9 @@ public class LocationBean implements Serializable{
 	// method CRUD
 		public String persistAccount() {
 				locationService.persistAccount(this.user);
-				FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Success!", "Create Account Successfully!"));
+				FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO!!!", "Create User Account Successfully!"));
 		 		System.out.println("Successful!");
-				return "create_user_account";
+				return "admin_home_page";
 			}
 		public List<User>listAccounts(){
 				return this.locationService.listAccounts();
