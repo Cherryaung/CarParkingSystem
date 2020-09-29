@@ -216,8 +216,7 @@ public class HistoryBean implements Serializable{
 			context.addMessage(null, new FacesMessage("User Occupied Car Parking Slot Successfully"));
 	     }else {
 	    	 System.out.println("Save not OK");
-	    	 FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("This car number exit in another slot.Please check the car number you have entered."));
+	    	 FacesContext.getCurrentInstance().addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "The Car number already existed in another slot. Please check car number again!!", "The Car number already existed in another slot. Please check car number again!!"));
 	     }
 		return "History";
 		 

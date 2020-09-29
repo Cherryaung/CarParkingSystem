@@ -92,7 +92,7 @@
 			<f:validateLength minimum="8" maximum="15"/>
 			</p:password>
 			
-			<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" action="#{locationBean.persistAccount()}" styleClass="btn"/>
+			<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" actionListener="#{locationBean.persistAccount()}" styleClass="btn"/>
 			<p:commandButton value="Cancel" id="cancel"  icon="pi pi-times"  update="form1"  process="@this" action="#{locationBean.resetFail()}" styleClass="btn"/>
 		</h:panelGrid>
 </h:form>	

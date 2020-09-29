@@ -354,7 +354,7 @@ public class LocationBean implements Serializable{
 		if(statuscheck.equalsIgnoreCase("occupied"))
 		{
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Car Occupied in this slot."));
+			context.addMessage(null, new FacesMessage("Sorry,you can not delete this slot now!!, Car Occupied in this slot."));
 		}else {
 		locationService.DeleteSlot(selected_building,selectedFloor,selected_slot);
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -374,11 +374,11 @@ public class LocationBean implements Serializable{
         }else {
         	String msg;
     		
-			if(count==1)
+        	if(count==1)
 			{
-			 msg = count+" Car occupied in this Floor.";
+			 msg = "Sorry,you can not delete this floor now!!"+"There are"+count+" Car occupying in this floor currently!";
 			}else {
-				msg = count+" Cars occupied in this Floor.";
+				msg ="Sorry,you can not delete this floor now!!"+"There are"+count+" Cars occupying in this floor currently!";
 			}
         	FacesContext context = FacesContext.getCurrentInstance();
         	context.addMessage(null, new FacesMessage(msg));
@@ -401,9 +401,9 @@ public class LocationBean implements Serializable{
 		
 			if(count==1)
 			{
-			 msg = count+" Car occupied in this Building.";
+			 msg = "Sorry,you can not delete thid building now!!"+"There are"+count+" Car occupying in this Building currently!";
 			}else {
-				msg = count+" Cars occupied in this Building";
+				msg ="Sorry,you can not delete this building now!!"+"There are"+count+" Cars occupying in this Building currently!";
 			}
         	FacesContext context = FacesContext.getCurrentInstance();
         	context.addMessage(null, new FacesMessage(msg));
@@ -514,11 +514,11 @@ public class LocationBean implements Serializable{
 		 return "user_home_page";
 	 }
 	// method CRUD
-		public String persistAccount() {
+		public void persistAccount() {
 				locationService.persistAccount(this.user);
 				FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO!!!", "Create User Account Successfully!"));
 		 		System.out.println("Successful!");
-				return "admin_home_page";
+				
 			}
 		public List<User>listAccounts(){
 				return this.locationService.listAccounts();
@@ -646,16 +646,16 @@ public class LocationBean implements Serializable{
 		        this.admin_password = null;
 		        this.new_password=null;
 		         
-		        FacesMessage msg = new FacesMessage("Input reset.");
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+		      //  FacesMessage msg = new FacesMessage("Input reset.");
+		      //  FacesContext.getCurrentInstance().addMessage(null, msg);
 		    }
 		 public void resetFailUser() {
 		        this.user_name = null;
 		        this.user_password = null;
 		        this.new_password=null;
 		         
-		        FacesMessage msg = new FacesMessage("Input reset.");
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+		       // FacesMessage msg = new FacesMessage("Input reset.");
+		       // FacesContext.getCurrentInstance().addMessage(null, msg);
 		    }
 		 
 		 
