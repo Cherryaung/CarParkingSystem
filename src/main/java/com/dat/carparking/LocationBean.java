@@ -640,18 +640,23 @@ public class LocationBean implements Serializable{
 			 }
 
 		 }
-			 //defined floor list method
-				/*
-				 * public String floorList1() {
-				 * 
-				 * System.out.println("floorlist");
-				 * 
-				 * 
-				 * int count=Integer.parseInt(location.getFloor_name()); if(count>10) {
-				 * FacesContext context = FacesContext.getCurrentInstance();
-				 * context.addMessage(null, new
-				 * FacesMessage("More than 10 floors are not allowed!")); } else { for(int
-				 * i=1;i<=count;i++) { floors.add("Floor"+i);} } return
-				 * "admin_add_new_building"; }
-				 */
+		//cancel reset input
+		 public void resetFail() {
+		        this.admin_name = null;
+		        this.admin_password = null;
+		        this.new_password=null;
+		         
+		        FacesMessage msg = new FacesMessage("Input reset.");
+		        FacesContext.getCurrentInstance().addMessage(null, msg);
+		    }
+		 public void resetFailUser() {
+		        this.user_name = null;
+		        this.user_password = null;
+		        this.new_password=null;
+		         
+		        FacesMessage msg = new FacesMessage("Input reset.");
+		        FacesContext.getCurrentInstance().addMessage(null, msg);
+		    }
+		 
+		 
 		 }
