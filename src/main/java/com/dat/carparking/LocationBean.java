@@ -348,23 +348,67 @@ public class LocationBean implements Serializable{
 	//delete slot
 	public void DeleteSlot()
 	{
+		
+		String statuscheck = locationService.getStatus(selected_building, selectedFloor, selected_slot);
+		System.out.println("statuscheck: "+statuscheck);
+		if(statuscheck.equalsIgnoreCase("occupied"))
+		{
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("There is a car in this slot."));
+		}else {
 		locationService.DeleteSlot(selected_building,selectedFloor,selected_slot);
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Deleted Slot Successfully!!!"));
+		}
 	}
 	//delete floor
 	public void DeleteFloor()
 	{
+        long count = locationService.Countoccupy(selected_building,selectedFloor);	
+        System.out.println("Count: "+count);
+        if(count==0)
+        {
 		locationService.DeleteFloor(selected_building,selectedFloor);
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Deleted Floor Successfully"));
+        }else {
+        	String msg;
+    		
+			if(count==1)
+			{
+			 msg = count+" Car occupied in this Floor.";
+			}else {
+				msg = count+" Cars occupied in this Floor.";
+			}
+        	FacesContext context = FacesContext.getCurrentInstance();
+        	context.addMessage(null, new FacesMessage(msg));
+        }
 	}
 	//delete building
 	public void DeleteBuilding()
 	{
+		long count = locationService.CountoccupyForBuilding(selected_building);
+		System.out.println(count);
+		if(count==0)
+		{
+			System.out.println("delete");
 		locationService.DeleteBuilding(selected_building);
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Deleted Buildig Successfully"));
+		}else {
+			System.out.println("no delete");
+			String msg;
+		
+			if(count==1)
+			{
+			 msg = count+" Car occupied in this Building.";
+			}else {
+				msg = count+" Cars occupied in this Building";
+			}
+        	FacesContext context = FacesContext.getCurrentInstance();
+        	context.addMessage(null, new FacesMessage(msg));
+		
+		}
 	}
 
 	 public String login()

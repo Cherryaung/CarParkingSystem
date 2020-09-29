@@ -97,14 +97,14 @@
   		</p:selectOneMenu>
    
    		<p:outputLabel></p:outputLabel>
-		<p:commandButton value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary" style="float:right;">
+		<p:commandButton value="Delete" actionListener="#{locationBean.DeleteSlot()}"  update="deleteslot" icon="ui-icon-check" styleClass="ui-priority-primary" style="float:right;">
 		<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 		</p:commandButton> 
 	</h:panelGrid>
 </div>
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{locationBean.DeleteSlot()}"  update="deleteslot" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

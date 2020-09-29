@@ -42,4 +42,6 @@ public interface LocationService {
      void SlotAvailable(String bname,String fname,String sname);
      public List validate(String user_name, String user_password);
 	 public List validateAdmin(String admin_name, String admin_password);
+	 public long Countoccupy(String bname,String fname);
+	 public long CountoccupyForBuilding(String bname);
 }

@@ -377,6 +377,29 @@ public class LocationDaoImpl implements LocationDao{
 		query.setParameter("status", status);
 		query.executeUpdate();
 	}
+	@Override
+	public long Countoccupy(String bname, String fname) {
+		// TODO Auto-generated method stub
+		String status = "occupied";
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select count(*) from Location where building_name=:building_name AND floor_name=:floor_name AND status=:status");
+	    query.setParameter("building_name", bname);
+	    query.setParameter("floor_name", fname);
+	    query.setParameter("status", status);
+	    long count = (long) query.uniqueResult();
+		return count;
+	}
+	@Override
+	public long CountoccupyForBuilding(String bname) {
+		// TODO Auto-generated method stub
+		String status = "occupied";
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select count(*) from Location where building_name=:building_name AND status=:status");
+	    query.setParameter("building_name", bname);
+	    query.setParameter("status", status);
+	    long count = (long) query.uniqueResult();
+		return count;
+	}
 		
 	}
 

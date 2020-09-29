@@ -82,14 +82,14 @@
   		</p:selectOneMenu>
 
 		<p:outputLabel></p:outputLabel>
-		<p:commandButton value="Delete" style="font-family: Times New Roman;float:right;" icon="ui-icon-check" styleClass="ui-priority-primary">
+		<p:commandButton value="Delete" actionListener="#{locationBean.DeleteBuilding()}" update="deleteBuilding" style="font-family: Times New Roman;float:right;" icon="ui-icon-check" styleClass="ui-priority-primary">
 		<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 		</p:commandButton> 
 	</h:panelGrid>
 </div>
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{locationBean.DeleteBuilding()}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" validateClient="true" update="deleteBuilding"/>  
+<p:commandButton value="Yes"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" validateClient="true" update="deleteBuilding"/>  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

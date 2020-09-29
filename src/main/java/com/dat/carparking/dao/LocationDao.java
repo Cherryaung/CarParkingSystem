@@ -43,5 +43,7 @@ public interface LocationDao {
    //  public Timestamp getExitTime(String building_name, String floor_name, String slot_name);
      void SlotDisable(String bname,String fname,String sname);
      void SlotAvailable(String bname,String fname,String sname);
+     public long Countoccupy(String bname,String fname);
+     public long CountoccupyForBuilding(String bname);
 }
 

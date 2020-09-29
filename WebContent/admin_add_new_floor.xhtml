@@ -128,7 +128,7 @@
 
 <!-- before save into db, show datatable -->
 <p:growl id="growl" sticky="false" life="3000" />
-  <p:dataTable id="dt" var="l" rows="15" rowKey="row" value="#{locationBean.location_list}">  
+  <p:dataTable id="dt" var="l" rowKey="row" value="#{locationBean.location_list}">  
             <p:column headerText="Building Name">  
                 <h:outputText value="#{l.building_name}"/>  
             </p:column>  
@@ -143,16 +143,16 @@
 			 <p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update="dt :form1:floorupdate " styleClass="ui-priority-primary">		
        		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
-    		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
-             <h:form>    
+    		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		 
+			 </f:facet>
+        </p:dataTable>  
+         <h:form>    
    			 <p:growl id="msgs" showDetail="true" /> 
    			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
   			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
      		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
    			 </p:confirmDialog>     
-			</h:form> 
-			 </f:facet>
-        </p:dataTable>  
+			</h:form>
 <div class="footer">
 		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
 			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>

@@ -221,4 +221,16 @@ public class LocationServiceImpl implements LocationService{
 		// TODO Auto-generated method stub
 		locationDao.SlotAvailable(bname, fname, sname);
 	}
+	@Transactional
+	@Override
+	public long Countoccupy(String bname, String fname) {
+		// TODO Auto-generated method stub
+		return locationDao.Countoccupy(bname, fname);
+	}
+	@Transactional
+	@Override
+	public long CountoccupyForBuilding(String bname) {
+		// TODO Auto-generated method stub
+		return locationDao.CountoccupyForBuilding(bname);
+	}
 }
