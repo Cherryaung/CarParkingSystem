@@ -15,12 +15,13 @@
   			  background-size:cover;
   			  background-attachment:fixed;
   			  background-position:center;} 
-  	h1{
+    h1{
+  	   color:white;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
-	h2{
-	   text-align:center;
-	   margin-top:150px;
+	h2{text-align:center;
+	   color:white;
+	   margin-top:100px;
 	   font-size: 40px;}
 	.btn:after{
 		color:#333;
@@ -76,9 +77,9 @@
  <p:growl id="msgs" showDetail="true"/>
  <h2>Security Login Form</h2> 
      <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
-       <p:outputLabel for="name" value="User Name:"  style="font-size:28px;"/>
+       <p:outputLabel for="name" value="User Name:"  style="font-size:28px;color:white;"/>
        <p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="User Name is required"/>
-       <p:outputLabel for="password" value="Password:"  style="font-size:28px;"/>
+       <p:outputLabel for="password" value="Password:"  style="font-size:28px;color:white;"/>
        <p:password id="password" value="#{locationBean.user.user_password}" required="true" requiredMessage="Password is required"/>
        <p:outputLabel></p:outputLabel>
        <p:commandButton type="submit" styleClass="btn" value="login" update="userlogin" action="#{locationBean.login1()}" style="float:right;" validateClient="true" />

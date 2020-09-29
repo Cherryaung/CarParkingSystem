@@ -15,23 +15,24 @@
   			  background-size:cover;
   			  background-attachment:fixed;
   			  background-position:center;} 
-  	h1{
+   h1{
+  	   color:white;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
 	h2{text-align:center;
-	   margin-top:150px;
+	   color:white;
+	   margin-top:100px;
 	   font-size: 40px;} 
-	.btn {
+	.btn:after{
 		color:#333;
   		border:2px solid;
   		border-radius:3px;
   		text-decoration:none;
   		display:inline-block;
   		font-weight:600;
-		margin-top:20px;}
-	commandbutton:hover{
-		cursor: pointer;}
-	.btn .btn-primary {
+		margin-top:20px;
+		float:right;}
+	.btn:before, .btn-primary {
   		text-transform: uppercase;
   		letter-spacing: 1px;
   		margin-top: 5px;  
@@ -45,7 +46,7 @@
   		color: black;
     	background-color: white;
     	border-color: balck;}
-	.btn:hover {
+	.btn:before:hover {
       	color: white;
       	background-color: black;
       	border-color: black;}
@@ -76,24 +77,24 @@
 		<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 		<h2>Creating New Account For Security</h2>
 		<h:panelGrid columns="2" cellpadding="7" style="margin: 0 auto;">
-			<p:outputLabel value="User Name:" />
+			<p:outputLabel value="User Name:" style="font-size:28px;color:white;"/>
 			<p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="Username is required" validatorMessage="only characters for name.">
 			<f:validateRegex pattern="[a-zA-Z]+"/>
 			</p:inputText>
 					
-			<p:outputLabel for="password" value="Password:" />
+			<p:outputLabel for="password" value="Password:" style="font-size:28px;color:white;"/>
 			<p:password id="password" value="#{locationBean.user.user_password}" feedback="true" match="repeated_password" label="Password 1" required="true" requiredMessage="Password is required" promptLabel="Please insert only character,integers and length between 8 and 15.">
 			<f:validateRegex pattern="[a-zA-Z0-9]+"/>
 			<f:validateLength minimum="8" maximum="15"/>
 			</p:password>
-			<p:outputLabel for="repeated_password" value="Re-enter Password:" />
+			<p:outputLabel for="repeated_password" value="Re-enter Password:" style="font-size:28px;color:white;"/>
 			<p:password id="repeated_password" value="#{locationBean.new_password}" feedback="true" label="Password 2" required="true" requiredMessage="Password is required" promptLabel="Please insert  only character,integers and length between 8 and 15." >
 			<f:validateRegex pattern="[a-zA-Z0-9]+" />
 			<f:validateLength minimum="8" maximum="15"/>
 			</p:password>
 			
-			<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" actionListener="#{locationBean.persistAccount()}" styleClass="btn"/>
-			<p:commandButton value="Cancel" id="cancel"  icon="pi pi-times"  update="form1"  process="@this" action="#{locationBean.resetFail()}" styleClass="btn"/>
+			<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" actionListener="#{locationBean.persistAccount()}" styleClass="btn" style="float:right;"/>
+			<p:commandButton value="Cancel" id="cancel"  icon="pi pi-times"  update="form1"  process="@this" action="#{locationBean.resetFail()}" styleClass="btn" style="float:right;"/>
 		</h:panelGrid>
 </h:form>	
 <div class="footer">

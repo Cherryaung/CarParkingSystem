@@ -16,13 +16,15 @@
   			  background-size:cover;
   			  background-attachment:fixed;
   			  background-position:center;} 
-   	h1{
+   h1{
+  	   color:white;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
 	h2{text-align:center;
-	   margin-top:150px;
+	   color:white;
+	   margin-top:100px;
 	   font-size: 40px;} 
-	.btn {
+	.btn:after{
 		color:#333;
   		border:2px solid;
   		border-radius:3px;
@@ -31,9 +33,7 @@
   		font-weight:600;
 		margin-top:20px;
 		float:right;}
-	commandbutton:hover{
-		cursor: pointer;}
-	.btn .btn-primary {
+	.btn:before, .btn-primary {
   		text-transform: uppercase;
   		letter-spacing: 1px;
   		margin-top: 5px;  
@@ -47,7 +47,7 @@
   		color: black;
     	background-color: white;
     	border-color: balck;}
-	.btn:hover {
+	.btn:before:hover {
       	color: white;
       	background-color: black;
       	border-color: black;}
@@ -74,23 +74,24 @@
 <div>
 <h:form id="useroccupied" >
 <p:messages/>
+<h2>Occupying Car Parking Slot</h2> 
 <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
 
-      <p:outputLabel value="Parking Building :" text-aling="center"/>
+      <p:outputLabel value="Parking Building :" style="font-size:28px;color:white;"/>
       <p:outputLabel id="parkingBuilding" value="#{locationBean.location.building_name}" var="" label="parkingBuilding" required="true"> 
       </p:outputLabel>     
-      <p:outputLabel value="Parking Floor:"/>
+      <p:outputLabel value="Parking Floor:" style="font-size:28px;color:white;"/>
       <p:outputLabel id="parkingFloor" value="#{locationBean.location.floor_name}" label="parkingFloor" required="true">
       </p:outputLabel>  
-      <p:outputLabel value="Parking slot :"/>
+      <p:outputLabel value="Parking slot :" style="font-size:28px;color:white;"/>
       <p:outputLabel id="parkingSlot" value="#{locationBean.location.slot_name}" label="parkingSlot" required="true" > 
       </p:outputLabel>
-      <p:outputLabel value="Car Number :"/>
+      <p:outputLabel value="Car Number :" style="font-size:28px;color:white;"/>
      <p:inputText id="carNumber" value="#{historyBean.history.car_number}" label="carNumber" required="true" validatorMessage="Please check the car number you have entered again.">
      <f:validateLength minimum="7"/> 
        </p:inputText> 
        <p:outputLabel></p:outputLabel>   
-       <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name)}" styleClass="btn" update="useroccupied" icon="pi pi-check"/> 
+       <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name)}" styleClass="btn" update="useroccupied" style="float:right;" icon="pi pi-check"/> 
      </h:panelGrid>
 </h:form>
 </div>

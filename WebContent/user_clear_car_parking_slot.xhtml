@@ -16,26 +16,24 @@
   			  background-size:cover;
   			  background-attachment:fixed;
   			  background-position:center;} 
-  	h1{
+    h1{
+  	   color:white;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
 	h2{text-align:center;
-	   margin-top:150px;
+	   color:white;
+	   margin-top:100px;
 	   font-size: 40px;} 
-	 .btn {
+	.btn:after{
 		color:#333;
   		border:2px solid;
   		border-radius:3px;
   		text-decoration:none;
   		display:inline-block;
   		font-weight:600;
-		margin-top:10px;
-		vertical-align: middle;
-  		margin-top: 15px;
-  		float:right;}
-	commandbutton:hover{
-		cursor: pointer;}
-  	.btn .btn-primary {
+		margin-top:20px;
+		float:right;}
+	.btn:before, .btn-primary {
   		text-transform: uppercase;
   		letter-spacing: 1px;
   		margin-top: 5px;  
@@ -49,7 +47,7 @@
   		color: black;
     	background-color: white;
     	border-color: balck;}
-	.btn:hover {
+	.btn:before:hover {
       	color: white;
       	background-color: black;
       	border-color: black;}
@@ -76,22 +74,23 @@
 <div>
 <h:form id="userclear" >
 <p:messages/>
+<h2>Clearing Car From Car Parking Slot</h2> 
 <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
 
-      <p:outputLabel value="Parking Building :" text-aling="center"/>
+      <p:outputLabel value="Parking Building :" style="font-size:28px;color:white;"/>
       <p:outputLabel id="parkingBuilding" value="#{locationBean.location.building_name}" label="parkingBuilding" > 
       </p:outputLabel>     
-      <p:outputLabel value="Parking Floor:"/>
+      <p:outputLabel value="Parking Floor:" style="font-size:28px;color:white;"/>
       <p:outputLabel id="parkingFloor" value="#{locationBean.location.floor_name}" label="parkingFloor">
       </p:outputLabel>  
-      <p:outputLabel value="Parking slot :"/>
+      <p:outputLabel value="Parking slot :" style="font-size:28px;color:white;"/>
       <p:outputLabel id="parkingSlot" value="#{locationBean.location.slot_name}" label="parkingSlot" > 
       </p:outputLabel>
-      <p:outputLabel value="Car Number :"/>
+      <p:outputLabel value="Car Number :" style="font-size:28px;color:white;"/>
      <p:outputLabel id="carnumber" value="#{locationBean.h.car_number}" label="parkingSlot" > 
      </p:outputLabel>
        <p:outputLabel></p:outputLabel>   
-       <p:commandButton value="Clear" actionListener="#{historyBean.updateHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name,locationBean.h.car_number)}" styleClass="btn" update="userclear" icon="pi pi-check"/> 
+       <p:commandButton value="Clear" actionListener="#{historyBean.updateHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name,locationBean.h.car_number)}" styleClass="btn" update="userclear" style="float:right;" icon="pi pi-check"/> 
      </h:panelGrid>
 </h:form>
 </div>

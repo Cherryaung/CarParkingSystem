@@ -16,29 +16,31 @@
   			  background-size:cover;
   			  background-attachment:fixed;
   			  background-position:center;} 
-  	h1{
+  h1{
+  	   color:white;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
 	h2{text-align:center;
-	   margin-top:150px;
-	   font-size: 40px;} 
+	   color:white;
+	   margin-top:100px;
+	   font-size: 40px;}
 	h3{
 		padding-top:25px;
 		text-align:center;
 		font-size: 20px;
-		font-color:black;}
-	.btn {
+		color:white;}
+	#dt{
+		margin-top:50px;}
+	.btn:after{
 		color:#333;
   		border:2px solid;
   		border-radius:3px;
   		text-decoration:none;
   		display:inline-block;
   		font-weight:600;
-		margin-top:10px;
+		margin-top:20px;
 		float:right;}
-	#dt{
-		margin-top:50px;}
-	.btn .btn-primary {
+	.btn:before, .btn-primary {
   		text-transform: uppercase;
   		letter-spacing: 1px;
   		margin-top: 5px;  
@@ -52,7 +54,7 @@
   		color: black;
     	background-color: white;
     	border-color: balck;}
-	.btn:hover {
+	.btn:before:hover {
       	color: white;
       	background-color: black;
       	border-color: black;}
@@ -80,17 +82,17 @@
  
 <p:messages/>
 <h2>Add New Floor in existing building</h2>
-   <p:panel style="border:none;" id="newfloornumbers">  
+   <p:panel style="border:none;background: transparent !important; " id="newfloornumbers">  
    	<h3>Please enter the number of floors you want to add.</h3>
     <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
-       <p:outputLabel for="buildingname" value="Building name: " />     
+       <p:outputLabel for="buildingname" value="Building name: " style="font-size:28px;color:white;"/>     
        <p:selectOneMenu id="buildingname" value="#{locationBean.location.building_name}" style="width:158px;font-family: Times New Roman">
          <p:ajax listener="#{locationBean.onBuildingChange()}"/>
          <f:selectItem itemLabel="Select Building" style="font-family: Times New Roman" itemValue="" noSelectionOption="true"/>
          <f:selectItems value="#{locationBean.listBuildings()}" style="font-family: Times New Roman" />
        </p:selectOneMenu>
        
-       <p:outputLabel for="floor_number" value="Number of floor: " />  
+       <p:outputLabel for="floor_number" value="Number of floor: " style="font-size:28px;color:white;"/>  
         <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number" validatorMessage="only number value allowed for floor">
         <f:validateDoubleRange minimum="1"/>
         </p:inputText>
@@ -107,16 +109,16 @@
 <p:messages for="msg" autoUpdate="true" closable="true" showSummary="true" showDetail="true" severity="info"/> 
 <p:messages/> 
 <p:growl id="msgs" showDetail="true" />   
-	<p:panel style="border:none;" id="floorupdate" toggleable="true" closable="true" widgetVar="form1panel">  
+	<p:panel style="border:none;background: transparent !important; " id="floorupdate" toggleable="true" closable="true" widgetVar="form1panel">  
 		<h3>Creating Slot</h3>
 		<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;"> 
-			<p:outputLabel for="floor" value="Floor : " />  
+			<p:outputLabel for="floor" value="Floor : " style="font-size:28px;color:white;"/>  
 			<p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:150px">  
 				<p:ajax listener="#{locationBean.onFloorChange}" />  
 				<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
 				<f:selectItems value="#{locationBean.floors}" />  
 			</p:selectOneMenu>  
-			<p:outputLabel for="slot" value="Number of slot: " />     
+			<p:outputLabel for="slot" value="Number of slot: " style="font-size:28px;color:white;"/>     
 			<p:inputText id="slot" value="#{locationBean.location.slot_name}" required="true" label="slot" validatorMessage="only number value allowed for slot">
 			<f:validateDoubleRange minimum="1"/>
 			</p:inputText>
