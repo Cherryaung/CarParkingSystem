@@ -13,7 +13,7 @@ public interface LocationDao {
 	 void persistRecord(Location location);
 	 public Boolean persistHistory(History history);
 	 public List<History> listRecords(Date parked_date);
-	 void deleteRecord(History history);
+	 void deleteRecord(Date start_date,Date end_date);
 	 public Admin login(String admin_name, String admin_password);
 	 void DeleteSlot(String selected_building, String selectedFloor, String selected_slot);
 	 void DeleteFloor(String selected_building, String selectedFloor);
@@ -45,5 +45,6 @@ public interface LocationDao {
      void SlotAvailable(String bname,String fname,String sname);
      public long Countoccupy(String bname,String fname);
      public long CountoccupyForBuilding(String bname);
+     public long countRecord(Date started_date, Date ended_date);
 }
 

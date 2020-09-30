@@ -45,9 +45,14 @@ public class LocationDaoImpl implements LocationDao{
 				    .list();
 	}
 	@Override
-	public void deleteRecord(History history) {
+	public void deleteRecord(Date started_date,Date ended_date) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().delete(history);
+	   Session session = this.sessionFactory.getCurrentSession();
+	   String sql = "DELETE FROM History WHERE parked_date>=:started_date AND parked_date<=:ended_date";
+	   Query query = (Query) session.createQuery(sql);
+	   query.setParameter("started_date",started_date);
+	   query.setParameter("ended_date",ended_date);
+	   query.executeUpdate();
 	}
 	@Override
 	public Admin login(String admin_name, String admin_password) {
@@ -398,6 +403,18 @@ public class LocationDaoImpl implements LocationDao{
 	    query.setParameter("building_name", bname);
 	    query.setParameter("status", status);
 	    long count = (long) query.uniqueResult();
+		return count;
+	}
+	@Override
+	public long countRecord(Date started_date, Date ended_date) {
+		// TODO Auto-generated method stub
+		System.out.println("count record");
+		System.out.println("Start Date: "+started_date);
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select count(*) from History where parked_date>=:started_date AND parked_date<=:ended_date");
+		query.setParameter("started_date",started_date);
+		query.setParameter("ended_date",ended_date);
+		long count = (long) query.uniqueResult();
 		return count;
 	}
 		

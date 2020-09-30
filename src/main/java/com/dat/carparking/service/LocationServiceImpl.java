@@ -41,9 +41,9 @@ public class LocationServiceImpl implements LocationService{
 	}
 	@Transactional
 	@Override
-	public void deleteRecord(History history) {
+	public void deleteRecord(Date start_date,Date end_date) {
 		// TODO Auto-generated method stub
-		locationDao.deleteRecord(history);
+		locationDao.deleteRecord(start_date,end_date);
 	}
 	@Transactional
 	@Override
@@ -232,5 +232,11 @@ public class LocationServiceImpl implements LocationService{
 	public long CountoccupyForBuilding(String bname) {
 		// TODO Auto-generated method stub
 		return locationDao.CountoccupyForBuilding(bname);
+	}
+	@Transactional
+	@Override
+	public long countRecord(Date started_date, Date ended_date) {
+		// TODO Auto-generated method stub
+		return locationDao.countRecord(started_date, ended_date);
 	}
 }

@@ -39,6 +39,23 @@ public class HistoryBean implements Serializable{
 	public Date parked_date;
 	public List<String> buildings;	
 	public List<String> floors;
+	public Date start_date;
+	public Date end_date;
+	public Date getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
 	//history obj
 	public History history=new History();
 	
@@ -134,20 +151,26 @@ public class HistoryBean implements Serializable{
 	}
 	//Delete records by date
 	  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		 public void deleteRecords() throws ParseException {
-			 String date = format.format(history.getParked_date());
-			 System.out.println(date);
-			 Date parked_date=format.parse(date);
-			 System.out.println(parked_date);
-			 List<History> records = locationService.listRecords(parked_date);
-			 for(History h: records)
+	  public void deleteRecords() throws ParseException {
+				
+		     System.out.println("Start Date:"+start_date);
+		     System.out.println("End Date:"+end_date);
+			 String start_date_string = format.format(start_date);
+			 Date started_date = format.parse(start_date_string);
+			 System.out.println("Started date: "+start_date_string);
+			 String end_date_string = format.format(end_date);
+			  Date ended_date = format.parse(end_date_string);
+			 System.out.println("Ended date: "+end_date_string);
+			 long count = locationService.countRecord(started_date,ended_date);
+			 if(count>=1)
 			 {
-				locationService.deleteRecord(h); 
-				System.out.println("delete");
-			 }
+			 locationService.deleteRecord(started_date,ended_date);
 			 FacesContext context = FacesContext.getCurrentInstance();
-			  context.addMessage(null, new FacesMessage("Deleted Record Successfully"));
-			 System.out.println("deleted successfully");
+			 context.addMessage(null, new FacesMessage("Deleted Record Successfully"));
+			 }else {
+				 FacesContext context = FacesContext.getCurrentInstance();
+				 context.addMessage(null, new FacesMessage("No Record to delete in this duration"));
+			 }
 		 }
 	 //Search
 	private List<History> historylist;

@@ -11,7 +11,7 @@ import com.dat.carparking.model.Location;
 public interface LocationService {
 	 void persistRecord(Location location);
 	 public Boolean persistHistory(History history);
-	 void deleteRecord(History history);
+	 void deleteRecord(Date start_date,Date end_date);
 	 public List<History> listRecords(Date parked_date);
 	 public Admin login(String admin_name, String admin_password);
 	 public List<String> findBuildinglist();
@@ -44,4 +44,5 @@ public interface LocationService {
 	 public List validateAdmin(String admin_name, String admin_password);
 	 public long Countoccupy(String bname,String fname);
 	 public long CountoccupyForBuilding(String bname);
+	 public long countRecord(Date started_date, Date ended_date);
 }
