@@ -118,6 +118,9 @@
              <f:convertDateTime pattern="yyyy/MM/dd" />
              </h:outputText>
         </p:column>
+         <p:column filterBy="#{h.submitted_security}" headerText="Submitted Security" filterMatchMode="contains">
+            <h:outputText value="#{h.submitted_security}" />
+        </p:column>
     </p:dataTable>
     </h:form>
 <div class="footer">

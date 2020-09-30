@@ -37,6 +37,7 @@ public class HistoryBean implements Serializable{
 	public Timestamp entry_time;
 	public Timestamp exit_time;
 	public Date parked_date;
+	public String submitted_security;
 	public List<String> buildings;	
 	public List<String> floors;
 	public Date start_date;
@@ -127,6 +128,14 @@ public class HistoryBean implements Serializable{
 	public void setHistory(History history) {
 		this.history = history;
 	}
+    
+	public String getSubmitted_security() {
+		return submitted_security;
+	}
+
+	public void setSubmitted_security(String submitted_security) {
+		this.submitted_security = submitted_security;
+	}
 
 	public LocationService getLocationService() {
 		return locationService;
@@ -158,20 +167,30 @@ public class HistoryBean implements Serializable{
 			 String start_date_string = format.format(start_date);
 			 Date started_date = format.parse(start_date_string);
 			 System.out.println("Started date: "+start_date_string);
-			 String end_date_string = format.format(end_date);
+			 String end_date_string= format.format(end_date);
 			  Date ended_date = format.parse(end_date_string);
 			 System.out.println("Ended date: "+end_date_string);
 			 long count = locationService.countRecord(started_date,ended_date);
-			 if(count>=1)
+			 Date tDay = new Date();
+			 String tDayString = format.format(tDay);
+			 System.out.println("Today:"+tDay);
+			 if(count==0)
 			 {
-			 locationService.deleteRecord(started_date,ended_date);
-			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage("Deleted Record Successfully"));
-			 }else {
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("No Record to delete in this duration"));
+			 }else{
+				 if(start_date_string.compareTo(tDayString)==0 || tDayString.compareTo(end_date_string)==0)
+				 {
+					 FacesContext context = FacesContext.getCurrentInstance();
+					 context.addMessage(null, new FacesMessage("You cannot delete records in this day."));
+				 }else {
+					 locationService.deleteRecord(started_date,ended_date);
+					 FacesContext context = FacesContext.getCurrentInstance();
+					 context.addMessage(null, new FacesMessage("Deleted Record Successfully"));
+				 }
+				 }
 			 }
-		 }
+		 
 	 //Search
 	private List<History> historylist;
 	private List<History> filteredRecords;
@@ -214,7 +233,7 @@ public class HistoryBean implements Serializable{
 		return floorSet;
 	}
 	//method insert data into history table
-	 public String persistHistory(String bname,String fname,String sname) {
+	 public String persistHistory(String bname,String fname,String sname,String security) {
 		 System.out.println("Building Name:"+bname);
 		 System.out.println("Floor Name:"+fname);
 		 System.out.println("Slot Name:"+sname);
@@ -230,6 +249,7 @@ public class HistoryBean implements Serializable{
 	        h.setEntry_time(ts);
 	        h.setCar_number(history.getCar_number());
 	        h.setParked_date(new Date());
+	        h.setSubmitted_security(security);
 	     Boolean Is_Save=locationService.persistHistory(h);
 	     if(Is_Save == true)
 	     {

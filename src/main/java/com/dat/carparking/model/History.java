@@ -44,13 +44,20 @@ public class History {
 	private Timestamp entry_time;
 	private Timestamp exit_time;
 	private Date parked_date;
-	 
+	private String submitted_security;
 	 @Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 @Column(name="record_id")
 	 public int getRecord_id() {
 			return record_id;
 		}
+	 @Column(name="submitted_security")
+		public String getSubmitted_security() {
+		return submitted_security;
+	}
+	public void setSubmitted_security(String submitted_security) {
+		this.submitted_security = submitted_security;
+	}
 		public void setRecord_id(int record_id) {
 			this.record_id = record_id;
 		}

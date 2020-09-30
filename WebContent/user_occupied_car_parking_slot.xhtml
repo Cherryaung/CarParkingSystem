@@ -67,7 +67,7 @@
 	<h:panelGrid columns="3" cellpadding="7" style="margin-top:30px;margin-left:1000px;">
 			<p:commandButton value="Back" styleClass="btn btn-primary" icon="ui-icon-arrow-back" action="#{locationBean.redirectUserHomePage()}"/>
 			<p:commandButton value="Home" styleClass="btn btn-primary" icon="ui-icon-arrow-home" action="#{locationBean.redirectHomePage()}"/>
-			<h1>Security</h1>
+			 <p:outputLabel id="username" value="#{locationBean.user.user_name}" label="username" /> 
 	</h:panelGrid>
 </h:form>
 </div>
@@ -91,7 +91,7 @@
      <f:validateLength minimum="7"/> 
        </p:inputText> 
        <p:outputLabel></p:outputLabel>   
-       <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name)}" styleClass="btn" update="useroccupied" style="float:right;" icon="pi pi-check"/> 
+       <p:commandButton value="Occupied" actionListener="#{historyBean.persistHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name,locationBean.user.user_name)}" styleClass="btn" update="useroccupied" style="float:right;" icon="pi pi-check"/> 
      </h:panelGrid>
 </h:form>
 </div>
