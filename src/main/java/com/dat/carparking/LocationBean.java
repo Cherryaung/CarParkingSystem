@@ -376,9 +376,9 @@ public class LocationBean implements Serializable{
     		
         	if(count==1)
 			{
-			 msg = "Sorry,you can not delete this floor now!!"+"There are"+count+" Car occupying in this floor currently!";
+			 msg = "Sorry,you can not delete this floor now!!"+"There are "+count+" Car occupying in this floor currently!";
 			}else {
-				msg ="Sorry,you can not delete this floor now!!"+"There are"+count+" Cars occupying in this floor currently!";
+				msg ="Sorry,you can not delete this floor now!!"+"There are "+count+" Cars occupying in this floor currently!";
 			}
         	FacesContext context = FacesContext.getCurrentInstance();
         	context.addMessage(null, new FacesMessage(msg));
@@ -401,9 +401,9 @@ public class LocationBean implements Serializable{
 		
 			if(count==1)
 			{
-			 msg = "Sorry,you can not delete thid building now!!"+"There are"+count+" Car occupying in this Building currently!";
+			 msg = "Sorry,you can not delete thid building now!!"+"There are "+count+" Car occupying in this Building currently!";
 			}else {
-				msg ="Sorry,you can not delete this building now!!"+"There are"+count+" Cars occupying in this Building currently!";
+				msg ="Sorry,you can not delete this building now!!"+"There are "+count+" Cars occupying in this Building currently!";
 			}
         	FacesContext context = FacesContext.getCurrentInstance();
         	context.addMessage(null, new FacesMessage(msg));

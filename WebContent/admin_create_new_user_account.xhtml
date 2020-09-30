@@ -79,7 +79,7 @@
 		<h:panelGrid columns="2" cellpadding="7" style="margin: 0 auto;">
 			<p:outputLabel value="User Name:" style="font-size:28px;color:white;"/>
 			<p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="Username is required" validatorMessage="only characters for name.">
-			<f:validateRegex pattern="[a-zA-Z]+"/>
+			<f:validateRegex pattern="^[a-zA-Z].*[\s\.]*$"/>
 			</p:inputText>
 					
 			<p:outputLabel for="password" value="Password:" style="font-size:28px;color:white;"/>

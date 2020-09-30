@@ -79,8 +79,8 @@
 </h:form>
 </div>
 <h:form id="addfloor">
+<p:growl id="msgs" showDetail="true" />   
  
-<p:messages/>
 <h2>Add New Floor in existing building</h2>
    <p:panel style="border:none;background: transparent !important; " id="newfloornumbers">  
    	<h3>Please enter the number of floors you want to add.</h3>
@@ -106,8 +106,6 @@
 <!-- drop down -->
 
 <h:form id="form1"> 
-<p:messages for="msg" autoUpdate="true" closable="true" showSummary="true" showDetail="true" severity="info"/> 
-<p:messages/> 
 <p:growl id="msgs" showDetail="true" />   
 	<p:panel style="border:none;background: transparent !important; " id="floorupdate" toggleable="true" closable="true" widgetVar="form1panel">  
 		<h3>Creating Slot</h3>

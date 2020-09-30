@@ -71,14 +71,15 @@
 </h:form>
 </div>
 <div class="info">
- <h:form id="userlogin">
- <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
- <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>     
+ <h:form id="userlogin"> 
+  <p:messages for="msgLogin" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="info"/>   
  <p:growl id="msgs" showDetail="true"/>
  <h2>Security Login Form</h2> 
      <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
        <p:outputLabel for="name" value="User Name:"  style="font-size:28px;color:white;"/>
-       <p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="User Name is required"/>
+       <p:inputText id="name" value="#{locationBean.user.user_name}" required="true" requiredMessage="User Name is required">
+       <f:validateRegex pattern="^[a-zA-Z].*[\s\.]*$"/>
+       </p:inputText>
        <p:outputLabel for="password" value="Password:"  style="font-size:28px;color:white;"/>
        <p:password id="password" value="#{locationBean.user.user_password}" required="true" requiredMessage="Password is required"/>
        <p:outputLabel></p:outputLabel>
