@@ -10,7 +10,7 @@
 <h:head>
   <title>Car Parking System(Delete)</title>
     <style>
-  	body{background-image:url(/CarParkingSystem/resources/images/car_parking_background_photo_2.jpg);
+  	body{background-image:url(/CarParkingSystem/resources/images/plainBackground1.jpg);
   			  background-repeat:no-repeat;
   			  background-size:cover;
   			  background-attachment:fixed;
@@ -90,7 +90,7 @@
      		<f:selectItems value="#{locationBean.listfloors()}" />
   		</p:selectOneMenu>
  
-  		<p:outputLabel for="slot" value="Slot :" />
+  		<p:outputLabel for="slot" value="Slot :"  style="font-size:28px;color:white;"/>
   		<p:selectOneMenu id="slot" value="#{locationBean.slot_name}" style="width:100px">
      		<p:ajax listener="#{locationBean.onslotChange()}"/>
      		<f:selectItem itemLabel="Select Slot" itemValue="" noSelectionOption="true"/>

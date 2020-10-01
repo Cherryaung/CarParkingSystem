@@ -12,19 +12,46 @@
 <h:head>
 <title>Car Parking</title>
 <style>
-  	.back_img{background-image:url(/CarParkingSystem/resources/images/backgroundPhotoVerticalView.JPG);
+  	.back_img{background-image:url(/CarParkingSystem/resources/images/plainBackground1.jpg);
   			  background-repeat:no-repeat;
   			  background-size:full;
   			  background-attachment:fixed;
   			  background-position:center;} 
-  	h1{text-align:center;
-  	   padding-top:0px;
+   h1{
+  	   color:white;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
-	h2{
-		padding-top:25px;
-		text-align:center;
-		font-size: 30px;}
+	h2{text-align:center;
+	   color:white;
+	   margin-top:100px;
+	   font-size: 40px;}
+    .btn:after{
+		color:#333;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+		margin-top:20px;
+		float:right;}
+	.btn:before, .btn-primary {
+  		text-transform: uppercase;
+  		letter-spacing: 1px;
+  		margin-top: 5px;  
+  		display: inline-block;
+  		text-align: center;
+  		white-space: nowrap;
+  		vertical-align: middle;
+  		user-select: none;
+  		font-size: 18px;
+  		border-radius: 3px;
+  		color: black;
+    	background-color: white;
+    	border-color: balck;}
+	.btn:before:hover {
+      	color: white;
+      	background-color: black;
+      	border-color: black;}
 	.ui-priority-primary .ui-confirmdialog-yes .ui-confirmdialog-no{
 		color:#333;
   		border:2px solid;
@@ -34,20 +61,37 @@
   		font-weight:600;
 		margin-top:10px;
 		float:right;}
+	#myLogo{
+    	background: var(--clr2);
+    	width: 180px;
+    	height: 180px;
+    	border-radius: var(--text-radius);}
+    .footer{
+    	margin-top:100px;
+    	text-align:center;}
 </style>
 </h:head>
 <h:body styleClass="back_img">
-<h1>Admin</h1>
+<div>
+<h:form>
+	<h:panelGrid columns="3" cellpadding="7" style="margin-top:30px;margin-left:1000px;">
+			<p:commandButton value="Back" styleClass="btn btn-primary" icon="ui-icon-arrow-back" action="#{locationBean.redirectAdminHomePage()}"/>
+			<p:commandButton value="Home" styleClass="btn btn-primary" icon="ui-icon-arrow-home" action="#{locationBean.redirectHomePage()}"/>
+			<h1>Admin</h1>
+	</h:panelGrid>
+</h:form>
+</div>
 <h:form id="deleterecord">
 <p:growl id="msgs" showDetail="true" />  
 <h2>Delete History</h2> 
 <div>
 	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
-		<p:outputLabel for="parked_date1" value="Start Date :" />
+		<p:outputLabel for="parked_date1" value="Start Date :" style="font-size:28px;color:white;"/>
 		<p:calendar id="parked_date1" value="#{historyBean.start_date}" required="true" />
 		
-		<p:outputLabel for="parked_date2" value="End Date :" />
+		<p:outputLabel for="parked_date2" value="End Date :" style="font-size:28px;color:white;"/>
 		<p:calendar id="parked_date2" value="#{historyBean.end_date}" required="true" />
+		<p:outputLabel></p:outputLabel>
 		<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
 			<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 		</p:commandButton>  
@@ -60,5 +104,10 @@
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>
+<div class="footer">
+		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
+			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>
+		</p:commandLink>
+</div>
 </h:body>
 </html>

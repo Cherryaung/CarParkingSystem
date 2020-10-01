@@ -11,57 +11,20 @@
 <h:head>
 <title>Car Parking System</title>
 <style>
-  	.back_img{
-  		background-color:white;
+  	body{
+  		background-image:url(/CarParkingSystem/resources/images/plainBackground1.jpg);
   		background-repeat:no-repeat;
   		background-size:full;
   		background-attachment:fixed;
   		background-position:center;} 
-  	h1{text-align:center;
-  	   padding-top:0px;
+    h1{
+  	   color:white;
   	   font-family: 'Dancing Script', cursive;
 	   font-size: 60px;} 
-	#building_div{background-image:url(/CarParkingSystem/resources/images/buildings_background_photo_6.jpg);
-  			  background-repeat:no-repeat;
-  			  background-size:cover;
-  			  margin-left: 0px;
-  			  width: 100%;
-  			  height:230px;}
-  	#history_div{background-image:url(/CarParkingSystem/resources/images/buildings_background_photo_6.jpg);
-  			  background-repeat:no-repeat;
-  			  background-size:cover;
-  			  height:230px;}
-  	#add_div{background-image:url(/CarParkingSystem/resources/images/buildings_background_photo_6.jpg);
-  			  background-repeat:no-repeat;
-  			  background-size:cover;
-  			  margin: 0px auto;
-  			  height:230px;}
-	#delete_div{background-image:url(/CarParkingSystem/resources/images/buildings_background_photo_6.jpg);
-  			  background-repeat:no-repeat;
-  			  background-size:cover;
-  			  height:230px;}
-  	#manage_div{background-image:url(/CarParkingSystem/resources/images/buildings_background_photo_6.jpg);
-  			  background-repeat:no-repeat;
-  			  background-size:cover;
-  			  height:230px;}
 	h2{text-align:center;
-  	   padding-top:25px;
+  	   margin-top:10px;
   	   font-family: 'Dancing Script', cursive;
-	   font-size: 40px;} 
-	commandButton {
-		color:#333;
-  		border:2px solid;
-  		border-radius:3px;
-  		text-decoration:none;
-  		display:inline-block;
-  		padding:5px 10px;
-  		font-weight:600;
-  		text-align: center; 
-  		vertical-align: middle;
-  		margin-top: 15px;}
-	#building_panel {
-		padding-bottom: 100px;
-		}
+	   font-size: 30px;} 
 	.noBorders tr, .noBorders td {
     	background: none !important;
     	border: none !important;}
@@ -91,9 +54,61 @@
     .footer{
     	margin-top:100px;
     	text-align:center;}
+	.btn {
+		border: 2px solid black;
+  		background-color: white;
+  		color: black;
+  		padding: 10px 15px;
+  		font-size: 16px;
+  		cursor: pointer;
+  		text-align:center;
+  		margin-left:10px;
+  		margin-top:10px;}
+	.default {
+  		border-color: #e7e7e7;
+  		color: black;}
+	.default:hover {
+  		background: #e7e7e7;}
+  	
+	.container {
+  		display: flex;
+  		height: 100vh;}
+
+	.section {
+  		flex: 1;
+  		display: flex;
+  		justify-content: center;
+  		align-items: center;
+  		height: 100%;
+  		overflow: hidden;
+  		background-size: cover;
+  		background-position: center;
+  		color: #fff;
+  		transition: flex .4s ease;
+  		position: relative;}
+
+	.section .overlay {
+  		background-color: rgba(0, 0, 0, 0.7);
+		opacity: 0.8;
+ 		width: 100%;
+  		height: 100%;
+  		position: absolute;
+  		transition: background-color .8s ease;}
+
+	.section .content {
+  		z-index: 2;}
+
+	.section:hover {
+  		flex: 2;}
+
+	.section:hover .overlay {
+  		background-color: rgba(0, 0, 0, 0.95);}
+	#viewslot, #managebuildings, #history, #manageacc {
+  		background-image: url(/CarParkingSystem/resources/images/home_page_background_photo_1.jpg);}
+
 </style>
 </h:head>
-<h:body styleClass="back_img">
+<h:body>
 <div>
 <h:form>
 	<h:panelGrid columns="3" cellpadding="7" style="margin-top:30px;margin-left:1000px;">
@@ -103,85 +118,45 @@
 	</h:panelGrid>
 </h:form>
 </div>
-
-<div id="building_div">
-<h2>Building</h2> 
 <h:form>
-   <p:growl id="msgs" showDetail="true"/>
-	<p:panelGrid id="buidling_panel" style="margin: 0 auto" styleClass="noBorders">
-		<p:column>
-			<p:commandButton type="submit" value="View Slots" id="viewSLots" action="#{locationBean.redirectBuildings()}"/>
-		</p:column>
-	</p:panelGrid>
-</h:form>
+<div class="container">
+  <div id="viewslot" class="section">
+    <div class="content">
+      <h2>Managing Buildings</h2>
+      <p:commandButton type="submit" value="View Slots" id="viewSLots" action="#{locationBean.redirectBuildings()}" styleClass="btn default"/>
+    </div>
+    <div class="overlay"></div>
+  </div>
+  <div id="managebuildings" class="section">
+    <div class="content">
+      <h2>Managing Buildings, Floors and Slots</h2>
+      <p:commandButton value="Add New Building" id="addBuilding" action="#{locationBean.redirectAddNewBuilding()}" styleClass="btn default"/>
+      <p:commandButton value="Add New Floor" id="addFloor" action="#{locationBean.redirectAddNewFloor()}" styleClass="btn default"/>
+      <p:commandButton value="Delete Building" id="deleteBuilding" action="#{locationBean.redirectDeleteBuilding()}" styleClass="btn default"/>
+	  <p:commandButton value="Delete Floor" id="deleteFloor" action="#{locationBean.redirectDeleteFloor()}" styleClass="btn default"/>	
+	  <p:commandButton value="Delete Slot" id="deleteSlot" action="#{locationBean.redirectDeleteSlot()}" styleClass="btn default"/>
+    </div>
+    <div class="overlay"></div>
+  </div>
+  <div id="history" class="section">
+    <div class="content">
+      <h2>Managing Records</h2>
+      <p:commandButton type="submit" value="Parked History" id="parkedHistory" action="#{locationBean.redirectSearchHistory()}" styleClass="btn default"/>
+      <p:commandButton type="submit" value="Delete History" id="deleteHistory" action="#{locationBean.redirectDeleteHistory()}" styleClass="btn default"/>
+    </div>
+    <div class="overlay"></div>
+  </div>
+  <div id="manageacc" class="section">
+    <div class="content">
+      <h2>Managing Accounts</h2>
+      <p:commandButton value="Change Admin Password" id="changeAdminPassword" action="#{locationBean.redirectChangeAdminPassword()}" styleClass="btn default"/>
+	  <p:commandButton value="Change User Password" id="changeUserPassword" action="#{locationBean.redirectChangeUserPassword()}" styleClass="btn default"/>
+	  <p:commandButton value="Create New User Account" id="createNewUserAccount" action="#{locationBean.redirectCreateNewUserAccount()}" styleClass="btn default"/>
+    </div>
+    <div class="overlay"></div>
+  </div>
 </div>
-
-<div id="history_div">
-<h2>History</h2> 
-<h:form>    
-   <p:growl id="msgs" showDetail="true"/>
-	<p:panelGrid id="history_panel" style="margin: 0 auto" styleClass="noBorders">
-		<p:column>
-			<p:commandButton type="submit" value="Parked History" id="parkedHistory" action="#{locationBean.redirectSearchHistory()}"/>
-		</p:column>
-		<p:column>
-			<p:commandButton type="submit" value="Delete History" id="deleteHistory" action="#{locationBean.redirectDeleteHistory()}"/>	
-		</p:column>
-	</p:panelGrid>
 </h:form>
-</div>
-
-<div id="add_div">
-<h2>Adding Buildings and Floors</h2> 
-<h:form>     
-   <p:growl id="msgs" showDetail="true"/>
-	<p:panelGrid id="add_panel" style="margin: 0 auto" styleClass="noBorders">
-		<p:column>
-			<p:commandButton value="Add New Building" id="addBuilding" action="#{locationBean.redirectAddNewBuilding()}"/>
-		</p:column>
-		<p:column>
-			<p:commandButton value="Add New Floor" id="addFloor" action="#{locationBean.redirectAddNewFloor()}"/>	
-		</p:column>
-	</p:panelGrid>
-</h:form>
-</div>
-
-<div id="delete_div">
-<h2>Deleting Buildings and Slots</h2> 
-<h:form>
-   <p:growl id="msgs" showDetail="true"/>
-	<p:panelGrid id="delete_panel" style="margin: 0 auto" styleClass="noBorders">
-		<p:column>
-			<p:commandButton value="Delete Building" id="deleteBuilding" action="#{locationBean.redirectDeleteBuilding()}"/>
-		</p:column>
-		<p:column>
-			<p:commandButton value="Delete Floor" id="deleteFloor" action="#{locationBean.redirectDeleteFloor()}"/>	
-		</p:column>
-		<p:column>
-			<p:commandButton value="Delete Slot" id="deleteSlot" action="#{locationBean.redirectDeleteSlot()}"/>	
-		</p:column>
-	</p:panelGrid>
-</h:form>
-</div>
-
-<div id="manage_div">
-<h2>Manage Accounts</h2> 
-<h:form>
-     
-   <p:growl id="msgs" showDetail="true"/>
-	<p:panelGrid id="manage_panel" style="margin: 0 auto" styleClass="noBorders">
-		<p:column>
-			<p:commandButton value="Change Admin Password" id="changeAdminPassword" action="#{locationBean.redirectChangeAdminPassword()}"/>
-		</p:column>
-		<p:column>
-			<p:commandButton value="Change User Password" id="changeUserPassword" action="#{locationBean.redirectChangeUserPassword()}"/>	
-		</p:column>
-		<p:column>
-			<p:commandButton value="Create New User Account" id="createNewUserAccount" action="#{locationBean.redirectCreateNewUserAccount()}"/>	
-		</p:column>
-	</p:panelGrid>
-</h:form>
-</div>
 <div class="footer">
 		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
 			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>
