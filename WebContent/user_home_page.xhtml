@@ -10,11 +10,11 @@
 <h:head>
 <title>Car Parking System</title>
 <style>
-.parking-status-available{
-background: #229954 !important;}
-.parking-status-occupied{
-background: #FF5733 !important;}
- 	body{background-image:url(/CarParkingSystem/resources/images/plainBackground1.jpg);
+	.parking-status-available{
+		background:  #32CD32 !important;}
+	.parking-status-occupied{
+		background: #cc0000 !important;}
+	body{background-image:url(/CarParkingSystem/resources/images/plainBackground1.jpg);
   			  background-repeat:no-repeat;
   			  background-size:cover;
   			  background-attachment:fixed;
@@ -26,18 +26,8 @@ background: #FF5733 !important;}
 	h2{text-align:center;
 	   color:white;
 	   margin-top:100px;
-	   font-size: 40px;} 
-	.btn {
-		color:#333;
-  		border:2px solid;
-  		border-radius:3px;
-  		text-decoration:none;
-  		display:inline-block;
-  		font-weight:600;
-		margin-top:20px;}
-	commandbutton:hover{
-		cursor: pointer;}
-	.btn .btn-primary {
+	   font-size: 40px;}  
+/* 	.btn:before, .btn-primary {
   		text-transform: uppercase;
   		letter-spacing: 1px;
   		margin-top: 5px;  
@@ -51,10 +41,21 @@ background: #FF5733 !important;}
   		color: black;
     	background-color: white;
     	border-color: balck;}
-	.btn:hover {
+	.btn:before:hover{
       	color: white;
       	background-color: black;
-      	border-color: black;}
+      	border-color: black;} */
+    .btn:after{
+    	text-transform: uppercase;
+  		border:2px solid;
+  		border-radius:3px;
+  		text-decoration:none;
+  		display:inline-block;
+  		font-weight:600;
+  		font-size:80px;}
+	.btn:after:hover{
+		cursor: pointer;
+		border-color:#32CD32;}
     #myLogo{
     	background: var(--clr2);
     	width: 180px;
@@ -82,7 +83,7 @@ background: #FF5733 !important;}
 <h:form>
  <div>
  <h2>Select Building and Floor you want to view slots from</h2> 
-  <h:panelGrid columns="4" cellpadding="7" style="margin: 0 auto;">
+  <h:panelGrid columns="2" cellpadding="7" style="margin: 0 auto;">
    <p:outputLabel for="Building" value="Building :" style="font-size:28px;color:white;"/>
   		<p:selectOneMenu id="Building" value="#{locationBean.location.building_name}" style="width:120px">
      		<p:ajax listener="#{locationBean.onBuildingChange()}" update="floor"/>
@@ -90,7 +91,7 @@ background: #FF5733 !important;}
      		<f:selectItems value="#{locationBean.listBuildings()}" />
   		</p:selectOneMenu>
    <p:outputLabel for="floor" value="Floor Name :" style="font-size:28px;color:white;"/>
-   <p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:100px">
+   <p:selectOneMenu id="floor" value="#{locationBean.floor_name}" style="width:120px">
      <p:ajax listener="#{locationBean.onFloorChange()}" process="@this" update="slotTable"/>
      <f:selectItem itemLabel="Select Floor" itemValue="" noSelectionOption="true"/>
      <f:selectItems value="#{locationBean.listfloors()}" />
@@ -99,15 +100,24 @@ background: #FF5733 !important;}
  </div>
 </h:form>
 <h:form id="slotTable">
-<table id="slotTable">
+<table id="slotTable" style="margin: 0 auto;margin-top:90px;">
  <tr>
    <td><h:outputText/></td>
    <td>
-   <c:forEach var="s" items="${locationBean.listslots()}">
-   <p:commandButton value="#{s}" style="background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" action="#{locationBean.ClearOrOccupy(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}" update="@widgetVar(gray)"/>
-   </c:forEach>
+   		<c:forEach var="s" items="${locationBean.listslots()}">
+   			<p:commandButton value="#{s}" style="margin-left:40px;
+   												width:150px;
+   												height:150px;
+   												color:black;
+   												text-align:center;
+   												font-size:29px;
+   												font-weight:300px;
+												border-color:black;
+												background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)};" 
+							action="#{locationBean.ClearOrOccupy(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}" update="@widgetVar(gray)"/>
+   		</c:forEach>
    </td>
-   </tr>
+ </tr>
 </table>
 </h:form>
 <!-- Gray -->
