@@ -86,18 +86,17 @@
 <h2>Delete History</h2> 
 <div>
 	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
-		<p:outputLabel for="parked_date1" value="Start Date :" style="font-size:28px;color:white;"/>
-		<p:calendar id="parked_date1" value="#{historyBean.start_date}" required="true" />
-		
-		<p:outputLabel for="parked_date2" value="End Date :" style="font-size:28px;color:white;"/>
-		<p:calendar id="parked_date2" value="#{historyBean.end_date}" required="true" />
-		<p:outputLabel></p:outputLabel>
+		<p:outputLabel for="parked_date1" value="Start Date :" />
+		<p:calendar id="parked_date1" value="#{historyBean.start_date}" pattern="yyyy-MM-dd" maxdate="#{historyBean.maxDate}" required="true" readonlyInput="true">
+		  <p:ajax event="dateSelect" update="parked_date2" />
+		</p:calendar>
+		<p:outputLabel for="parked_date2" value="End Date :" />
+		<p:calendar id="parked_date2" value="#{historyBean.end_date}" pattern="yyyy-MM-dd" mindate="#{historyBean.start_date}" maxdate="#{historyBean.maxDate}" required="true" readonlyInput="true"/>
 		<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
 			<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 		</p:commandButton>  
 	</h:panelGrid>
 </div>
-
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
 <p:commandButton value="Yes" actionListener="#{historyBean.deleteRecords()}" update="deleterecord" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  

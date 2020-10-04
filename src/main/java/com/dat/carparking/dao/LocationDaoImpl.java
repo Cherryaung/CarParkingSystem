@@ -86,7 +86,7 @@ public class LocationDaoImpl implements LocationDao{
 	public List<String> findSlotlist(String selectedFloor,String selected_building) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
-		String sql = "SELECT slot_name FROM Location WHERE building_name=:building_name AND floor_name=:floor_name";
+		String sql = "SELECT slot_name FROM Location WHERE building_name=:building_name AND floor_name=:floor_name ORDER BY location_id ASC";
 		Query query  = (Query) session.createQuery(sql);
 		query.setParameter("building_name", selected_building);
 		query.setParameter("floor_name", selectedFloor);

@@ -40,6 +40,15 @@ public class HistoryBean implements Serializable{
 	public String submitted_security;
 	public List<String> buildings;	
 	public List<String> floors;
+	private Date maxDate = new Date();
+
+	public Date getMaxDate() {
+	    return maxDate;
+	}
+
+	public void setMaxDate(Date maxDate) {
+	    this.maxDate = new Date();
+	}
 	public Date start_date;
 	public Date end_date;
 	public Date getStart_date() {
@@ -161,7 +170,7 @@ public class HistoryBean implements Serializable{
 	//Delete records by date
 	  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	  public void deleteRecords() throws ParseException {
-				
+				System.out.println("delete method is invoked");
 		     System.out.println("Start Date:"+start_date);
 		     System.out.println("End Date:"+end_date);
 			 String start_date_string = format.format(start_date);
@@ -179,7 +188,7 @@ public class HistoryBean implements Serializable{
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("No Record to delete in this duration"));
 			 }else{
-				 if(start_date_string.compareTo(tDayString)==0 || tDayString.compareTo(end_date_string)==0)
+				 if(start_date_string.compareTo(tDayString)==0 || end_date_string.compareTo(tDayString)==0)
 				 {
 					 FacesContext context = FacesContext.getCurrentInstance();
 					 context.addMessage(null, new FacesMessage("You cannot delete records in this day."));
