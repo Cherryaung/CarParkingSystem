@@ -92,7 +92,7 @@
 			</p:password>
 			
 			<p:commandButton value="Submit" icon="pi pi-check" update="form1" oncomplete="" actionListener="#{locationBean.persistAccount()}" styleClass="btn" style="float:right;"/>
-			<p:commandButton value="Cancel" id="cancel"  icon="pi pi-times"  update="form1"  process="@this" action="#{locationBean.resetFail()}" styleClass="btn" style="float:right;"/>
+			<p:commandButton value="Cancel" id="cancel"  icon="pi pi-times"  update="form1"  process="@this" action="#{locationBean.resetAdmin()}" styleClass="btn" style="float:right;"/>
 		</h:panelGrid>
 </h:form>	
 <div class="footer">

@@ -641,7 +641,7 @@ public class LocationBean implements Serializable{
 
 		 }
 		//cancel reset input
-		 public void resetFail() {
+		 public void resetAdmin() {
 		        this.admin_name = null;
 		        this.admin_password = null;
 		        this.new_password=null;
@@ -649,7 +649,7 @@ public class LocationBean implements Serializable{
 		      //  FacesMessage msg = new FacesMessage("Input reset.");
 		      //  FacesContext.getCurrentInstance().addMessage(null, msg);
 		    }
-		 public void resetFailUser() {
+		 public void resetUser() {
 		        this.user_name = null;
 		        this.user_password = null;
 		        this.new_password=null;
