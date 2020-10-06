@@ -242,7 +242,7 @@ public class HistoryBean implements Serializable{
 		return floorSet;
 	}
 	//method insert data into history table
-	 public String persistHistory(String bname,String fname,String sname,String security) {
+	 public void persistHistory(String bname,String fname,String sname,String security) {
 		 System.out.println("Building Name:"+bname);
 		 System.out.println("Floor Name:"+fname);
 		 System.out.println("Slot Name:"+sname);
@@ -270,11 +270,11 @@ public class HistoryBean implements Serializable{
 	    	 System.out.println("Save not OK");
 	    	 FacesContext.getCurrentInstance().addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "The Car number already existed in another slot. Please check car number again!!", "The Car number already existed in another slot. Please check car number again!!"));
 	     }
-		return "History";
+		
 		 
 	 }
 		 //method user clear carparking slot 
-		 public void updateHistory(String bname,String fname,String sname,String car_number) {
+		 public String updateHistory(String bname,String fname,String sname,String car_number) {
 			 
 			 String status = "available";
 			 Date date = new Date();  
@@ -284,6 +284,8 @@ public class HistoryBean implements Serializable{
 			  System.out.println(" clear slot Buidling "+history.getBuilding_name()+" floor_name "+floor_name+" slot_name "+slot_name);
 				FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage(null, new FacesMessage("User Clear Car Parking Slot Successfully"));
+				
+				return "user_home_page";
 			  
 		}
 		 public String computeDuration(Timestamp entry,Timestamp exit)
