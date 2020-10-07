@@ -104,14 +104,15 @@
    <td>
    		<c:forEach var="s" items="${locationBean.listslots()}">
    			<p:commandButton value="#{s}" style="margin-left:40px;
-   												width:150px;
-   												height:150px;
-   												color:black;
-   												text-align:center;
-   												font-size:29px;
-   												font-weight:300px;
-												border-color:black;
-												background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)};" 
+   												 margin-top:10px;
+   												 width:150px;
+   												 height:150px;
+   												 color:black;
+   												 text-align:center;
+   												 font-size:29px;
+   												 font-weight:300px;
+												 border-color:black;
+												 background:#{locationBean.toggleStatus(locationBean.selectedFloor,s)}" 
 							action="#{locationBean.ClearOrOccupy(locationBean.toggleStatus(locationBean.selectedFloor,s),locationBean.selectedFloor,s)}" update="@widgetVar(gray)"/>
    		</c:forEach>
    </td>

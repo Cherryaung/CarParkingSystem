@@ -90,7 +90,7 @@
        <p:outputLabel for="password" value="Password:"  style="font-size:28px;color:white;"/>
        <p:password id="password" value="#{locationBean.admin.admin_password}" required="true" requiredMessage="Password is required"/>
        <p:outputLabel></p:outputLabel>
-	   <p:commandButton type="submit" styleClass="btn" value="login" update="admin" action="#{locationBean.login()}" style="float:right;" validateClient="true" /> 
+	   <p:commandButton type="submit" styleClass="btn" value="login" update="admin" action="#{locationBean.adminlogin()}" style="float:right;" validateClient="true" /> 
      </h:panelGrid>
 </h:form>
 </div>

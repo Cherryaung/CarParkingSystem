@@ -408,7 +408,7 @@ public class LocationBean implements Serializable{
 		}
 	}
 
-	 public String login()
+	 public String adminlogin()
 	 {
 	 	List t=locationService.adminLogin(admin.getAdmin_name(), admin.getAdmin_password());
 	 	if(t.isEmpty())
@@ -424,7 +424,7 @@ public class LocationBean implements Serializable{
 	 	}
 	 	}
 	 //return null;
-	 public String login1()
+	 public String userlogin()
 	 {
 	 	List t=locationService.userLogin(user.getUser_name(), user.getUser_password());
 	 	if(t.isEmpty())
