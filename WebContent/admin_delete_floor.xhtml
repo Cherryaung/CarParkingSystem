@@ -68,10 +68,10 @@
 	</h:panelGrid>
 </h:form>
 </div>
-  <h:form id="deletefloor" >
-<p:growl id="msgs" showDetail="true" /> 
-<h2>Delete Floor</h2>  
-<div>
+<h:form id="deletefloor" >
+ <p:growl id="msgs" showDetail="true" /> 
+ <h2>Delete Floor</h2>  
+ <div>
 	<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
   		<p:outputLabel for="building" value="Building :" style="font-size:28px;color:white;"/>
   		<p:selectOneMenu id="building" value="#{locationBean.location.building_name}" style="width:120px">
@@ -92,13 +92,11 @@
 			<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 		</p:commandButton> 
 	</h:panelGrid>
-</div>
-
-
-<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" validateClient="true" />  
-<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
-</p:confirmDialog> 
+ </div>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
+		<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" validateClient="true" />  
+		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
+	</p:confirmDialog> 
 </h:form>
 <div class="footer">
 		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">

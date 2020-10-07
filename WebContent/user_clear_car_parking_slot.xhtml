@@ -71,11 +71,10 @@
 </div>
 <div>
 <h:form id="userclear" >
- <p:growl id="msgs" showDetail="true"/>
-<h2>Clearing Car From Car Parking Slot</h2> 
-<h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
-
-      <p:outputLabel value="Parking Building :" style="font-size:28px;color:white;"/>
+  <p:growl id="msgs" showDetail="true"/>
+  <h2>Clearing Car From Car Parking Slot</h2> 
+  <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
+	  <p:outputLabel value="Parking Building :" style="font-size:28px;color:white;"/>
       <p:outputLabel id="parkingBuilding" value="#{locationBean.location.building_name}" label="parkingBuilding"  style="font-size:28px;color:white;"> 
       </p:outputLabel>     
       <p:outputLabel value="Parking Floor:" style="font-size:28px;color:white;"/>
@@ -85,17 +84,17 @@
       <p:outputLabel id="parkingSlot" value="#{locationBean.location.slot_name}" label="parkingSlot"  style="font-size:28px;color:white;"> 
       </p:outputLabel>
       <p:outputLabel value="Car Number :" style="font-size:28px;color:white;"/>
-     <p:outputLabel id="carnumber" value="#{locationBean.h.car_number}" label="parkingSlot"  style="font-size:28px;color:white;"> 
-     </p:outputLabel>
-       <p:outputLabel></p:outputLabel>   
-       <p:commandButton value="Clear" action="#{historyBean.updateHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name,locationBean.h.car_number)}" styleClass="btn" update="userclear" style="float:right;" icon="pi pi-check"> 
-       	<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-       	</p:commandButton>
-     </h:panelGrid>
-     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
-<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
-</p:confirmDialog> 
+      <p:outputLabel id="carnumber" value="#{locationBean.h.car_number}" label="parkingSlot"  style="font-size:28px;color:white;"> 
+      </p:outputLabel>
+      <p:outputLabel></p:outputLabel>   
+      <p:commandButton value="Clear" action="#{historyBean.updateHistory(locationBean.location.building_name,locationBean.location.floor_name,locationBean.location.slot_name,locationBean.h.car_number)}" styleClass="btn" update="userclear" style="float:right;" icon="pi pi-check"> 
+      	<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+      </p:commandButton>
+  </h:panelGrid>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
+		<p:commandButton value="Yes"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
+	</p:confirmDialog> 
 </h:form>
 </div>
 <div class="footer">

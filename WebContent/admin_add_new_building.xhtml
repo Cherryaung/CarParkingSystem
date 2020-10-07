@@ -77,22 +77,22 @@
 </h:form>
 </div>
 <h:form id="addbuilding">
-  <p:growl id="msgs" showDetail="true" />   
+   <p:growl id="msgs" showDetail="true" />   
    <h2>Add New Building</h2>
    <p:panel style="margin-bottom:10px;border:none;background: transparent !important; " id="createbuilding">  
    <h3>Please enter building name and the number of floors.</h3>
-    <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
+   <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">  
        <p:outputLabel for="buildingname" value="Building name: "  style="font-size:28px;color:white;"/>     
        <p:inputText id="buildingname" value="#{locationBean.location.building_name}" required="true"/>
       
        <p:outputLabel for="floor_number" value="Number of floor: "  style="font-size:28px;color:white;"/>  
-        <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number" validatorMessage="only number value allowed for floor">
+       <p:inputText id="floor_number" value="#{locationBean.location.floor_name}" required="true" label="floor_number" validatorMessage="only number value allowed for floor">
        <f:validateDoubleRange minimum="1"/>
-        </p:inputText>
+       </p:inputText>
         
-        <p:outputLabel></p:outputLabel>
-        <p:commandButton value="ADD" update="addbuilding :form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
-    </h:panelGrid> 
+       <p:outputLabel></p:outputLabel>
+       <p:commandButton value="ADD" update="addbuilding :form1:floorupdate" actionListener="#{locationBean.floorList()}" styleClass="ui-priority-primary" validateClient="true"/>  
+   </h:panelGrid> 
 
 </p:panel>   
 </h:form>
@@ -133,20 +133,20 @@
             <p:column headerText="Slot Name">  
                 <h:outputText value="#{l.slot_name}" />  
             </p:column>   
-			 <f:facet name="footer">
-			 <p:growl showDetail="true" /> 
-			 <p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update="dt :form1:floorupdate" styleClass="ui-priority-primary">		
-       		 <p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
-    		</p:commandButton>
-    		<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
+			<f:facet name="footer">
+				<p:growl showDetail="true" /> 
+				<p:commandButton value="Save" id="save" actionListener="#{locationBean.persistRecord()}" update="dt :form1:floorupdate" styleClass="ui-priority-primary">		
+       				<p:confirm header="Confirmation" message="Are you sure to save?" icon="pi pi-exclamation-triangle" />
+    			</p:commandButton>
+    			<p:commandButton value="Cancel" id="cancel" actionListener="#{locationBean.Canceltoaddrecord()}" update="dt" styleClass="ui-priority-primary" />		
 			 </f:facet>
-    </p:dataTable>
-      <h:form>
+  </p:dataTable>
+  <h:form>
    			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+  			 	<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+     		 	<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
    			 </p:confirmDialog>     
-			</h:form> 
+  </h:form> 
 <div class="footer">
 		<p:commandLink id="logoLink" action="#{locationBean.redirectHomePage()}">
 			<p:graphicImage id="myLogo" url="/resources/images/myLogo.PNG"/>

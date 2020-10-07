@@ -10,15 +10,6 @@
 
 <h:head>
 <style>
-  /* 	.back_img{background-image:url(/CarParkingSystem/resources/images/systemHomePageBackground.jpg);
-  			  background-repeat:no-repeat;
-  			  background-size:full;
-  			  background-attachment:fixed;
-  			  background-position:center;}  */
-/*   	h1{text-align:center;
-  	   padding-top:0px;
-  	   font-family: 'Dancing Script', cursive;
-	   font-size: 60px;}  */
 	p {
 		color:white;
 		font-family: $font-sans-serif;
@@ -166,7 +157,7 @@
 <h:body>
 	<div class="container">
 		<div class="item">
-		<h:form id="form"> 
+			<h:form id="form"> 
 				<h2  class="mega regular ls-large libre-baskerville uppercase">Choose Your<span class="decorative-span regular ls-small"> User Role</span>Here</h2>
 				<h:panelGrid columns="2" id="building_panel" cellpadding="8" style="float:right;margin-right:240px;">
 					<p:commandButton value="Admin" id="admin" styleClass="btn btn-primary" action="#{locationBean.redirectAdminLoginPage()}" /> 

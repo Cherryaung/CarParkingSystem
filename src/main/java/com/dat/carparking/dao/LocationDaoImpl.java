@@ -26,15 +26,7 @@ public class LocationDaoImpl implements LocationDao{
 	@Override
 	public void persistRecord(Location location) {
 		// TODO Auto-generated method stub
-	//	Session session = this.sessionFactory.getCurrentSession();
-		/*String sql = "FROM Location WHERE building_name=:building_name AND floor_name=:floor_name AND slot_name=:slot_name";
-		Location l = new Location();
-		l = (Location)  sessionFactory.openSession().createQuery(sql).setParameter("building_name",location.getBuilding_name()).setParameter("floor_name",location.getFloor_name()).setParameter("slot_name",location.getSlot_name()).uniqueResult();
-	    if(l==null) {*/
 		sessionFactory.getCurrentSession().save(location);
-		/*
-															 * }else { System.out.println("already exist"); }
-															 */
 	}
 	@Override
 	public List<History> listRecords(Date parked_date) {
@@ -336,11 +328,7 @@ public class LocationDaoImpl implements LocationDao{
 		Query query = session.createQuery(hql);
 		query.setParameter("building_name",building_name);
 		query.setParameter("floor_name", floor_name);
-		query.setParameter("slot_name",slot_name);
-		
-	//	History h = (History) query.uniqueResult();
-		//String car_number = h.getCar_number();
-		
+		query.setParameter("slot_name",slot_name);		
 		return (String)query.uniqueResult();
 	}
 	@Override
@@ -416,8 +404,5 @@ public class LocationDaoImpl implements LocationDao{
 		query.setParameter("ended_date",ended_date);
 		long count = (long) query.uniqueResult();
 		return count;
-	}
-		
-	}
-
-
+	}		
+}

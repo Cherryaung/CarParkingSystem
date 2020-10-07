@@ -46,9 +46,6 @@ public class LocationBean implements Serializable{
    // private Admin admin;
     public User user=new User();
     public Admin admin=new Admin();
-	/*
-	 * @PostConstruct public void init() { admin=new Admin(); }
-	 */
      public User getUser() {
 		return user;
 	}
@@ -414,10 +411,6 @@ public class LocationBean implements Serializable{
 	 public String login()
 	 {
 	 	List t=locationService.adminLogin(admin.getAdmin_name(), admin.getAdmin_password());
-	 	
-	 	
-	 	
-	 	
 	 	if(t.isEmpty())
 	 	{
 	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Check again!"));
@@ -434,10 +427,6 @@ public class LocationBean implements Serializable{
 	 public String login1()
 	 {
 	 	List t=locationService.userLogin(user.getUser_name(), user.getUser_password());
-	 	
-	 	
-	 	
-	 	
 	 	if(t.isEmpty())
 	 	{
 	 		FacesContext.getCurrentInstance().addMessage("msgLogin", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong User Name or Password.", "Check again."));
@@ -550,10 +539,7 @@ public class LocationBean implements Serializable{
 		 	FacesContext context = FacesContext.getCurrentInstance();
 					context.addMessage(null, new FacesMessage("Password Updated Successfuly!"));
 					 return "admin_home_page";
-					 
 		 	}
-		 		
-			
 		 }
 	public String updatePasswordAdmin() {
         String admin_name=admin.getAdmin_name();
@@ -645,18 +631,10 @@ public class LocationBean implements Serializable{
 		        this.admin_name = null;
 		        this.admin_password = null;
 		        this.new_password=null;
-		         
-		      //  FacesMessage msg = new FacesMessage("Input reset.");
-		      //  FacesContext.getCurrentInstance().addMessage(null, msg);
 		    }
 		 public void resetUser() {
 		        this.user_name = null;
 		        this.user_password = null;
 		        this.new_password=null;
-		         
-		       // FacesMessage msg = new FacesMessage("Input reset.");
-		       // FacesContext.getCurrentInstance().addMessage(null, msg);
 		    }
-		 
-		 
-		 }
+}

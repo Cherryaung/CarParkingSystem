@@ -121,7 +121,7 @@
     <p:outputLabel value="Parking Slot: "/>
     <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
     <p:outputLabel value="STILL AVAILABLE!!!"></p:outputLabel> 
-     <p:commandButton value="Disable" actionListener="#{locationBean.SlotDisable(locationBean.selectedFloor,locationBean.location.slot_name)}" styleClass="btn" update="slotTable"/> 
+    <p:commandButton value="Disable" actionListener="#{locationBean.SlotDisable(locationBean.selectedFloor,locationBean.location.slot_name)}" styleClass="btn" update="slotTable"/> 
    </h:panelGrid>
  </h:form>
 </p:dialog>
@@ -134,9 +134,9 @@
      <p:outputLabel value="Car Number: " />
      <p:outputLabel id="carnumber" value="#{locationBean.h.car_number}" label="carnumber" /> 
      <p:outputLabel value="Entry Time: "/>
-      <p:outputLabel id="entrytime" value="#{locationBean.h.entry_time}" label="entrytime" >
-      <f:convertDateTime pattern="HH:mm:ss" />
-      </p:outputLabel> 
+     <p:outputLabel id="entrytime" value="#{locationBean.h.entry_time}" label="entrytime" >
+     <f:convertDateTime pattern="HH:mm:ss" />
+     </p:outputLabel> 
    </h:panelGrid>
  </h:form>
 </p:dialog>
@@ -147,7 +147,7 @@
     <p:outputLabel value="Parking Slot: "/>
     <p:outputLabel id="parkingslot" value="#{locationBean.location.slot_name}" label="parkingslot"/>
     <p:outputLabel value="Temporarily Unavailable!!!"></p:outputLabel> 
-     <p:commandButton value="Available" actionListener="#{locationBean.SlotAvailable(locationBean.selectedFloor,locationBean.location.slot_name)}" styleClass="btn" update="slotTable"/> 
+    <p:commandButton value="Available" actionListener="#{locationBean.SlotAvailable(locationBean.selectedFloor,locationBean.location.slot_name)}" styleClass="btn" update="slotTable"/> 
    </h:panelGrid>
  </h:form>
 </p:dialog>
